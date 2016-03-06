@@ -1,0 +1,26 @@
+div(layout='column', style='height:300px;', ng-cloak='')
+  section(layout='row', flex='')
+    sidenav-left
+    md-content(flex='', layout-padding='')
+      div(layout='column', layout-fill='', layout-align='top center')
+        p
+          | The left sidenav will 'lock open' on a medium (>=960px wide) device.
+        p
+          | The right sidenav will focus on a specific child element.
+        div
+          md-button.md-primary(ng-click='toggleLeft()', hide-gt-sm='')
+            | Toggle left
+        div
+          md-button.md-primary(ng-click='toggleRight()', ng-hide='isOpenRight()')
+            | Toggle right
+      div(flex='')
+    //- md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right')
+    //-   md-toolbar.md-theme-light
+    //-     h1.md-toolbar-tools Sidenav Right
+    //-   md-content(ng-controller='RightCtrl', layout-padding='')
+    //-     form
+    //-       md-input-container
+    //-         label(for='testInput') Test input
+    //-         input#testInput(type='text', ng-model='data', md-autofocus='')
+    //-     md-button.md-primary(ng-click='close()')
+    //-       | Close Sidenav Right
