@@ -1,21 +1,45 @@
+//- Toolbar
 md-toolbar
   .md-toolbar-tools
-    md-button.md-icon-button(aria-label='Settings' ng-click='$ctrl.openLeftSidenav()')
-      ng-md-icon(icon='menu' style='fill: #fff')
-    h2
-      span Agenda Acadêmica
-    span(flex='')
-    md-button.md-icon-button(aria-label='Favorite')
-      ng-md-icon(icon='favorite' style='fill: #fff')
-    md-button.md-icon-button(aria-label='More')
-      ng-md-icon(icon='more_vert' style='fill: #fff')
+    md-button.md-icon-button(aria-label='Settings' ng-click='$ctrl.onClickCallback()')
+      ng-md-icon(icon='{{$ctrl.leftIcon}}' style='fill: #fff')
+    h2.title.hand(ng-click='$ctrl.onClickCallback()')
+      span {{$ctrl.title}}
 
-md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left', md-is-locked-open="vm.$mdMedia('gt-sm')")
-  md-toolbar.md-theme-indigo
+    //- More Menu
+    md-menu(md-position-mode='target-right target')
+      md-button.md-icon-button(aria-label='More')
+        ng-md-icon(
+          md-menu-origin='',
+          icon='more_vert',
+          style='fill: #fff',
+          ng-click='$mdOpenMenu($event)',
+          aria-label='Open demo menu'
+        )
+      md-menu-content(width='4')
+        md-menu-item(ng-repeat='item in [1, 2, 3]')
+          md-button(ng-click='$ctrl.announceClick($index)')
+            div(layout='row')
+              p(flex='') Option {{item}}
+              ng-md-icon(
+                md-menu-align-target='',
+                icon='portable_wifi_off',
+                style='margin: auto 3px auto 0;'
+              )
+
+//- Sidenav
+md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
+  md-toolbar
     h1.md-toolbar-tools Sidenav Left
-  md-content(layout-padding='')
-    md-button.md-primary(show-gt-sm='')
-      | Close Sidenav Left
-    p(hide-md='', show-gt-sm='')
-      | This sidenav is locked open on your device. To go back to the default behavior,
-      | narrow your display.
+  md-content
+    md-list
+      md-subheader.md-no-sticky subheader
+      md-list-item(ng-href='/universidades')
+        ng-md-icon(class='md-avatar' size='30' icon='account_balance')
+        p  Universidades
+      md-list-item(ng-href='/unidades')
+        ng-md-icon(class='md-avatar' size='30' icon='place')
+        p  Unidades
+      md-list-item(ng-href='/cursos')
+        ng-md-icon(class='md-avatar' size='30' icon='school')
+        p  Cursos
