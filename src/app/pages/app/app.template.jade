@@ -54,11 +54,13 @@ md-content
   //-       todo-item(todo='todo', ng-repeat='todo in $ctrl.todos.filteredList')
   //-   todo-footer(ng-if='$ctrl.todos.hasTasks()', todos='$ctrl.todos')
   //-     todo-list-filter(on-filter='$ctrl.onFilter(state)', filter-state='$ctrl.todos.filterState')
+
   //- section(layout='row', layout-align='center center', layout-wrap='')
   //-   md-button(class='md-raised' layout='column') Button
   //-   md-button(class='md-raised md-primary' layout-sm='column') Primary
   //-   md-button(class='md-raised md-primary' layout-sm='column', ng-disabled='true') Disabled
   //-   md-button(class='md-raised md-warn' layout-sm='column') Warn
+
   //- section(layout-padding='')
   //-   header
   //-     h1 Students API
@@ -76,9 +78,15 @@ md-content
   //-       md-button(class='md-raised md-primary' layout-sm='column' ng-click='$ctrl.post()') POST
   //-       md-button(class='md-raised md-accent' layout-sm='column' ng-click='$ctrl.put()') PUT
   //-       md-button(class='md-raised md-warn' layout-sm='column' ng-click='$ctrl.delete()') DELETE
+
   //- section(layout='row' layout-wrap='')
   //-   div(flex-gt-sm='50' flex='100' style='background-color: red') red
   //-   div(flex-gt-sm='50' flex='100' style='background-color: blue') blue
+
+  //- section(layout='row' layout-wrap='')
+  //-   div(flex-gt-sm='50' flex='100' style='background-color: red') red
+  //-   div(flex-gt-sm='50' flex='100' style='background-color: blue') blue
+
   //- section
   //-   md-grid-list(md-cols-xs='1' md-cols-sm='2' md-cols-md='4' md-cols-gt-md='6'
   //-     md-row-height-gt-md='1:1' md-row-height='2:2' md-gutter='12px'
@@ -96,6 +104,7 @@ md-content
   //-     md-grid-tile(style='background:black' md-rowspan='1' md-colspan='1' md-colspan-sm='1')
   //-     md-grid-tile(style='background:black' md-rowspan='1' md-colspan='1' md-colspan-sm='1')
   //-     md-grid-tile(style='background:black' md-rowspan='1' md-colspan='3' md-colspan-sm='1')
+
   //- section.md-padding(layout='row', flex='')
   //-   div(layout='row', flex='')
   //-     .parent(layout='column', ng-repeat='user in $ctrl.users', flex='')
@@ -108,6 +117,7 @@ md-content
   //-         .md-actions(layout='row', layout-align='end center')
   //-           md-button Save
   //-           md-button View
+
   //- section.md-padding(layout='row' layout-wrap='' flex='')
   //-   div(layout='row' flex='')
   //-     .parent(layout='column' ng-repeat='user in $ctrl.users' flex='33')
@@ -119,6 +129,7 @@ md-content
   //-         .md-actions(layout='row' layout-align='end center')
   //-           md-button Save
   //-           md-button View
+
   //- section(layout='row' layout-margin='' layout-wrap='' layout-align='center top')
   //-   md-card(flex='100' flex-gt-sm='30')
   //-     img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
@@ -138,6 +149,7 @@ md-content
   //-     md-card-actions(layout='row', layout-align='end center')
   //-       md-button Action 1
   //-       md-button Action 2
+
   //-   md-card(flex='100' flex-gt-sm='30')
   //-     img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
   //-     md-card-title
@@ -150,6 +162,7 @@ md-content
   //-     md-card-actions(layout='row', layout-align='end center')
   //-       md-button Action 1
   //-       md-button Action 2
+
   //-   md-card(flex='100' flex-gt-sm='30')
   //-     img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
   //-     md-card-title
@@ -162,6 +175,7 @@ md-content
   //-     md-card-actions(layout='row', layout-align='end center')
   //-       md-button Action 1
   //-       md-button Action 2
+
   //-   md-card(flex='100' flex-gt-sm='30')
   //-     img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
   //-     md-card-title
@@ -174,6 +188,7 @@ md-content
   //-     md-card-actions(layout='row', layout-align='end center')
   //-       md-button Action 1
   //-       md-button Action 2
+
   //- section.md-padding(layout='row' flex='')
   //-   div(layout='row' layout-wrap='' flex='')
   //-     md-card(flex='100' flex-gt-sm='50')

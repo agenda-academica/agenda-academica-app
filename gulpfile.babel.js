@@ -72,7 +72,7 @@ gulp.task('serve', () => {
   serve({
     port: process.env.PORT || 3000,
     open: false,
-    server: {baseDir: root},
+    server: { baseDir: root },
     middleware: [
       webpackDevMiddelware(compiler, {
         stats: {
@@ -83,7 +83,6 @@ gulp.task('serve', () => {
         publicPath: config.output.publicPath
       }),
       webpachHotMiddelware(compiler)
-      // ,historyApiFallback()
     ]
   });
 });
