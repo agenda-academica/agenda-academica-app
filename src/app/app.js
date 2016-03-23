@@ -8,6 +8,7 @@ import angularResource        from 'angular-resource'
 import angularMaterialIcons   from 'angular-material-icons'
 import angularMessages        from 'angular-messages'
 import angularRoute           from 'angular-route'
+import angularFileUpload      from 'ng-file-upload'
 
 import services     from './services/services'
 import components   from './components/components'
@@ -20,6 +21,7 @@ angular.module('app', [
   angularMaterialIcons,
   angularMessages,
   angularRoute,
+  angularFileUpload,
 
   services.name,
   components.name,
