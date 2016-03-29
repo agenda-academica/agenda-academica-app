@@ -4,5 +4,5 @@ import controller from './app.controller'
 
 export default {
   template: template,
-  controller: controller
+  controller: controller,
 };

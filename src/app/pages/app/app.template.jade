@@ -5,43 +5,63 @@ toolbar.default-color(
 )
 
 md-content
-  form(name='projectForm' layout-padding)
-    div(layout-gt-sm='row')
-      md-input-container.md-block(flex-gt-sm)
-        label Description
-        input(md-maxlength='30', required='', name='description', ng-model='project.description')
-        div(ng-messages='projectForm.description.$error')
-          div(ng-message='required') This is required.
-          div(ng-message='md-maxlength') The name has to be less than 30 characters long.
-      md-input-container.md-block(flex-gt-sm)
-        label Client Name
-        input(required='', name='clientName', ng-model='project.clientName')
-        div(ng-messages='projectForm.clientName.$error')
-          div(ng-message='required') This is required.
-      md-input-container.md-block(flex-gt-sm)
-        label Client Email
-        input(required='', type='email', name='clientEmail', ng-model='project.clientEmail', minlength='10', maxlength='100', ng-pattern='/^.+@.+\..+$/')
-        div(ng-messages='projectForm.clientEmail.$error', role='alert')
-          div(ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']")
-            | Your email must be between 10 and 100 characters long and look like an e-mail address.
-    div(layout-gt-sm='row')
-      md-input-container.md-block(md-no-float)
-        label Hourly Rate (USD)
-        input(required='', type='number', step='any', name='rate', ng-model='project.rate', min='800', max='4999', ng-pattern='/^1234$/')
-        div(ng-messages='projectForm.rate.$error', multiple='', md-auto-hide='false')
-          div(ng-message='required')
-            | You've got to charge something! You can't just
-            b  give away
-            |  a Missile Defense
-            |             System.
-          div(ng-message='min')
-            | You should charge at least $800 an hour. This job is a big deal... if you mess up,
-            | everyone dies!
-          div(ng-message='pattern')
-            | You should charge exactly $1,234.
-          div(ng-message='max')
-            | {{projectForm.rate.$viewValue | currency:"$":0}} an hour? That's a little ridiculous. I
-            | doubt event Bill Clinton could afford that.
+  section(layout-padding)
+    h1 {{$ctrl.calendarDate | date: 'MMMM yyyy': '-0300'}}
+    header
+      include ./calendar-viewoptions.partial.jade
+      include ./calendar-navigation.partial.jade
+
+    article
+      mwl-calendar(
+        view='$ctrl.calendarView',
+        view-date='$ctrl.calendarDate',
+        events='$ctrl.events',
+        view-title='$ctrl.calendarTitle',
+        edit-event-html="'<i class=\"glyphicon glyphicon-pencil\"></i>'",
+        cell-is-open="true"
+      )
+
+    footer
+      include ./calendar-navigation.partial.jade
+      include ./calendar-viewoptions.partial.jade
+
+  //- form(name='projectForm' layout-padding)
+  //-   div(layout-gt-sm='row')
+  //-     md-input-container.md-block(flex-gt-sm)
+  //-       label Description
+  //-       input(md-maxlength='30', required='', name='description', ng-model='project.description')
+  //-       div(ng-messages='projectForm.description.$error')
+  //-         div(ng-message='required') This is required.
+  //-         div(ng-message='md-maxlength') The name has to be less than 30 characters long.
+  //-     md-input-container.md-block(flex-gt-sm)
+  //-       label Client Name
+  //-       input(required='', name='clientName', ng-model='project.clientName')
+  //-       div(ng-messages='projectForm.clientName.$error')
+  //-         div(ng-message='required') This is required.
+  //-     md-input-container.md-block(flex-gt-sm)
+  //-       label Client Email
+  //-       input(required='', type='email', name='clientEmail', ng-model='project.clientEmail', minlength='10', maxlength='100', ng-pattern='/^.+@.+\..+$/')
+  //-       div(ng-messages='projectForm.clientEmail.$error', role='alert')
+  //-         div(ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']")
+  //-           | Your email must be between 10 and 100 characters long and look like an e-mail address.
+  //-   div(layout-gt-sm='row')
+  //-     md-input-container.md-block(md-no-float)
+  //-       label Hourly Rate (USD)
+  //-       input(required='', type='number', step='any', name='rate', ng-model='project.rate', min='800', max='4999', ng-pattern='/^1234$/')
+  //-       div(ng-messages='projectForm.rate.$error', multiple='', md-auto-hide='false')
+  //-         div(ng-message='required')
+  //-           | You've got to charge something! You can't just
+  //-           b  give away
+  //-           |  a Missile Defense
+  //-           |             System.
+  //-         div(ng-message='min')
+  //-           | You should charge at least $800 an hour. This job is a big deal... if you mess up,
+  //-           | everyone dies!
+  //-         div(ng-message='pattern')
+  //-           | You should charge exactly $1,234.
+  //-         div(ng-message='max')
+  //-           | {{projectForm.rate.$viewValue | currency:"$":0}} an hour? That's a little ridiculous. I
+  //-           | doubt event Bill Clinton could afford that.
 
   form(name='testForm' layout-padding)
     md-input-container(md-no-float)

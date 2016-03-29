@@ -15,7 +15,31 @@ export default class AppController {
     this.$mdSidenav = $mdSidenav
     this.$log = $log
 
-    this.users = ['Gabriel', 'Michelle', 'Daniela', 'Silvio', 'Guiomar'];
+    this.calendarView = 'month'
+    this.calendarDate = new Date()
+    this.calendarTitle = 'HelloWorldTitle'
+    this.events = [
+      {
+        title: 'Gabriel - HelloWorldEventTitle',
+        type: 'info', // important | warning | info | inverse | success | special
+        startsAt: new Date(2016, 2, 30, 13, 30),
+        endsAt: new Date(2016, 2, 30, 14, 30),
+      },
+      {
+        title: 'Gabriel - HelloWorldEventTitle Part II',
+        type: 'important', // important | warning | info | inverse | success | special
+        startsAt: new Date(2016, 2, 31, 12),
+        endsAt: new Date(2016, 2, 31, 18),
+      }
+    ];
+  }
+
+  changeCalendarView(type) {
+    this.calendarView = type
+  }
+
+  getCssActiveCalendarViewType(type) {
+    return this.calendarView === type ? 'md-primary' : ''
   }
 
   getAll() {

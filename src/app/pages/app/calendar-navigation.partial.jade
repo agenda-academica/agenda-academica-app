@@ -1,0 +1,37 @@
+section.calendar-navigation(layout='row' layout-align='space-between center')
+  md-button(
+    layout='column'
+    mwl-date-modifier
+    date="$ctrl.calendarDate"
+    decrement="$ctrl.calendarView"
+    layout-align='center center')
+    ng-md-icon(
+      layout='column'
+      icon='keyboard_arrow_left'
+      style='fill: #607d8b'
+      aria-label='Mês anterior'
+    )
+  md-button(
+    layout='column'
+    mwl-date-modifier
+    date='$ctrl.calendarDate'
+    set-to-today
+    layout-align='center center')
+    ng-md-icon(
+      layout='column'
+      icon='panorama_fisheye'
+      style='fill: #607d8b'
+      aria-label='Hoje'
+    )
+  md-button(
+    layout='column'
+    mwl-date-modifier
+    date='$ctrl.calendarDate'
+    increment='$ctrl.calendarView'
+    layout-align='center center')
+    ng-md-icon(
+      layout='column'
+      icon='keyboard_arrow_right'
+      style='fill: #607d8b'
+      aria-label='Próximo mês'
+    )

@@ -7,14 +7,22 @@ module.exports = {
   entry: {},
   module: {
     loaders: [
-       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
-       { test: /\.html$/, loader: 'raw' },
-       { test: /\.jade$/, loader: 'raw!jade-html' },
-       { test: /\.less$/, loader: 'style!css!less' },
-       { test: /\.css$/, loader: 'style!css' },
-       { test: /\.(png|jpg)$/, loader: 'url?limit=25000' },
-       { test: /\.styl$/, loader: 'style!css!stylus' },
-       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+      { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
+      { test: /\.html$/, loader: 'raw' },
+      { test: /\.jade$/, loader: 'raw!jade-html' },
+      { test: /\.less$/, loader: 'style!css!less' },
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.(png|jpg)$/, loader: 'url?limit=25000' },
+      { test: /\.styl$/, loader: 'style!css!stylus' },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+      { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
+      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      { test: /\.otf(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+      { test: /\.svg$/, loader: "svg" },
+      { test: /\.(woff|woff2|ttf|eot|svg)(\?]?.*)?$/, loader: 'file-loader?name=res/[name].[ext]?[hash]' }
     ]
   },
   plugins: [
