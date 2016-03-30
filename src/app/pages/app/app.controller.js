@@ -30,6 +30,24 @@ export default class AppController {
         type: 'important', // important | warning | info | inverse | success | special
         startsAt: new Date(2016, 2, 31, 12),
         endsAt: new Date(2016, 2, 31, 18),
+      },
+      {
+        title: 'Lasanha - HelloWorldEventTitle Part II',
+        type: 'important', // important | warning | info | inverse | success | special
+        startsAt: new Date(2016, 2, 31, 12),
+        endsAt: new Date(2016, 2, 31, 18),
+      },
+      {
+        title: 'Lasanha - HelloWorldEventTitle Part II',
+        type: 'important', // important | warning | info | inverse | success | special
+        startsAt: new Date(2016, 2, 31, 12),
+        endsAt: new Date(2016, 2, 31, 18),
+      },
+      {
+        title: 'Lasanha - HelloWorldEventTitle Part II',
+        type: 'important', // important | warning | info | inverse | success | special
+        startsAt: new Date(2016, 2, 31, 12),
+        endsAt: new Date(2016, 2, 31, 18),
       }
     ];
   }

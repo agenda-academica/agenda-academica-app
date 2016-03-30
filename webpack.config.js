@@ -1,6 +1,7 @@
 var path    = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'sourcemap',
@@ -32,7 +33,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       inject: 'body',
-      hash: true
+      hash: true,
+      favicon: 'src/app/statics/favicon.ico'
     }),
 
     // Automatically move all modules defined outside of application directory to vendor bundle.
@@ -42,6 +44,11 @@ module.exports = {
       minChunks: function (module, count) {
         return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
       }
-    })
+    }),
+
+    new CopyWebpackPlugin([
+      { from: './src/app/statics/logo.png', to: path.resolve(__dirname) },
+      { from: './src/app/statics/splash.css', to: path.resolve(__dirname) },
+    ])
   ]
 };

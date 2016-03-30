@@ -7,13 +7,18 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="description" content="TodoMVC by @Fesor">
+    <meta name="description" content="Agenda Acadêmica">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" type="text/css" href="/splash.css">
     <base href="/">
   </head>
-  <body ng-strict-di ng-cloak>
+  <body ng-strict-di>
     <div ng-view>
-      Loading...
+      <section class="splash-container">
+        <div class="bar top-bar"></div>
+        <div class="bar bottom-bar"></div>
+        <img src="/logo.png" class="splash">
+      </section>
     </div>
   </body>
 </html>

@@ -50,12 +50,13 @@ angular.module('app', [
 .config(function ($routeProvider, $locationProvider) {
   'ngInject';
   $routeProvider
-    .when('/', { template: '<app></app>' })
+    .when('/', { template: '<splash></splash>' })
+    .when('/welcome', { template: '<app></app>' })
     .when('/universidades', { template: '<universidades></universidades>' })
     .when('/unidades', { template: '<unidades></unidades>' })
     .when('/cursos', { template: '<cursos></cursos>' })
     .otherwise({ redirectTo: '/' });
-  $locationProvider.html5Mode(true)
+  // $locationProvider.html5Mode(true)
 })
 
 angular.element(document).ready(function() {
