@@ -49,3 +49,7 @@ html, body {
 splash[ng-cloak] {
   display: none;
 }
+
+md-content {
+  top: 56px;
+}
