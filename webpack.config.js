@@ -52,7 +52,7 @@ module.exports = {
 
     new CopyWebpackPlugin([
       { from: './src/app/statics/logo.png', to: path.resolve(__dirname) },
-      { from: './src/app/statics/splash.css', to: path.resolve(__dirname) },
+      { from: './src/app/statics/main.css', to: path.resolve(__dirname) },
     ])
   ]
 };

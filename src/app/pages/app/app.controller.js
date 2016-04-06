@@ -20,31 +20,31 @@ export default class AppController {
     this.calendarTitle = 'HelloWorldTitle'
     this.events = [
       {
-        title: 'Gabriel - HelloWorldEventTitle',
+        title: 'Aula 01',
         type: 'info', // important | warning | info | inverse | success | special
         startsAt: new Date(2016, 2, 30, 13, 30),
         endsAt: new Date(2016, 2, 30, 14, 30),
       },
       {
-        title: 'Gabriel - HelloWorldEventTitle Part II',
+        title: 'Aula 02',
         type: 'important', // important | warning | info | inverse | success | special
         startsAt: new Date(2016, 2, 31, 12),
         endsAt: new Date(2016, 2, 31, 18),
       },
       {
-        title: 'Lasanha - HelloWorldEventTitle Part II',
+        title: 'Aula 03',
         type: 'important', // important | warning | info | inverse | success | special
         startsAt: new Date(2016, 2, 31, 12),
         endsAt: new Date(2016, 2, 31, 18),
       },
       {
-        title: 'Lasanha - HelloWorldEventTitle Part II',
+        title: 'Aula 04',
         type: 'important', // important | warning | info | inverse | success | special
         startsAt: new Date(2016, 2, 31, 12),
         endsAt: new Date(2016, 2, 31, 18),
       },
       {
-        title: 'Lasanha - HelloWorldEventTitle Part II',
+        title: 'Aula 05',
         type: 'important', // important | warning | info | inverse | success | special
         startsAt: new Date(2016, 2, 31, 12),
         endsAt: new Date(2016, 2, 31, 18),

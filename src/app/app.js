@@ -55,9 +55,15 @@ angular.module('app', [
     .when('/universidades', { template: '<universidades></universidades>' })
     .when('/unidades', { template: '<unidades></unidades>' })
     .when('/cursos', { template: '<cursos></cursos>' })
+    .when('/login', { template: '<login></login>' })
     .otherwise({ redirectTo: '/' });
   // $locationProvider.html5Mode(true)
 })
+.constant('apiUrl',
+  /https?\:\/\/localhost/.test(window.location.href)
+    ? 'http://localhost:8080/agenda-academica-api/rest'
+    : 'https://infinite-wave-42974.herokuapp.com/rest'
+)
 
 angular.element(document).ready(function() {
   angular.bootstrap(document, ['app'], {})
