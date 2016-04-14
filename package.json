@@ -8,6 +8,7 @@
     "angular-animate": "^1.5.0",
     "angular-aria": "^1.5.0",
     "angular-bootstrap-calendar": "^0.19.5",
+    "angular-http-loader": "git+https://github.com/wongatech/angular-http-loader.git",
     "angular-material": "^1.0.6",
     "angular-material-icons": "^0.6.0",
     "angular-messages": "^1.5.0",

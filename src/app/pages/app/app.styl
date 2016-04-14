@@ -7,12 +7,12 @@
     position relative !important
     padding-bottom 10px
 
+    .md-button
+      margin-top 16px
+      margin-bottom 16px
+
   md-content
     margin-right 7px
-
-  section .md-button
-    margin-top 16px
-    margin-bottom 16px
 
   .label
     position absolute
@@ -26,7 +26,7 @@
     background-color #1565c0
 
 .md-button.md-primary.md-raised
-  background-color #607d8b
+  background-color #edb800
 
   &:not([disabled]):hover
     background-color #607d8b
@@ -37,3 +37,63 @@
 
 .events-list
   z-index 1
+
+md-content
+  section
+    > header
+      margin-top 30px
+
+md-fab-speed-dial
+  md-fab-trigger
+    .md-fab.md-raised,
+    .md-fab.md-raised:focus
+      background-color #bf1b15
+
+    a.md-button.md-default-theme.md-raised:not([disabled]):hover,
+    a.md-button.md-raised:not([disabled]):hover,
+    .md-button.md-default-theme.md-raised:not([disabled]):hover,
+    .md-button.md-raised:not([disabled]):hover,
+    .md-button.md-raised:not([disabled]).md-focused
+      background-color #bf1b15
+
+    a.md-button.md-default-theme.md-raised,
+    a.md-button.md-raised,
+    .md-button.md-default-theme.md-raised,
+    .md-button.md-raised
+      ng-md-icon
+        line-height 68px
+
+        > svg
+          fill #fff
+
+      &.default-color
+        background-color #1565c0
+
+  a.md-button.md-default-theme.md-raised,
+  a.md-button.md-raised,
+  .md-button.md-default-theme.md-raised,
+  .md-button.md-raised
+    background-color #aaa
+    ng-md-icon
+      line-height 55px
+
+      > svg
+        fill #fff
+
+    span
+      color #fff
+      font-size 1.6em
+
+.calendar-date
+  position fixed
+  width 80%
+  top 55px
+  background-color #08468C
+  left 50%
+  text-align center
+  margin-left -40%
+  border-bottom-left-radius 5px
+  border-bottom-right-radius 5px
+  box-shadow 0 0 5px rgba(0,0,0,.5)
+  color #fff
+  z-index 2

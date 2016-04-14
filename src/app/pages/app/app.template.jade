@@ -2,13 +2,66 @@ toolbar.default-color(
   title='Agenda Acadêmica',
   left-icon='menu',
   on-click-method='toggleLeftSidenav'
+  right-menu='true'
 )
+
+md-fab-speed-dial.md-scale.md-fab-bottom-right(
+  ng-hide='demo.hidden'
+  md-direction='up'
+  md-open='$ctrl.isAddFabOpen'
+  ng-class="{ 'md-hover-full': demo.hover }"
+  ng-mouseenter='$ctrl.isAddFabOpen=true'
+  ng-mouseleave='$ctrl.isAddFabOpen=false'
+  style='position: fixed'
+)
+  md-fab-trigger
+    md-button.md-fab.md-raised(aria-label='add')
+      ng-md-icon(md-menu-align-target='' icon='add' aria-label='add')
+
+  md-fab-actions
+    md-button.md-fab.md-raised.md-mini.default-color(aria-label='Evento')
+      md-tooltip(md-direction='left' md-visible='$ctrl.addTooltipVisible' md-autohide='false') Evento
+      ng-md-icon(md-menu-align-target='' icon='event' aria-label='event')
+
+md-fab-speed-dial.md-scale.md-fab-bottom-left(
+  md-direction='up'
+  md-open='$ctrl.isViewFabOpen'
+  ng-mouseenter='$ctrl.isViewFabOpen=true'
+  ng-mouseleave='$ctrl.isViewFabOpen=false'
+  style='position: fixed'
+)
+  md-fab-trigger
+    md-button.md-fab.md-raised(aria-label='Calendar View')
+      ng-md-icon(md-menu-align-target='' icon='visibility' aria-label='Calendar View')
+
+  md-fab-actions
+    md-button.md-fab.md-raised.md-mini.default-color(
+      aria-label='Semana'
+      ng-class='$ctrl.getCssActiveCalendarViewType("week")'
+      ng-click='$ctrl.changeCalendarView("week")'
+    )
+      md-tooltip(md-direction='right' md-visible='$ctrl.viewTooltipVisible' md-autohide='false') Semana
+      span S
+    md-button.md-fab.md-raised.md-mini.default-color(
+      aria-label='Mês'
+      ng-class='$ctrl.getCssActiveCalendarViewType("month")'
+      ng-click='$ctrl.changeCalendarView("month")'
+    )
+      md-tooltip(md-direction='right' md-visible='$ctrl.viewTooltipVisible' md-autohide='false') Mês
+      span M
+    md-button.md-fab.md-raised.md-mini.default-color(
+      aria-label='Ano'
+      ng-class='$ctrl.getCssActiveCalendarViewType("year")'
+      ng-click='$ctrl.changeCalendarView("year")'
+    )
+      md-tooltip(md-direction='right' md-visible='$ctrl.viewTooltipVisible' md-autohide='false') Ano
+      span A
 
 md-content
   section(layout-padding)
-    h1 {{$ctrl.calendarDate | date: 'MMMM yyyy': '-0300'}}
+    .calendar-date {{$ctrl.calendarDate | date: 'MM/yyyy': '-0300'}}
+
     header
-      include ./calendar-viewoptions.partial.jade
       include ./calendar-navigation.partial.jade
 
     article
@@ -23,230 +76,7 @@ md-content
 
     footer
       include ./calendar-navigation.partial.jade
-      include ./calendar-viewoptions.partial.jade
 
-  //- form(name='projectForm' layout-padding)
-  //-   div(layout-gt-sm='row')
-  //-     md-input-container.md-block(flex-gt-sm)
-  //-       label Description
-  //-       input(md-maxlength='30', required='', name='description', ng-model='project.description')
-  //-       div(ng-messages='projectForm.description.$error')
-  //-         div(ng-message='required') This is required.
-  //-         div(ng-message='md-maxlength') The name has to be less than 30 characters long.
-  //-     md-input-container.md-block(flex-gt-sm)
-  //-       label Client Name
-  //-       input(required='', name='clientName', ng-model='project.clientName')
-  //-       div(ng-messages='projectForm.clientName.$error')
-  //-         div(ng-message='required') This is required.
-  //-     md-input-container.md-block(flex-gt-sm)
-  //-       label Client Email
-  //-       input(required='', type='email', name='clientEmail', ng-model='project.clientEmail', minlength='10', maxlength='100', ng-pattern='/^.+@.+\..+$/')
-  //-       div(ng-messages='projectForm.clientEmail.$error', role='alert')
-  //-         div(ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']")
-  //-           | Your email must be between 10 and 100 characters long and look like an e-mail address.
-  //-   div(layout-gt-sm='row')
-  //-     md-input-container.md-block(md-no-float)
-  //-       label Hourly Rate (USD)
-  //-       input(required='', type='number', step='any', name='rate', ng-model='project.rate', min='800', max='4999', ng-pattern='/^1234$/')
-  //-       div(ng-messages='projectForm.rate.$error', multiple='', md-auto-hide='false')
-  //-         div(ng-message='required')
-  //-           | You've got to charge something! You can't just
-  //-           b  give away
-  //-           |  a Missile Defense
-  //-           |             System.
-  //-         div(ng-message='min')
-  //-           | You should charge at least $800 an hour. This job is a big deal... if you mess up,
-  //-           | everyone dies!
-  //-         div(ng-message='pattern')
-  //-           | You should charge exactly $1,234.
-  //-         div(ng-message='max')
-  //-           | {{projectForm.rate.$viewValue | currency:"$":0}} an hour? That's a little ridiculous. I
-  //-           | doubt event Bill Clinton could afford that.
-
-  form(name='testForm' layout-padding)
-    md-input-container(md-no-float)
-      input(type='file' name='file' aria-label='File input' placeholder='Choose your file')
-
-
-  //- section.todoapp
-  //-   section.header
-  //-     h1 todos
-  //-     header.header-input
-  //-       todo-text-input(placeholder='What needs to get done?', on-save='$ctrl.onSave(task)')
-  //-   section.main
-  //-     todo-batch-toggle(on-toggle='$ctrl.onToggleAll()', todos='$ctrl.todos.list', ng-if='$ctrl.todos.hasTasks()')
-  //-     .todo-list
-  //-       todo-item(todo='todo', ng-repeat='todo in $ctrl.todos.filteredList')
-  //-   todo-footer(ng-if='$ctrl.todos.hasTasks()', todos='$ctrl.todos')
-  //-     todo-list-filter(on-filter='$ctrl.onFilter(state)', filter-state='$ctrl.todos.filterState')
-
-  //- section(layout='row', layout-align='center center', layout-wrap='')
-  //-   md-button(class='md-raised' layout='column') Button
-  //-   md-button(class='md-raised md-primary' layout-sm='column') Primary
-  //-   md-button(class='md-raised md-primary' layout-sm='column', ng-disabled='true') Disabled
-  //-   md-button(class='md-raised md-warn' layout-sm='column') Warn
-
-  //- section(layout-padding='')
-  //-   header
-  //-     h1 Students API
-  //-     section(layout='row' layout-padding='')
-  //-       md-input-container.md-block
-  //-         label Description
-  //-         input(md-maxlength='30', required='', name='description', ng-model='project.description')
-  //-         div(ng-messages='projectForm.description.$error')
-  //-           div(ng-message='required') This is required.
-  //-           div(ng-message='md-maxlength') The name has to be less than 30 characters long.
-  //-   article
-  //-     section(layout='row' layout-align='center center' layout-wrap='')
-  //-       md-button(class='md-raised md-accent md-hue-2' layout='column' ng-click='$ctrl.getAll()') ALL
-  //-       md-button(class='md-raised' layout='column' ng-click='$ctrl.get()') GET
-  //-       md-button(class='md-raised md-primary' layout-sm='column' ng-click='$ctrl.post()') POST
-  //-       md-button(class='md-raised md-accent' layout-sm='column' ng-click='$ctrl.put()') PUT
-  //-       md-button(class='md-raised md-warn' layout-sm='column' ng-click='$ctrl.delete()') DELETE
-
-  //- section(layout='row' layout-wrap='')
-  //-   div(flex-gt-sm='50' flex='100' style='background-color: red') red
-  //-   div(flex-gt-sm='50' flex='100' style='background-color: blue') blue
-
-  //- section(layout='row' layout-wrap='')
-  //-   div(flex-gt-sm='50' flex='100' style='background-color: red') red
-  //-   div(flex-gt-sm='50' flex='100' style='background-color: blue') blue
-
-  //- section
-  //-   md-grid-list(md-cols-xs='1' md-cols-sm='2' md-cols-md='4' md-cols-gt-md='6'
-  //-     md-row-height-gt-md='1:1' md-row-height='2:2' md-gutter='12px'
-  //-     md-gutter-gt-sm='1')
-  //-     md-grid-tile(style='background:green' md-rowspan='1' md-colspan='2' md-colspan-sm='1')
-  //-       md-grid-tile-header header
-  //-       md-grid-tile-content
-  //-         p
-  //-           | The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-  //-           | two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-  //-       md-grid-tile-footer(layout='row' layout-align='end center')
-  //-         md-button Action 1
-  //-         md-button Action 2
-  //-     md-grid-tile(style='background:gray' md-rowspan='1' md-colspan='1' md-colspan-sm='1')
-  //-     md-grid-tile(style='background:black' md-rowspan='1' md-colspan='1' md-colspan-sm='1')
-  //-     md-grid-tile(style='background:black' md-rowspan='1' md-colspan='1' md-colspan-sm='1')
-  //-     md-grid-tile(style='background:black' md-rowspan='1' md-colspan='3' md-colspan-sm='1')
-
-  //- section.md-padding(layout='row', flex='')
-  //-   div(layout='row', flex='')
-  //-     .parent(layout='column', ng-repeat='user in $ctrl.users', flex='')
-  //-       md-card
-  //-         img.md-card-image(src='http://placehold.it/150x150', alt='user avatar')
-  //-         md-card-content
-  //-           h2 {{user}}
-  //-           p
-  //-             | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-  //-         .md-actions(layout='row', layout-align='end center')
-  //-           md-button Save
-  //-           md-button View
-
-  //- section.md-padding(layout='row' layout-wrap='' flex='')
-  //-   div(layout='row' flex='')
-  //-     .parent(layout='column' ng-repeat='user in $ctrl.users' flex='33')
-  //-       md-card
-  //-         img.md-card-image(src='http://placehold.it/150x150' alt='user avatar')
-  //-         md-card-content
-  //-           h2 {{user}}
-  //-           p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-  //-         .md-actions(layout='row' layout-align='end center')
-  //-           md-button Save
-  //-           md-button View
-
-  //- section(layout='row' layout-margin='' layout-wrap='' layout-align='center top')
-  //-   md-card(flex='100' flex-gt-sm='30')
-  //-     img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
-  //-     md-card-title
-  //-       md-card-title-text
-  //-         span.md-headline Action buttons
-  //-     md-card-content(layout='row' layout-align='center start')
-  //-       p The titles of Washed Out's breakthrough song and the first single from
-  //-         | Paracosm share the two most important words in Ernest Greene's musical
-  //-         | language: feel it. It's a simple request, as well...
-  //-         | Paracosm share the two most important words in Ernest Greene's musical
-  //-         | language: feel it. It's a simple request, as well...
-  //-         | Paracosm share the two most important words in Ernest Greene's musical
-  //-         | language: feel it. It's a simple request, as well...
-  //-         | Paracosm share the two most important words in Ernest Greene's musical
-  //-         | language: feel it. It's a simple request, as well...
-  //-     md-card-actions(layout='row', layout-align='end center')
-  //-       md-button Action 1
-  //-       md-button Action 2
-
-  //-   md-card(flex='100' flex-gt-sm='30')
-  //-     img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
-  //-     md-card-title
-  //-       md-card-title-text
-  //-         span.md-headline Action buttons
-  //-     md-card-content(layout='row' layout-align='start start')
-  //-       p The titles of Washed Out's breakthrough song and the first single from
-  //-         | Paracosm share the two most important words in Ernest Greene's musical
-  //-         | language: feel it. It's a simple request, as well...
-  //-     md-card-actions(layout='row', layout-align='end center')
-  //-       md-button Action 1
-  //-       md-button Action 2
-
-  //-   md-card(flex='100' flex-gt-sm='30')
-  //-     img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
-  //-     md-card-title
-  //-       md-card-title-text
-  //-         span.md-headline Action buttons
-  //-     md-card-content
-  //-       p The titles of Washed Out's breakthrough song and the first single from
-  //-         | Paracosm share the two most important words in Ernest Greene's musical
-  //-         | language: feel it. It's a simple request, as well...
-  //-     md-card-actions(layout='row', layout-align='end center')
-  //-       md-button Action 1
-  //-       md-button Action 2
-
-  //-   md-card(flex='100' flex-gt-sm='30')
-  //-     img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
-  //-     md-card-title
-  //-       md-card-title-text
-  //-         span.md-headline Action buttons
-  //-     md-card-content
-  //-       p The titles of Washed Out's breakthrough song and the first single from
-  //-         | Paracosm share the two most important words in Ernest Greene's musical
-  //-         | language: feel it. It's a simple request, as well...
-  //-     md-card-actions(layout='row', layout-align='end center')
-  //-       md-button Action 1
-  //-       md-button Action 2
-
-  //- section.md-padding(layout='row' flex='')
-  //-   div(layout='row' layout-wrap='' flex='')
-  //-     md-card(flex='100' flex-gt-sm='50')
-  //-       img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
-  //-       md-card-title
-  //-         md-card-title-text
-  //-           span.md-headline Action buttons
-  //-       md-card-content
-  //-         p The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-  //-         p
-  //-           | The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-  //-           | two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-  //-         p
-  //-           | The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-  //-           | two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-  //-       md-card-actions(layout='row', layout-align='end center')
-  //-         md-button Action 1
-  //-         md-button Action 2
-  //-     md-card(flex='100' flex-gt-sm='50')
-  //-       img.md-card-image(ng-src='{{$ctrl.imagePath}}', alt='Washed Out')
-  //-       md-card-title
-  //-         md-card-title-text
-  //-           span.md-headline Action buttons
-  //-       md-card-content
-  //-         p
-  //-           | The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-  //-           | two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-  //-         p
-  //-           | The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-  //-           | two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-  //-         p
-  //-           | The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-  //-           | two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-  //-       md-card-actions(layout='row', layout-align='end center')
-  //-         md-button Action 1
-  //-         md-button Action 2
+  //- form(name='testForm' layout-padding)
+  //-   md-input-container(md-no-float)
+  //-     input(type='file' name='file' aria-label='File input' placeholder='Choose your file')

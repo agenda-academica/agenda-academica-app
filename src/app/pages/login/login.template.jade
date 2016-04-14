@@ -10,7 +10,7 @@ md-content
       div(layout-gt-sm='row')
         md-input-container.md-block(flex-gt-sm)
           label Login
-          input(md-minlength='5', required='', name='login', ng-model='$ctrl.login' autofocus)
+          input(md-minlength='5', required='', name='login', ng-model='$ctrl.login')
           div(ng-messages='projectForm.login.$error')
             div(ng-message='required') This is required.
             div(ng-message='md-maxlength') The name has to be less than 30 characters long.

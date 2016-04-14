@@ -3,18 +3,22 @@ import 'angular-ui-bootstrap/dist/ui-bootstrap-csp.css'
 import 'angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css'
 import 'normalize.css'
 
-import bootstrapWebpack         from 'bootstrap-webpack'
+import bootstrapWebpack               from 'bootstrap-webpack'
 
-import angular                  from 'angular'
-import angularMaterial          from 'angular-material'
-import angularAnimate           from 'angular-animate'
-import angularResource          from 'angular-resource'
-import angularMaterialIcons     from 'angular-material-icons'
-import angularMessages          from 'angular-messages'
-import angularRoute             from 'angular-route'
-import angularFileUpload        from 'ng-file-upload'
-import angularUiBootstrap       from 'angular-ui-bootstrap'
-import angularBootstrapCalendar from 'angular-bootstrap-calendar'
+
+import $ from 'jquery'
+window.$ = $
+
+import angular                        from 'angular'
+import angularMaterial                from 'angular-material'
+import angularAnimate                 from 'angular-animate'
+import angularResource                from 'angular-resource'
+import angularMaterialIcons           from 'angular-material-icons'
+import angularMessages                from 'angular-messages'
+import angularRoute                   from 'angular-route'
+import angularFileUpload              from 'ng-file-upload'
+import angularUiBootstrap             from 'angular-ui-bootstrap'
+import angularBootstrapCalendar       from 'angular-bootstrap-calendar'
 
 import services     from './services/services'
 import components   from './components/components'
@@ -52,10 +56,15 @@ angular.module('app', [
   $routeProvider
     .when('/', { template: '<splash></splash>' })
     .when('/welcome', { template: '<app></app>' })
+
     .when('/universidades', { template: '<universidades></universidades>' })
+    .when('/universidades/consultar', { template: '<universidades-consultar></universidades-consultar>' })
+    .when('/universidades/cadastrar', { template: '<universidades-cadastrar></universidades-cadastrar>' })
+
     .when('/unidades', { template: '<unidades></unidades>' })
     .when('/cursos', { template: '<cursos></cursos>' })
     .when('/login', { template: '<login></login>' })
+    .when('/signup', { template: '<signup></signup>' })
     .otherwise({ redirectTo: '/' });
   // $locationProvider.html5Mode(true)
 })

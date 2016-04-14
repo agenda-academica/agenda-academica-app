@@ -7,7 +7,7 @@ md-toolbar
       span {{$ctrl.title}}
 
     //- More Menu
-    md-menu(md-position-mode='target-right target')
+    md-menu(md-position-mode='target-right target' ng-show='$ctrl.rightMenu == "true"')
       md-button.md-icon-button(aria-label='More')
         ng-md-icon(
           md-menu-origin='',
@@ -17,13 +17,13 @@ md-toolbar
           aria-label='Open demo menu'
         )
       md-menu-content(width='4')
-        md-menu-item(ng-repeat='item in [1, 2, 3]')
-          md-button(ng-click='$ctrl.announceClick($index)')
+        md-menu-item
+          md-button(ng-click='$ctrl.announceClick("Logout")')
             div(layout='row')
-              p(flex='') Option {{item}}
+              p(flex='') Logout
               ng-md-icon(
                 md-menu-align-target='',
-                icon='portable_wifi_off',
+                icon='logout',
                 style='margin: auto 3px auto 0;'
               )
 
@@ -34,9 +34,32 @@ md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
   md-content
     md-list
       md-subheader.md-no-sticky subheader
+
+      md-list-item(ng-href='/#/quadro-de-horario')
+        ng-md-icon(class='md-avatar' size='30' icon='dashboard')
+        p Quadro de Horário
+      md-list.hide
+        md-list-item(ng-href='/#/quadro-de-horario')
+          ng-md-icon(class='md-avatar' size='30' icon='search')
+          p Consultar
+        md-list-item(ng-href='/#/quadro-de-horario')
+          ng-md-icon(class='md-avatar' size='30' icon='add')
+          p Cadastrar
+
       md-list-item(ng-href='/#/universidades')
         ng-md-icon(class='md-avatar' size='30' icon='account_balance')
         p  Universidades
+      md-list
+        md-list-item(ng-href='/#/universidades/consultar')
+          ng-md-icon(class='md-avatar' size='30' icon='search')
+          p Consultar
+        md-list-item(ng-href='/#/universidades/cadastrar')
+          ng-md-icon(class='md-avatar' size='30' icon='add')
+          p Cadastrar
+        md-list-item(ng-href='/#/universidades/alterar')
+          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
+          p Alterar
+
       md-list-item(ng-href='/#/unidades')
         ng-md-icon(class='md-avatar' size='30' icon='place')
         p  Unidades

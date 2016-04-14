@@ -8,23 +8,53 @@ md-toolbar
     > .title.hand
       cursor pointer
 
+    h1, h2, h3
+      color #fff
+      font-weight 500
+
+
 md-sidenav
   position fixed
   top 0
   left 0
 
+  md-toolbar .md-toolbar-tools
+    font-weight: 500;
+    color: #fff;
+
+  md-content
+    & > md-list
+      & > md-list
+        color #999
+        background-color #eee
+
+        svg
+          fill #aaa
+
+      & > md-list-item
+        position relative
+
+        .md-list-item-inner:after
+          content ''
+          position absolute
+          border-top 7px solid transparent
+          border-right 7px solid #606060
+          border-bottom 7px solid transparent
+          top 50%
+          right 15px
+          margin-top -6px
+
+    md-list
+      md-list-item
+        & > a
+          margin 0
+
+        .md-avatar, .md-list-item-inner .md-avatar
+          width 30px
+          height 30px
+          fill #606060
+
 md-backdrop
   position fixed
   top 0
   left 0
-
-md-list
-  md-list-item
-    & > a
-      margin 0
-
-md-list-item
-  .md-avatar, .md-list-item-inner .md-avatar
-    width 30px
-    height 30px
-    fill #606060

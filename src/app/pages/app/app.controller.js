@@ -4,7 +4,7 @@ export default class AppController {
   /**
    * @param {TodoList} todoList
    */
-  constructor(todoList, students, $scope, $timeout, $mdSidenav, $log) {
+  constructor(todoList, students, $scope, $timeout, $mdSidenav, $log, $mdDialog) {
     "ngInject";
     this.todos = todoList;
     this.imagePath = cardImage;
@@ -14,6 +14,7 @@ export default class AppController {
     this.$timeout = $timeout
     this.$mdSidenav = $mdSidenav
     this.$log = $log
+    this.$mdDialog = $mdDialog
 
     this.calendarView = 'month'
     this.calendarDate = new Date()
@@ -50,10 +51,36 @@ export default class AppController {
         endsAt: new Date(2016, 2, 31, 18),
       }
     ];
+
+    this.isAddFabOpen = false;
+    this.addTooltipVisible = false;
+    this.$scope.$watch(() => this.isAddFabOpen, this.addTooltipVisibility());
+
+    this.isViewFabOpen = false;
+    this.viewTooltipVisible = false;
+    this.$scope.$watch(() => this.isViewFabOpen, this.viewTooltipVisibility());
+  }
+
+  viewTooltipVisibility () {
+    return (isOpen) => {
+      this.$timeout(() => { this.viewTooltipVisible = isOpen }, 400);
+    };
+  }
+
+  addTooltipVisibility () {
+    return (isOpen) => {
+      this.$timeout(() => { this.addTooltipVisible = isOpen }, 400);
+    };
   }
 
   changeCalendarView(type) {
     this.calendarView = type
+  }
+
+  setElementTarget($event) {
+    var target = $event.currentTarget
+    target.blur()
+    // target.blur()
   }
 
   getCssActiveCalendarViewType(type) {

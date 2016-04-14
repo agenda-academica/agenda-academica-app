@@ -1,7 +1,7 @@
-import template from './universidades.template.jade'
-import controller from './universidades.controller'
+import cadastrar from './cadastrar/cadastrar.component'
+import consultar from './consultar/consultar.component'
 
 export default {
-  template: template,
-  controller: controller
+  cadastrar: cadastrar,
+  consultar: consultar,
 }

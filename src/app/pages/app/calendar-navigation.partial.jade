@@ -1,5 +1,5 @@
-section.calendar-navigation(layout='row' layout-align='space-between center')
-  md-button(
+section.calendar-navigation(layout='row' layout-align='center center')
+  md-button.md-icon-button(
     layout='column'
     mwl-date-modifier
     date="$ctrl.calendarDate"
@@ -11,7 +11,7 @@ section.calendar-navigation(layout='row' layout-align='space-between center')
       style='fill: #607d8b'
       aria-label='Mês anterior'
     )
-  md-button(
+  md-button.md-icon-button(
     layout='column'
     mwl-date-modifier
     date='$ctrl.calendarDate'
@@ -23,7 +23,7 @@ section.calendar-navigation(layout='row' layout-align='space-between center')
       style='fill: #607d8b'
       aria-label='Hoje'
     )
-  md-button(
+  md-button.md-icon-button(
     layout='column'
     mwl-date-modifier
     date='$ctrl.calendarDate'
