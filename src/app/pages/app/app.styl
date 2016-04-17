@@ -21,6 +21,9 @@
     font-size 14px
     opacity 0.54
 
+md-toolbar
+  z-index 3
+
 .default-color
   md-toolbar
     background-color #1565c0
@@ -74,6 +77,7 @@ md-fab-speed-dial
   .md-button.md-default-theme.md-raised,
   .md-button.md-raised
     background-color #aaa
+
     ng-md-icon
       line-height 55px
 
@@ -87,7 +91,7 @@ md-fab-speed-dial
 .calendar-date
   position fixed
   width 80%
-  top 55px
+  top 64px
   background-color #08468C
   left 50%
   text-align center
@@ -97,3 +101,28 @@ md-fab-speed-dial
   box-shadow 0 0 5px rgba(0,0,0,.5)
   color #fff
   z-index 2
+
+@media only screen and (max-width: 959px) and (min-width: 0) and (orientation: portrait)
+  md-toolbar
+    min-height 56px;
+
+  .calendar-date
+    top 56px
+
+  md-content
+    section
+      > header
+        margin-top 30px
+
+@media only screen and (max-width: 959px) and (min-width: 0) and (orientation: landscape)
+  .md-toolbar-tools
+    height: 48px;
+    max-height: 48px;
+
+  .calendar-date
+    top 48px
+
+  md-content
+    section
+      > header
+        margin-top 22px
