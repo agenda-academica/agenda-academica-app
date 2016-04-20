@@ -5,5 +5,50 @@ toolbar.default-color(
 )
 
 md-content
-  md-header(layout-padding)
-    h1 Cadastrar Universidades Page
+  form(name='projectForm' layout-padding)
+    div(layout-gt-sm='row')
+      md-input-container.md-block(flex-gt-sm)
+        label Nome
+        input(md-minlength='5', required='', name='description', ng-model='project.description')
+        div(ng-messages='projectForm.description.$error')
+          div(ng-message='required') This is required.
+          div(ng-message='md-maxlength') The name has to be less than 30 characters long.
+
+      md-input-container.md-block(flex-gt-sm)
+        label Celular
+        input(required='', name='celular', ng-model='project.celular')
+        div(ng-messages='projectForm.celular.$error')
+          div(ng-message='required') This is required.
+
+      md-input-container.md-block(flex-gt-sm)
+        label Email
+        input(required='', name='email', ng-model='project.email', type='email')
+        div(ng-messages='projectForm.email.$error')
+          div(ng-message='required') This is required.
+          div(ng-message='email') Formato de email inválido.
+
+      md-input-container.md-block(flex-gt-sm)
+        label Login
+        input(required='', name='login', ng-model='project.login')
+        div(ng-messages='projectForm.login.$error')
+          div(ng-message='required') This is required.
+
+      md-input-container.md-block(flex-gt-sm)
+        label Senha
+        input(required='', name='senha', ng-model='project.senha', type='password')
+        div(ng-messages='projectForm.senha.$error')
+          div(ng-message='required') This is required.
+
+      md-input-container.md-block(flex-gt-sm)
+        label Confirmar senha
+        input(required='', name='confirmarSenha', ng-model='project.confirmarSenha', type='password')
+        div(ng-messages='projectForm.confirmarSenha.$error')
+          div(ng-message='required') This is required.
+
+      md-button(
+        layout='row'
+        layout-align='center center'
+        class='md-raised splash-signup-btn'
+        ng-href='/#/welcome'
+      ) Cadastrar
+

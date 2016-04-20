@@ -5,23 +5,22 @@ toolbar.default-color(
 )
 
 md-content
-  md-header(layout-padding)
-    form(name='projectForm' layout-padding, ng-submit='$ctrl.submit()')
-      div(layout-gt-sm='row')
-        md-input-container.md-block(flex-gt-sm)
-          label Login
-          input(md-minlength='5', required='', name='login', ng-model='$ctrl.login')
-          div(ng-messages='projectForm.login.$error')
-            div(ng-message='required') This is required.
-            div(ng-message='md-maxlength') The name has to be less than 30 characters long.
+  form(name='projectForm' layout-padding, ng-submit='$ctrl.submit()')
+    div(layout-gt-sm='row')
+      md-input-container.md-block(flex-gt-sm)
+        label Login
+        input(md-minlength='5', required='', name='login', ng-model='$ctrl.login' autofocus)
+        div(ng-messages='projectForm.login.$error')
+          div(ng-message='required') This is required.
+          div(ng-message='md-maxlength') The name has to be less than 30 characters long.
 
-        md-input-container.md-block(flex-gt-sm)
-          label Senha
-          input(required='', name='senha', ng-model='$ctrl.senha', type='password')
-          div(ng-messages='projectForm.senha.$error')
-            div(ng-message='required') This is required.
+      md-input-container.md-block(flex-gt-sm)
+        label Senha
+        input(required='', name='senha', ng-model='$ctrl.senha', type='password')
+        div(ng-messages='projectForm.senha.$error')
+          div(ng-message='required') This is required.
 
-        md-input-container.md-block(flex-gt-sm)
-          md-button.md-raised.submit-btn(
-            type='submit'
-          ) Logar
+      md-input-container.md-block(flex-gt-sm)
+        md-button.md-raised.submit-btn(
+          type='submit'
+        ) Logar

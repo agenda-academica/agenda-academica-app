@@ -1,26 +1,4 @@
-.buttondemoBasicUsage
-  section
-    background #f7f7f7
-    border-radius 3px
-    text-align center
-    margin 1em
-    position relative !important
-    padding-bottom 10px
-
-    .md-button
-      margin-top 16px
-      margin-bottom 16px
-
-  md-content
-    margin-right 7px
-
-  .label
-    position absolute
-    bottom 5px
-    left 7px
-    font-size 14px
-    opacity 0.54
-
+// Global scope
 md-toolbar
   z-index 3
 
@@ -34,17 +12,21 @@ md-toolbar
   &:not([disabled]):hover
     background-color #607d8b
 
-#cal-week-box,
-.cal-day-tick
-  display none
+// Page scope
+.page-app
+  & > section
+    padding-top 35px
 
-.events-list
-  z-index 1
+  #cal-week-box, .cal-day-tick
+    display none
 
-md-content
-  section
-    > header
-      margin-top 30px
+  .events-list
+    z-index 1
+
+  md-content
+    section
+      > header
+        margin-top 30px
 
 md-fab-speed-dial
   md-fab-trigger
@@ -103,26 +85,28 @@ md-fab-speed-dial
   z-index 2
 
 @media only screen and (max-width: 959px) and (min-width: 0) and (orientation: portrait)
-  md-toolbar
-    min-height 56px;
+  .page-app
+    md-toolbar
+      min-height 56px;
 
-  .calendar-date
-    top 56px
+    .calendar-date
+      top 56px
 
-  md-content
-    section
-      > header
-        margin-top 30px
+    md-content
+      section
+        > header
+          margin-top 30px
 
 @media only screen and (max-width: 959px) and (min-width: 0) and (orientation: landscape)
-  .md-toolbar-tools
-    height: 48px;
-    max-height: 48px;
+  .page-app
+    .md-toolbar-tools
+      height: 48px;
+      max-height: 48px;
 
-  .calendar-date
-    top 48px
+    .calendar-date
+      top 48px
 
-  md-content
-    section
-      > header
-        margin-top 22px
+    md-content
+      section
+        > header
+          margin-top 22px

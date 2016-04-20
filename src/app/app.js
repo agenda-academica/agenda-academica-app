@@ -3,9 +3,10 @@ import 'angular-ui-bootstrap/dist/ui-bootstrap-csp.css'
 import 'angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css'
 import 'normalize.css'
 
-import bootstrapWebpack               from 'bootstrap-webpack'
+// JS dependencies.
+import 'bootstrap-webpack'
 
-
+// Global dependencies.
 import $ from 'jquery'
 window.$ = $
 
@@ -19,9 +20,14 @@ import angularRoute                   from 'angular-route'
 import angularFileUpload              from 'ng-file-upload'
 import angularUiBootstrap             from 'angular-ui-bootstrap'
 import angularBootstrapCalendar       from 'angular-bootstrap-calendar'
+import angularCookies                 from 'angular-cookies'
+
+// JS isolated dependencies.
+import 'ng-mask/dist/ngMask.min'
 
 import services     from './services/services'
 import components   from './components/components'
+import directives   from './directives/directives'
 import pages        from './pages/pages'
 
 angular.module('app', [
@@ -34,13 +40,17 @@ angular.module('app', [
   angularFileUpload,
   angularUiBootstrap,
   angularBootstrapCalendar,
+  angularCookies,
+  'ngMask',
 
   services.name,
   components.name,
+  directives.name,
   pages.name
 ])
-.config(function(calendarConfig, moment) {
-  'ngInject';
+
+.config((calendarConfig, moment) => {
+  'ngInject'
   moment.locale('pt-br');
   calendarConfig.dateFormatter = 'moment';
   calendarConfig.allDateFormats.moment.date.hour = 'HH:mm';
@@ -51,11 +61,27 @@ angular.module('app', [
   calendarConfig.displayEventEndTimes = true;
   calendarConfig.showTimesOnWeekView = true;
 })
-.config(function ($routeProvider, $locationProvider) {
-  'ngInject';
+
+.config(($routeProvider, $locationProvider) => {
+  'ngInject'
+  var onlyLoggedIn = ($location, $q, auth) => {
+    auth.isLogged()
+    // ###
+    // # TODO:
+    // ###
+    // var deferred = $q.defer();
+    // if (Auth.isLogin()) {
+    //     deferred.resolve();
+    // } else {
+    //     deferred.reject();
+    //     $location.url('/login');
+    // }
+    // return deferred.promise;
+  }
+
   $routeProvider
     .when('/', { template: '<splash></splash>' })
-    .when('/welcome', { template: '<app></app>' })
+    .when('/welcome', { template: '<app></app>', resolve: { loggedIn: onlyLoggedIn } })
 
     .when('/universidades', { template: '<universidades></universidades>' })
     .when('/universidades/consultar', { template: '<universidades-consultar></universidades-consultar>' })
@@ -66,14 +92,19 @@ angular.module('app', [
     .when('/login', { template: '<login></login>' })
     .when('/signup', { template: '<signup></signup>' })
     .otherwise({ redirectTo: '/' });
-  // $locationProvider.html5Mode(true)
 })
+
+.config(($httpProvider) => {
+  'ngInject'
+  $httpProvider.interceptors.push('httpLoaderInterceptor');
+})
+
 .constant('apiUrl',
   /https?\:\/\/localhost/.test(window.location.href)
     ? 'http://localhost:8080/agenda-academica-api/rest'
     : 'https://infinite-wave-42974.herokuapp.com/rest'
 )
 
-angular.element(document).ready(function() {
+angular.element(document).ready(() => {
   angular.bootstrap(document, ['app'], {})
 });

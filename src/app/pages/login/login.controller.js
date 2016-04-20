@@ -1,29 +1,32 @@
 export default class LoginController {
-
-  constructor($http, $location, $mdDialog, apiUrl) {
-    'ngInject';
+  constructor($http, $location, $mdDialog, $cookies, login, crypto) {
+    'ngInject'
     this.$http = $http
     this.$location = $location
     this.$mdDialog = $mdDialog
-    this.apiUrl = apiUrl
+    this.$cookies = $cookies
+    this.loginService = login
+    this.crypto = crypto
 
-    this.login = ''
-    this.senha = ''
     this.originatorEv
   }
 
   submit() {
     var data = {
       login: this.login,
-      senha: this.senha
+      senha: this.crypto.gen(this.senha)
     }
 
-    this.$http
-      .post(this.apiUrl + '/usuario/login', data)
-      .then(
+    this.loginService.api
+      .validate(data).$promise.then(
         (success) => {
-          if (success.data.response === 'true')
+          if (success.response === 'true') {
             this.$location.path('/welcome')
+            // Retornar objeto contendo:
+            // - Verificação de autenticação do usuário;
+            // - Objeto dos dados do usuário para salvar na session.
+            // this.$cookies.setObject('auth', success.response)
+          }
           else
             this.$mdDialog.show(
               this.$mdDialog.alert()
@@ -43,7 +46,6 @@ export default class LoginController {
               .targetEvent(this.originatorEv)
           )
         }
-      )
+      );
   }
-
 }

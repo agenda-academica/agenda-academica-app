@@ -1,3 +1,6 @@
 export default class SplashController {
-  constructor() {}
+  constructor($cookies, moment) {
+    'ngInject'
+    console.log($cookies.getAll())
+  }
 }
