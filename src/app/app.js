@@ -62,10 +62,9 @@ angular.module('app', [
   calendarConfig.showTimesOnWeekView = true;
 })
 
-.config(($routeProvider, $locationProvider) => {
+.config(($routeProvider, $locationProvider, $location, $q, auth) => {
   'ngInject'
-  var onlyLoggedIn = ($location, $q, auth) => {
-    'ngInject'
+  var onlyLoggedIn = () => {
     auth.isLogged()
     // ###
     // # TODO:
