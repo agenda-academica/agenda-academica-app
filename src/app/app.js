@@ -65,6 +65,7 @@ angular.module('app', [
 .config(($routeProvider, $locationProvider) => {
   'ngInject'
   var onlyLoggedIn = ($location, $q, auth) => {
+    'ngInject'
     auth.isLogged()
     // ###
     // # TODO:
@@ -81,6 +82,7 @@ angular.module('app', [
 
   $routeProvider
     .when('/', { template: '<splash></splash>' })
+    // .when('/welcome', { template: '<app></app>', resolve: { loggedIn: onlyLoggedIn } })
     .when('/welcome', { template: '<app></app>', resolve: { loggedIn: onlyLoggedIn } })
 
     .when('/universidades', { template: '<universidades></universidades>' })
