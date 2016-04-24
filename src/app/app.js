@@ -67,7 +67,7 @@ angular.module('app', [
 
   $routeProvider
     .when('/', { template: '<splash></splash>' })
-    .when('/welcome', { template: '<app></app>', resolve: { logged: 'angularRouteResolve' } })
+    .when('/index', { template: '<index></index>', resolve: { logged: 'angularRouteResolve' } })
 
     .when('/universidades', { template: '<universidades></universidades>' })
     .when('/universidades/consultar', { template: '<universidades-consultar></universidades-consultar>' })

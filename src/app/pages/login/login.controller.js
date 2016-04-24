@@ -21,7 +21,7 @@ export default class LoginController {
       .validate(data).$promise.then(
         (success) => {
           if (success.authenticated === 'true') {
-            this.$location.path('/welcome')
+            this.$location.path('/index')
             this.auth.set(success)
           }
           else

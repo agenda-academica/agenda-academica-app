@@ -57,7 +57,7 @@ md-fab-speed-dial.md-scale.md-fab-bottom-left(
       md-tooltip(md-direction='right' md-visible='$ctrl.viewTooltipVisible' md-autohide='false') Ano
       span A
 
-md-content.page-app
+md-content.page-index
   section(layout-padding)
     .calendar-date {{$ctrl.calendarDate | date: 'MM/yyyy': '-0300'}}
 
@@ -76,7 +76,3 @@ md-content.page-app
 
     footer
       include ./calendar-navigation.partial.jade
-
-  //- form(name='testForm' layout-padding)
-  //-   md-input-container(md-no-float)
-  //-     input(type='file' name='file' aria-label='File input' placeholder='Choose your file')

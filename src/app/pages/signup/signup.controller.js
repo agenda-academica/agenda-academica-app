@@ -28,7 +28,7 @@ export default class SignupController {
             this.$cookies.putObject('auth', success, {
               expires: this.moment().add(1, 'months').toDate()
             })
-            this.$location.path('/welcome')
+            this.$location.path('/index')
           }
           else
             this.errorPrompt()
