@@ -1,12 +1,12 @@
 export default class LoginController {
-  constructor($http, $location, $mdDialog, $cookies, login, crypto) {
+  constructor($http, $location, $mdDialog, login, crypto, auth) {
     'ngInject'
     this.$http = $http
     this.$location = $location
     this.$mdDialog = $mdDialog
-    this.$cookies = $cookies
     this.loginService = login
     this.crypto = crypto
+    this.auth = auth
 
     this.originatorEv
   }
@@ -20,12 +20,9 @@ export default class LoginController {
     this.loginService.api
       .validate(data).$promise.then(
         (success) => {
-          if (success.response === 'true') {
+          if (success.authenticated === 'true') {
             this.$location.path('/welcome')
-            // Retornar objeto contendo:
-            // - Verificação de autenticação do usuário;
-            // - Objeto dos dados do usuário para salvar na session.
-            // this.$cookies.setObject('auth', success.response)
+            this.auth.set(success)
           }
           else
             this.$mdDialog.show(

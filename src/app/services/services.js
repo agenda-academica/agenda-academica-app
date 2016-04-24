@@ -4,6 +4,7 @@ import httpLoaderInterceptor  from './interceptors/httpLoaderInterceptor'
 import api                    from './api/api'
 import auth                   from './auth'
 import crypto                 from './crypto'
+import angularRouteResolve    from './angular-route-resolve'
 
 export default angular
   .module('app.services', [])
@@ -11,5 +12,6 @@ export default angular
   .service(api)
   .service({
     auth,
-    crypto
+    crypto,
+    angularRouteResolve
   })

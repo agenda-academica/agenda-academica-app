@@ -1,34 +1,34 @@
 export default class ToolbarController {
-  constructor($rootScope, $mdSidenav, $mdDialog, $window) {
+  constructor($mdSidenav, $window, auth) {
     "ngInject";
-    this.$rootScope = $rootScope
     this.$mdSidenav = $mdSidenav
-    this.$mdDialog = $mdDialog
     this.$window = $window
-
-    this.toolbar = toolbar
-    this.originatorEv
+    this.auth = auth
   }
 
-  announceClick(index) {
-    this.$mdDialog.show(
-      this.$mdDialog.alert()
-        .title('You clicked!')
-        .textContent('You clicked the menu item at index' + index)
-        .ok('Nice')
-        .targetEvent(this.originatorEv)
-    )
-  }
-
+  /**
+   * Template action method.
+   */
   toggleLeftSidenav() {
     this.$mdSidenav('left').toggle()
   }
 
+  /**
+   * Template action method.
+   */
   back() {
     this.$window.history.back()
   }
 
+  /**
+   * Template action method.
+   */
   onClickCallback(methodName) {
     this[this.onClickMethod]()
+  }
+
+  logout() {
+    this.auth.destroy()
+    this.$window.location = '/'
   }
 }

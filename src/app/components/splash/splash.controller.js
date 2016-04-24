@@ -1,6 +1,13 @@
 export default class SplashController {
-  constructor($cookies, moment) {
+  constructor($location, auth) {
     'ngInject'
-    console.log($cookies.getAll())
+    this.$location = $location
+    this.auth = auth
+
+    this.verifyAuth()
+  }
+
+  verifyAuth() {
+    if (this.auth.has()) this.$location.path('/welcome')
   }
 }

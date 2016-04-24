@@ -62,27 +62,12 @@ angular.module('app', [
   calendarConfig.showTimesOnWeekView = true;
 })
 
-.config(($routeProvider, $locationProvider, $location, $q, auth) => {
+.config(($routeProvider, $locationProvider) => {
   'ngInject'
-  var onlyLoggedIn = () => {
-    auth.isLogged()
-    // ###
-    // # TODO:
-    // ###
-    // var deferred = $q.defer();
-    // if (Auth.isLogin()) {
-    //     deferred.resolve();
-    // } else {
-    //     deferred.reject();
-    //     $location.url('/login');
-    // }
-    // return deferred.promise;
-  }
 
   $routeProvider
     .when('/', { template: '<splash></splash>' })
-    // .when('/welcome', { template: '<app></app>', resolve: { loggedIn: onlyLoggedIn } })
-    .when('/welcome', { template: '<app></app>', resolve: { loggedIn: onlyLoggedIn } })
+    .when('/welcome', { template: '<app></app>', resolve: { logged: 'angularRouteResolve' } })
 
     .when('/universidades', { template: '<universidades></universidades>' })
     .when('/universidades/consultar', { template: '<universidades-consultar></universidades-consultar>' })
