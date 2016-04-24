@@ -31,24 +31,19 @@ export default class SignupController {
             this.$location.path('/welcome')
           }
           else
-            this.$mdDialog.show(
-              this.$mdDialog.alert()
-                .title('Errado ):')
-                .textContent('Você inseriu um login e/ou senha incorretos.')
-                .ok('Ok')
-                .targetEvent(this.originatorEv)
-            )
+            this.errorPrompt()
         },
-        (error) => {
-          this.$mdDialog.show(
-            this.$mdDialog.alert()
-              .title('Erro ):')
-              .textContent(`Ops! Algo inesperado aconteceu. Aguarde um instante e
-                tente novamente.`)
-              .ok('Ok')
-              .targetEvent(this.originatorEv)
-          )
-        }
+        (error) => { this.errorPrompt() }
       )
+  }
+
+  errorPrompt() {
+    this.$mdDialog.show(
+      this.$mdDialog.alert()
+        .title('Erro ):')
+        .textContent(`Ops! Algo inesperado aconteceu. Aguarde um instante e
+          tente novamente.`)
+        .ok('Ok')
+    )
   }
 }
