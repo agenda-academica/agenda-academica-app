@@ -24,7 +24,7 @@ export default class AlterarUniversidadesController {
 
   getCurrentIndex(id) {
     return this.$localStorage.universidades.findIndex(
-      universidade => universidade.codigo === id
+      universidade => universidade.codigo == id
     )
   }
 

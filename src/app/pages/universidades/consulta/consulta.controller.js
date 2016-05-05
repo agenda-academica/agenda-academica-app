@@ -17,11 +17,12 @@ export default class ConsultaUniversidadesController {
       {key: 'nome', label: 'Nome'}
     ]
     this.getUniversidades((success) => {
-      if (success.instituicaoDeEnsinoModel) {
-        this.permanentUniversidadesData = success.instituicaoDeEnsinoModel
-        this.$localStorage.universidades = this.permanentUniversidadesData
+      console.log(success.list)
+      if (success.list.length > 0) {
+        this.permanentUniversidadesData = success.list
+        this.$localStorage.universidades = success.list
       }
-      else
+      else if (success.list.responseStatus !== 'true')
         this.errorHandlerService.request()()
     })
 
