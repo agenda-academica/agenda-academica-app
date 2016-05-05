@@ -17,7 +17,6 @@ export default class ConsultaUniversidadesController {
       {key: 'nome', label: 'Nome'}
     ]
     this.getUniversidades((success) => {
-      console.log(success.list)
       if (success.list.length > 0) {
         this.permanentUniversidadesData = success.list
         this.$localStorage.universidades = success.list
