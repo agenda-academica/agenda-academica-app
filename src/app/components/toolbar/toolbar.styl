@@ -1,16 +1,27 @@
-md-toolbar
-  position fixed
-  top 0
-  left 0
-  box-shadow 0 0 10px rgba(0,0,0,.5)
+toolbar
+  & > md-toolbar
+    position fixed
+    left 0
+    top 0
+    box-shadow 0 0 10px rgba(0,0,0,.5)
 
-  .md-toolbar-tools
-    > .title.hand
-      cursor pointer
+    .md-button.md-icon-button
+      margin 0
 
-    h1, h2, h3
-      color #fff
-      font-weight 500
+    .md-toolbar-tools
+      > .title.hand
+        cursor pointer
+
+      h1, h2, h3
+        color #fff
+        font-weight 500
+
+    .right-button
+      font-weight bold
+
+    .md-menu
+      margin initial
+      padding initial
 
 
 md-sidenav
@@ -18,12 +29,64 @@ md-sidenav
   top 0
   left 0
 
-  md-toolbar .md-toolbar-tools
-    font-weight: 500;
-    color: #fff;
+  md-toolbar
+    padding-top 170px
+    position relative
+    overflow hidden
 
-  md-content
+    .toolbar-background
+      position absolute
+      width 110%
+      height 110%
+      top -5%
+      left -5%
+      background-color #ccc
+      z-index 0
+      background-size cover
+      display block
+      filter blur(5px)
+      -webkit-filter blur(5px)
+
+    .settings
+      position absolute
+      right 10px
+      top 10px
+      fill rgba(255,255,255,.8)
+      padding 0
+      margin 0
+
+    .avatar
+      width 90px
+      height 90px
+      position absolute
+      border-radius 50px
+      left 10px
+      top 10px
+
+    .md-toolbar-tools
+      z-index 1
+      font-weight 500
+      color #fff
+      position absolute
+      bottom 0
+      background-color rgba(0,0,0,.2)
+      font-size .85em
+
+  & > md-content
     & > md-list
+      .md-subheader
+        line-height 1.8em
+
+      & md-list-item
+        .md-button
+          font-weight 500
+      .md-button:not([disabled]):hover
+        background-color inherit
+        color inherit
+
+      & > .sublist
+        border 1px solid red
+
       & > md-list
         color #999
         background-color #eee
@@ -31,8 +94,9 @@ md-sidenav
         svg
           fill #aaa
 
-      & > md-list-item
+      & > md-list-item:not(.no-arrow)
         position relative
+
 
         .md-list-item-inner:after
           content ''
@@ -43,6 +107,10 @@ md-sidenav
           top 50%
           right 15px
           margin-top -6px
+
+      & > md-list-item.expanded
+        .md-list-item-inner:after
+          transform: rotate(-90deg);
 
     md-list
       md-list-item

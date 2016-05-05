@@ -9,6 +9,13 @@ export default {
     title: '@',
     leftIcon: '@',
     onClickMethod: '@',
-    'rightMenu': '@'
+    rightMenu: '@',
+    rightButtonEnable: '@',
+    rightButtonType: '@',
+    rightButtonText: '@',
+    rightButtonIcon: '@',
+    rightButtonIconStyle: '@',
+    rightButtonClasses: '@',
+    rightButtonOnClickMethod: '&',
   }
 }

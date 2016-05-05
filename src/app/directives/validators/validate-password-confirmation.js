@@ -9,7 +9,7 @@ export default class ValidatePasswordConfirmation {
   }
 
   link(scope, element, attributes, ctrl) {
-    var validate = (ngModelValue) => {
+    let validate = (ngModelValue) => {
       ctrl.$setValidity(
         'validatePasswordConfirmation',
         ngModelValue === attributes.validatePasswordConfirmation

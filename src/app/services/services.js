@@ -5,6 +5,7 @@ import api                    from './api/api'
 import auth                   from './auth'
 import crypto                 from './crypto'
 import angularRouteResolve    from './angular-route-resolve'
+import errorHandler           from './error-handler'
 
 export default angular
   .module('app.services', [])
@@ -13,5 +14,6 @@ export default angular
   .service({
     auth,
     crypto,
-    angularRouteResolve
+    angularRouteResolve,
+    errorHandler
   })

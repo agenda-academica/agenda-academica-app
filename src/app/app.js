@@ -21,6 +21,7 @@ import angularFileUpload              from 'ng-file-upload'
 import angularUiBootstrap             from 'angular-ui-bootstrap'
 import angularBootstrapCalendar       from 'angular-bootstrap-calendar'
 import angularCookies                 from 'angular-cookies'
+import angularStorage                 from 'ngstorage'
 
 // JS isolated dependencies.
 import 'ng-mask/dist/ngMask.min'
@@ -41,6 +42,8 @@ angular.module('app', [
   angularUiBootstrap,
   angularBootstrapCalendar,
   angularCookies,
+  'ngStorage',
+
   'ngMask',
 
   services.name,
@@ -69,14 +72,18 @@ angular.module('app', [
     .when('/', { template: '<splash></splash>' })
     .when('/index', { template: '<index></index>', resolve: { logged: 'angularRouteResolve' } })
 
-    .when('/universidades', { template: '<universidades></universidades>' })
     .when('/universidades/consultar', { template: '<universidades-consultar></universidades-consultar>' })
     .when('/universidades/cadastrar', { template: '<universidades-cadastrar></universidades-cadastrar>' })
+    .when('/universidades/alterar/:id', { template: '<universidades-alterar></universidades-alterar>' })
+
+    .when('/unidades/cadastro/:id', { template: '<cadastro-unidades></cadastro-unidades>' })
 
     .when('/unidades', { template: '<unidades></unidades>' })
     .when('/cursos', { template: '<cursos></cursos>' })
     .when('/login', { template: '<login></login>' })
     .when('/signup', { template: '<signup></signup>' })
+
+    .when('/user/edit', { template: '<user-edit></user-edit>' })
     .otherwise({ redirectTo: '/' });
 })
 

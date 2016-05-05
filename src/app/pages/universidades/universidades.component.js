@@ -1,7 +1,9 @@
 import cadastrar from './cadastrar/cadastrar.component'
-import consultar from './consultar/consultar.component'
+import consulta from './consulta/consulta.component'
+import alterar from './alterar/alterar.component'
 
 export default {
   cadastrar: cadastrar,
-  consultar: consultar,
+  consulta: consulta,
+  alterar: alterar,
 }

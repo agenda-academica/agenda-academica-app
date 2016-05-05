@@ -69,6 +69,6 @@ export default class AppController {
   }
 
   getCssActiveCalendarViewType(type) {
-    return this.calendarView === type ? 'md-primary' : ''
+    return this.calendarView === type ? 'color-active' : ''
   }
 }

@@ -12,7 +12,7 @@ export default class LoginController {
   }
 
   submit() {
-    var data = {
+    let data = {
       login: this.login,
       senha: this.crypto.gen(this.senha)
     }

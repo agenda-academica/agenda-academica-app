@@ -50,7 +50,11 @@ splash[ng-cloak] {
   display: none;
 }
 
-md-content {
+.md-button.md-icon-button {
+  line-height: 10px;
+}
+
+div[ng-view] > * > md-content {
   top: 56px;
 }
 

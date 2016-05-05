@@ -1,4 +1,4 @@
-import {TodoAppController} from './app.component';
+import {TodoAppController} from './index.component';
 
 describe('Application Component', () => {
 

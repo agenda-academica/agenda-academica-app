@@ -5,11 +5,13 @@ toolbar.default-color(
   right-button-enable='true'
   right-button-type='text'
   right-button-text='Salvar'
+  right-button-on-click-method='$ctrl.submit()'
 )
 
-md-content.page-universidades-cadastrar(layout-padding)
-  h2 Cadastro
-  form(name='cadastrarUniversidade' layout-padding ng-submit='$ctrl.submit()')
+md-content.page-universidades-alterar(layout-padding)
+  h2 Alterar
+  form(name='alterarUniversidade' layout-padding ng-submit='$ctrl.submit()')
+    input(type='hidden' name='codigo' ng-model='$ctrl.universidadeForm.codigo')
     div(layout-gt-sm='row')
       md-input-container.md-block(flex-gt-sm)
         label Apelido/Abreviação
@@ -19,7 +21,7 @@ md-content.page-universidades-cadastrar(layout-padding)
           name='abreviacao'
           ng-model='$ctrl.universidadeForm.abreviacao'
         )
-        div(ng-messages='cadastrarUniversidade.abreviacao.$error')
+        div(ng-messages='alterarUniversidade.abreviacao.$error')
           div(ng-message='required')
             | This is required.
           div(ng-message='md-maxlength')
@@ -28,7 +30,7 @@ md-content.page-universidades-cadastrar(layout-padding)
       md-input-container.md-block(flex-gt-sm)
         label Nome da universidades
         input(required='', name='nome', ng-model='$ctrl.universidadeForm.nome')
-        div(ng-messages='cadastrarUniversidade.nome.$error')
+        div(ng-messages='alterarUniversidade.nome.$error')
           div(ng-message='required') This is required.
 
       md-input-container.md-block(flex-gt-sm)
@@ -39,17 +41,11 @@ md-content.page-universidades-cadastrar(layout-padding)
         label Logo
         input(name='logo', ng-model='$ctrl.universidadeForm.logo')
 
+      md-input-container.md-block(flex-gt-sm)
+        md-button.md-raised.delete-btn(
+          ng-click='$ctrl.delete()'
+          aria-label='Deletar'
+        ) Deletar
+
       md-input-container.md-block
-        md-button.md-raised.submit-btn(
-          type='submit'
-          layout='row'
-          layout-align='center center'
-        ) Próximo
-          ng-md-icon(
-            layout='row'
-            layout-align='center center'
-            md-menu-origin='',
-            icon='keyboard_arrow_right',
-            style='fill: #fff',
-            aria-label='Próximo'
-          )
+        md-button.hide(name='submitForm' type='submit' aria-label='Enviar formulário')

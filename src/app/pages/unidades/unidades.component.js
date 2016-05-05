@@ -1,7 +1,7 @@
-import template from './unidades.template.jade'
-import controller from './unidades.controller'
+import cadastro from './cadastro/cadastro.component'
+// import consulta from './consulta/consulta.component'
 
 export default {
-  template: template,
-  controller: controller
+  cadastro: cadastro,
+  // consulta: consulta,
 }

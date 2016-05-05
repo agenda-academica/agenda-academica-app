@@ -1,6 +1,6 @@
 export default class SidenavController {
   constructor($scope, $rootScope, $timeout, $mdSidenav, $log, toolbar) {
-    "ngInject";
+    'ngInject';
     this.$scope = $scope
     this.$timeout = $timeout
     this.$mdSidenav = $mdSidenav

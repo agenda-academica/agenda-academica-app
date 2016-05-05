@@ -1,13 +1,21 @@
 //- Toolbar
 md-toolbar
-  .md-toolbar-tools
-    md-button.md-icon-button(aria-label='Settings' ng-click='$ctrl.onClickCallback()')
-      ng-md-icon(icon='{{$ctrl.leftIcon}}' style='fill: #fff')
-    h2.title.hand(ng-click='$ctrl.onClickCallback()')
-      span {{$ctrl.title}}
+  .md-toolbar-tools(layout='row' layout-align='space-between center')
+    div(layout='row' layout-align='start center')
+      md-button.md-icon-button(
+        aria-label='{{$ctrl.title}}'
+        ng-click='$ctrl.onClickCallback()'
+      )
+        ng-md-icon(icon='{{$ctrl.leftIcon}}' style='fill: #fff')
+
+      h2.title.hand(ng-click='$ctrl.onClickCallback()')
+        span {{$ctrl.title}}
 
     //- More Menu
-    md-menu(md-position-mode='target-right target' ng-show='$ctrl.rightMenu == "true"')
+    md-menu(
+      md-position-mode='target-right target'
+      ng-show='$ctrl.rightMenu == "true"'
+    )
       md-button.md-icon-button(aria-label='More')
         ng-md-icon(
           md-menu-origin='',
@@ -27,15 +35,43 @@ md-toolbar
                 style='margin: auto 3px auto 0;'
               )
 
+    md-button.right-button(
+      aria-label='Salvar'
+      ng-show='$ctrl.rightButtonEnable == "true"'
+      ng-class='$ctrl.rightButtonClasses'
+      ng-click='$ctrl.rightButtonOnClickMethod()'
+    )
+      span(ng-show='$ctrl.rightButtonType === "text"')
+        | {{$ctrl.rightButtonText}}
+      ng-md-icon(
+        ng-show='$ctrl.rightButtonType === "icon"'
+        icon='{{$ctrl.rightButtonIcon}}'
+        style='{{$ctrl.rightButtonIconStyle}}'
+      )
+
 //- Sidenav
 md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
   md-toolbar
-    h1.md-toolbar-tools Sidenav Left
+    .toolbar-background(
+      style='{{"background-image: url(\'" + $ctrl.user.image + "\');"}}'
+    )
+    md-button.settings.md-icon-button(
+      ng-href='/#/user/edit'
+      aria-label='Configurações'
+    )
+      ng-md-icon(size='30' icon='settings')
+    img.avatar(ng-src='{{$ctrl.user.image}}')
+    h1.md-toolbar-tools {{$ctrl.user.name}}
+
   md-content
     md-list
-      md-subheader.md-no-sticky subheader
+      md-subheader.md-no-sticky Navegação
+      md-list-item.no-arrow(ng-href='/#/index')
+        ng-md-icon(class='md-avatar' size='30' icon='home')
+        p Home
 
-      md-list-item(ng-href='/#/quadro-de-horario')
+      md-subheader.md-no-sticky Dados de Organização
+      md-list-item.no-arrow(ng-href='/#/quadro-de-horario')
         ng-md-icon(class='md-avatar' size='30' icon='dashboard')
         p Quadro de Horário
       md-list.hide
@@ -46,10 +82,14 @@ md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
           ng-md-icon(class='md-avatar' size='30' icon='add')
           p Cadastrar
 
-      md-list-item(ng-href='/#/universidades')
+      md-subheader.md-no-sticky Dados de Universidades
+      md-list-item(
+        ng-click='$ctrl.toggleSublistVisibility("universidades")'
+        ng-class='{"expanded": $ctrl.sublistVisibility === "universidades"}'
+      )
         ng-md-icon(class='md-avatar' size='30' icon='account_balance')
         p  Universidades
-      md-list
+      md-list(ng-show='$ctrl.sublistVisibility === "universidades"')
         md-list-item(ng-href='/#/universidades/consultar')
           ng-md-icon(class='md-avatar' size='30' icon='search')
           p Consultar
@@ -60,9 +100,70 @@ md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
           ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
           p Alterar
 
-      md-list-item(ng-href='/#/unidades')
+      md-list-item(
+        ng-click='$ctrl.toggleSublistVisibility("unidades")'
+        ng-class='{"expanded": $ctrl.sublistVisibility === "unidades"}'
+      )
         ng-md-icon(class='md-avatar' size='30' icon='place')
         p  Unidades
-      md-list-item(ng-href='/#/cursos')
+      md-list(ng-show='$ctrl.sublistVisibility === "unidades"')
+        md-list-item(ng-href='/#/unidades/consultar')
+          ng-md-icon(class='md-avatar' size='30' icon='search')
+          p Consultar
+        md-list-item(ng-href='/#/unidades/cadastrar')
+          ng-md-icon(class='md-avatar' size='30' icon='add')
+          p Cadastrar
+        md-list-item(ng-href='/#/unidades/alterar')
+          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
+          p Alterar
+
+      md-list-item(
+        ng-click='$ctrl.toggleSublistVisibility("cursos")'
+        ng-class='{"expanded": $ctrl.sublistVisibility === "cursos"}'
+      )
         ng-md-icon(class='md-avatar' size='30' icon='school')
         p  Cursos
+      md-list(ng-show='$ctrl.sublistVisibility === "cursos"')
+        md-list-item(ng-href='/#/cursos/consultar')
+          ng-md-icon(class='md-avatar' size='30' icon='search')
+          p Consultar
+        md-list-item(ng-href='/#/cursos/cadastrar')
+          ng-md-icon(class='md-avatar' size='30' icon='add')
+          p Cadastrar
+        md-list-item(ng-href='/#/cursos/alterar')
+          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
+          p Alterar
+
+      md-list-item(
+        ng-click='$ctrl.toggleSublistVisibility("disciplinas")'
+        ng-class='{"expanded": $ctrl.sublistVisibility === "disciplinas"}'
+      )
+        ng-md-icon(class='md-avatar' size='30' icon='brush')
+        p  Disciplinas
+      md-list(ng-show='$ctrl.sublistVisibility === "disciplinas"')
+        md-list-item(ng-href='/#/disciplinas/consultar')
+          ng-md-icon(class='md-avatar' size='30' icon='search')
+          p Consultar
+        md-list-item(ng-href='/#/disciplinas/cadastrar')
+          ng-md-icon(class='md-avatar' size='30' icon='add')
+          p Cadastrar
+        md-list-item(ng-href='/#/disciplinas/alterar')
+          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
+          p Alterar
+
+      md-list-item(
+        ng-click='$ctrl.toggleSublistVisibility("turmas")'
+        ng-class='{"expanded": $ctrl.sublistVisibility === "turmas"}'
+      )
+        ng-md-icon(class='md-avatar' size='30' icon='insert_emoticon')
+        p  Turmas
+      md-list(ng-show='$ctrl.sublistVisibility === "turmas"')
+        md-list-item(ng-href='/#/cursos/consultar')
+          ng-md-icon(class='md-avatar' size='30' icon='search')
+          p Consultar
+        md-list-item(ng-href='/#/cursos/cadastrar')
+          ng-md-icon(class='md-avatar' size='30' icon='add')
+          p Cadastrar
+        md-list-item(ng-href='/#/cursos/alterar')
+          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
+          p Alterar

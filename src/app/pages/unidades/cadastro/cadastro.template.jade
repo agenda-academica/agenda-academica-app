@@ -1,15 +1,14 @@
 toolbar.default-color(
-  title='Universidades'
-  left-icon='menu'
-  on-click-method='toggleLeftSidenav'
+  title='Unidades',
+  left-icon='arrow_back',
+  on-click-method='back'
   right-button-enable='true'
-  right-button-type='text'
   right-button-text='Salvar'
 )
 
-md-content.page-universidades-cadastrar(layout-padding)
+md-content.page-cadastro-unidades(layout-padding)
   h2 Cadastro
-  form(name='cadastrarUniversidade' layout-padding ng-submit='$ctrl.submit()')
+  form(name='cadastroUnidades' layout-padding ng-submit='$ctrl.submit()')
     div(layout-gt-sm='row')
       md-input-container.md-block(flex-gt-sm)
         label Apelido/Abreviação
@@ -17,9 +16,9 @@ md-content.page-universidades-cadastrar(layout-padding)
           md-minlength='5'
           required=''
           name='abreviacao'
-          ng-model='$ctrl.universidadeForm.abreviacao'
+          ng-model='$ctrl.unidadeForm.abreviacao'
         )
-        div(ng-messages='cadastrarUniversidade.abreviacao.$error')
+        div(ng-messages='cadastroUnidades.abreviacao.$error')
           div(ng-message='required')
             | This is required.
           div(ng-message='md-maxlength')
@@ -27,17 +26,17 @@ md-content.page-universidades-cadastrar(layout-padding)
 
       md-input-container.md-block(flex-gt-sm)
         label Nome da universidades
-        input(required='', name='nome', ng-model='$ctrl.universidadeForm.nome')
-        div(ng-messages='cadastrarUniversidade.nome.$error')
+        input(required='', name='nome', ng-model='$ctrl.unidadeForm.nome')
+        div(ng-messages='cadastroUnidades.nome.$error')
           div(ng-message='required') This is required.
 
       md-input-container.md-block(flex-gt-sm)
         label Site
-        input(required='', name='site', ng-model='$ctrl.universidadeForm.site')
+        input(required='', name='site', ng-model='$ctrl.unidadeForm.site')
 
       md-input-container.md-block(flex-gt-sm)
         label Logo
-        input(name='logo', ng-model='$ctrl.universidadeForm.logo')
+        input(name='logo', ng-model='$ctrl.unidadeForm.logo')
 
       md-input-container.md-block
         md-button.md-raised.submit-btn(

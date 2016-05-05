@@ -11,7 +11,7 @@ export default class SignupController {
   }
 
   submit() {
-    var data = {
+    let data = {
       nome: this.nome,
       login: this.login,
       email: this.email,

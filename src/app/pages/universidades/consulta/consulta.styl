@@ -1,0 +1,90 @@
+.page-consulta-universidades
+  h2
+    text-align center
+    color #444
+    margin-top 10px
+    margin-bottom 25px
+    position relative
+
+    &:after
+      content ''
+      position absolute
+      bottom -9px
+      left 50%
+      margin-left -4px
+      border-bottom 8px solid #ccc
+      border-left 5px solid transparent
+      border-right 5px solid transparent
+
+  .empty-message
+    text-align center
+    color #666
+
+  .filtros
+    md-input-container
+      &:last-of-type
+        margin-bottom 0
+
+      md-select
+        .md-select-value.md-select-placeholder
+          font-weight bold
+
+
+    > .actions:last-of-type:last-child
+      padding 0
+
+  md-card
+    margin 10px
+    padding 0
+
+    md-card-title
+      padding 0
+
+      md-card-title-media
+        width 30%
+        margin 0
+
+        .md-media-lg
+          background-color #ccc
+          width 100%
+          height 170px
+          text-align center
+          line-height 170px
+          font-size 7em
+          color #666
+          text-transform uppercase
+
+        img
+          width 100%
+          height 170px
+
+      md-card-title-text
+        position relative
+        padding-top 8px
+
+        & :not(md-card-content)
+          padding-left 12px
+
+        & > .md-button
+          width inherit
+          margin-bottom 10%
+
+        & > md-divider
+          margin-top 10px
+
+        & .actions
+          position absolute
+          bottom 0
+          width 100%
+          border-top 1px solid rgba(0, 0, 0, 0.12)
+
+          .md-button
+            color #888
+            padding 0
+
+            span, .md-ripple-container
+              padding 0
+
+    & > :not(md-card-content) img,
+    & > img
+      width 50%

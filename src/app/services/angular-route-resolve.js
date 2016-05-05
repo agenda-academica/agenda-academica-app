@@ -10,7 +10,7 @@ export default class AngularRouteResolveService {
   }
 
   resolve() {
-    var deferred = this.$q.defer();
+    let deferred = this.$q.defer();
     if (this.auth.has()) {
         deferred.resolve();
     } else {

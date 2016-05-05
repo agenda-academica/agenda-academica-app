@@ -1,12 +1,15 @@
 export default class CadastrarUniversidadesController {
-  constructor($localStorage, $location, $cookies, auth, universidade) {
+  constructor($routeParams, $location, $cookies, auth, universidade) {
     'ngInject'
-    this.$localStorage = $localStorage
+    this.$routeParams = $routeParams
     this.$location = $location
     this.$cookies = $cookies
     this.authService = auth
     this.universidadeService = universidade
-    this.universidadeForm = {}
+    this.unidadeForm = {}
+
+    console.log($routeParams.id)
+    console.log($cookies.getObject('universidade-entities'))
   }
 
   submit() {
@@ -14,19 +17,20 @@ export default class CadastrarUniversidadesController {
     let data = angular.copy(this.universidadeForm)
     data.codigoUsuario = authObject.id
 
-    this.universidadeService
-      .api.root
+    this.universidadeService.api
       .create(data).$promise.then(
         (success) => {
           if (success.$resolved === true) {
-            console.log(this.$localStorage.universidades)
-            this.$cookies.remove('universidade-entities')
-            this.$location.path(`/unidades/cadastro/${success.codigo}`)
+            this.$cookies.putObject('universidade-entities', data)
+            this.$location.path(`/unidades/cadastrar/${success.codigo}`)
           }
         },
-        (error) => { console.log(error) }
+        (error) => {
+          console.log(error)
+        }
       )
 
+    console.log(data)
     return false
   }
 }

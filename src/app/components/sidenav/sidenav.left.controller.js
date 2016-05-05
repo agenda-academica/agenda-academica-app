@@ -1,6 +1,6 @@
 export default class SidenavLeftController {
   constructor($timeout, $mdSidenav, $log) {
-    "ngInject";
+    'ngInject';
     this.$timeout = $timeout
     this.$mdSidenav = $mdSidenav
     this.$log = $log
