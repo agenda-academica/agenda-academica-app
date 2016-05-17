@@ -5,7 +5,11 @@ export default class ErrorHandlerService {
   }
 
   request() {
-    return () => {
+    return this.requestErrorMessage()
+  }
+
+  requestErrorMessage() {
+    return (err) => {
       this.$mdDialog.show(
         this.$mdDialog.alert()
           .title('Erro ):')

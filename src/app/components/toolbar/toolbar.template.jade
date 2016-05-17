@@ -71,51 +71,41 @@ md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
         p Home
 
       md-subheader.md-no-sticky Dados de Organização
-      md-list-item.no-arrow(ng-href='/#/quadro-de-horario')
+      md-list-item.no-arrow(ng-href='/#/quadro-horario')
         ng-md-icon(class='md-avatar' size='30' icon='dashboard')
         p Quadro de Horário
-      md-list.hide
-        md-list-item(ng-href='/#/quadro-de-horario')
-          ng-md-icon(class='md-avatar' size='30' icon='search')
-          p Consultar
-        md-list-item(ng-href='/#/quadro-de-horario')
-          ng-md-icon(class='md-avatar' size='30' icon='add')
-          p Cadastrar
+      md-list-item.no-arrow(ng-href='/#/calendar')
+        ng-md-icon(class='md-avatar' size='30' icon='event')
+        p Calendário
 
       md-subheader.md-no-sticky Dados de Universidades
       md-list-item(
-        ng-click='$ctrl.toggleSublistVisibility("universidades")'
-        ng-class='{"expanded": $ctrl.sublistVisibility === "universidades"}'
+        ng-click='$ctrl.toggleSublistVisibility("universidade")'
+        ng-class='{"expanded": $ctrl.sublistVisibility === "universidade"}'
       )
         ng-md-icon(class='md-avatar' size='30' icon='account_balance')
         p  Universidades
-      md-list(ng-show='$ctrl.sublistVisibility === "universidades"')
-        md-list-item(ng-href='/#/universidades/consultar')
+      md-list(ng-show='$ctrl.sublistVisibility === "universidade"')
+        md-list-item(ng-href='/#/universidade/read')
           ng-md-icon(class='md-avatar' size='30' icon='search')
           p Consultar
-        md-list-item(ng-href='/#/universidades/cadastrar')
+        md-list-item(ng-href='/#/universidade/create')
           ng-md-icon(class='md-avatar' size='30' icon='add')
           p Cadastrar
-        md-list-item(ng-href='/#/universidades/alterar')
-          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
-          p Alterar
 
       md-list-item(
-        ng-click='$ctrl.toggleSublistVisibility("unidades")'
-        ng-class='{"expanded": $ctrl.sublistVisibility === "unidades"}'
+        ng-click='$ctrl.toggleSublistVisibility("unidade")'
+        ng-class='{"expanded": $ctrl.sublistVisibility === "unidade"}'
       )
         ng-md-icon(class='md-avatar' size='30' icon='place')
         p  Unidades
-      md-list(ng-show='$ctrl.sublistVisibility === "unidades"')
-        md-list-item(ng-href='/#/unidades/consultar')
+      md-list(ng-show='$ctrl.sublistVisibility === "unidade"')
+        md-list-item(ng-href='/#/unidade/read')
           ng-md-icon(class='md-avatar' size='30' icon='search')
           p Consultar
-        md-list-item(ng-href='/#/unidades/cadastrar')
+        md-list-item(ng-href='/#/unidade/create')
           ng-md-icon(class='md-avatar' size='30' icon='add')
           p Cadastrar
-        md-list-item(ng-href='/#/unidades/alterar')
-          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
-          p Alterar
 
       md-list-item(
         ng-click='$ctrl.toggleSublistVisibility("cursos")'
@@ -124,32 +114,12 @@ md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
         ng-md-icon(class='md-avatar' size='30' icon='school')
         p  Cursos
       md-list(ng-show='$ctrl.sublistVisibility === "cursos"')
-        md-list-item(ng-href='/#/cursos/consultar')
+        md-list-item(ng-href='/#/curso/read')
           ng-md-icon(class='md-avatar' size='30' icon='search')
           p Consultar
-        md-list-item(ng-href='/#/cursos/cadastrar')
+        md-list-item(ng-href='/#/curso/create')
           ng-md-icon(class='md-avatar' size='30' icon='add')
           p Cadastrar
-        md-list-item(ng-href='/#/cursos/alterar')
-          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
-          p Alterar
-
-      md-list-item(
-        ng-click='$ctrl.toggleSublistVisibility("disciplinas")'
-        ng-class='{"expanded": $ctrl.sublistVisibility === "disciplinas"}'
-      )
-        ng-md-icon(class='md-avatar' size='30' icon='brush')
-        p  Disciplinas
-      md-list(ng-show='$ctrl.sublistVisibility === "disciplinas"')
-        md-list-item(ng-href='/#/disciplinas/consultar')
-          ng-md-icon(class='md-avatar' size='30' icon='search')
-          p Consultar
-        md-list-item(ng-href='/#/disciplinas/cadastrar')
-          ng-md-icon(class='md-avatar' size='30' icon='add')
-          p Cadastrar
-        md-list-item(ng-href='/#/disciplinas/alterar')
-          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
-          p Alterar
 
       md-list-item(
         ng-click='$ctrl.toggleSublistVisibility("turmas")'
@@ -164,6 +134,17 @@ md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
         md-list-item(ng-href='/#/cursos/cadastrar')
           ng-md-icon(class='md-avatar' size='30' icon='add')
           p Cadastrar
-        md-list-item(ng-href='/#/cursos/alterar')
-          ng-md-icon(class='md-avatar' size='30' icon='mode_edit')
-          p Alterar
+
+      md-list-item(
+        ng-click='$ctrl.toggleSublistVisibility("disciplinas")'
+        ng-class='{"expanded": $ctrl.sublistVisibility === "disciplinas"}'
+      )
+        ng-md-icon(class='md-avatar' size='30' icon='brush')
+        p  Disciplinas
+      md-list(ng-show='$ctrl.sublistVisibility === "disciplinas"')
+        md-list-item(ng-href='/#/disciplinas/consultar')
+          ng-md-icon(class='md-avatar' size='30' icon='search')
+          p Consultar
+        md-list-item(ng-href='/#/disciplinas/cadastrar')
+          ng-md-icon(class='md-avatar' size='30' icon='add')
+          p Cadastrar

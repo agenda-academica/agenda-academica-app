@@ -1,0 +1,115 @@
+// Global scope
+md-toolbar
+  z-index 3
+
+.default-color
+  md-toolbar
+    background-color #1565c0
+
+.md-button.color-active.md-raised
+  background-color #edb800
+
+.md-button.md-primary.md-raised
+  background-color #1565c0
+
+  &:not([disabled]):hover
+    background-color #607d8b
+
+// Page scope
+.page-calendar
+  & > section
+    padding-top 35px
+
+  #cal-week-box, .cal-day-tick
+    display none
+
+  .events-list
+    z-index 1
+
+  md-content
+    section
+      > header
+        margin-top 30px
+
+md-fab-speed-dial
+  md-fab-trigger
+    .md-fab.md-raised,
+    .md-fab.md-raised:focus
+      background-color #bf1b15
+
+    a.md-button.md-default-theme.md-raised:not([disabled]):hover,
+    a.md-button.md-raised:not([disabled]):hover,
+    .md-button.md-default-theme.md-raised:not([disabled]):hover,
+    .md-button.md-raised:not([disabled]):hover,
+    .md-button.md-raised:not([disabled]).md-focused
+      background-color #bf1b15
+
+    a.md-button.md-default-theme.md-raised,
+    a.md-button.md-raised,
+    .md-button.md-default-theme.md-raised,
+    .md-button.md-raised
+      ng-md-icon
+        line-height 68px
+
+        > svg
+          fill #fff
+
+      &.default-color
+        background-color #1565c0
+
+  a.md-button.md-default-theme.md-raised,
+  a.md-button.md-raised,
+  .md-button.md-default-theme.md-raised,
+  .md-button.md-raised
+    background-color #aaa
+
+    ng-md-icon
+      line-height 55px
+
+      > svg
+        fill #fff
+
+    span
+      color #fff
+      font-size 1.6em
+
+.calendar-date
+  position fixed
+  width 80%
+  top 64px
+  background-color #08468C
+  left 50%
+  text-align center
+  margin-left -40%
+  border-bottom-left-radius 5px
+  border-bottom-right-radius 5px
+  box-shadow 0 0 5px rgba(0,0,0,.5)
+  color #fff
+  z-index 2
+
+@media only screen and (max-width: 959px) and (min-width: 0) and (orientation: portrait)
+  .page-calendar
+    md-toolbar
+      min-height 56px;
+
+    .calendar-date
+      top 56px
+
+    md-content
+      section
+        > header
+          margin-top 30px
+
+@media only screen and (max-width: 959px) and (min-width: 0) and (orientation: landscape)
+  .page-calendar
+    .md-toolbar-tools
+      height: 48px;
+      max-height: 48px;
+
+    .calendar-date
+      top 48px
+
+    md-content
+      section
+        > header
+          margin-top 22px

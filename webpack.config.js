@@ -9,6 +9,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
+      { test: /\.json$/, loader: 'json' },
       { test: /\.html$/, loader: 'raw' },
       { test: /\.jade$/, loader: 'raw!jade-html' },
       { test: /\.less$/, loader: 'style!css!less' },
@@ -31,6 +32,11 @@ module.exports = {
     import: ['~nib/lib/nib/index.styl']
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
+
     // Injects bundles in your index.html instead of wiring all manually.
     // It also adds hash to all injected assets so we don't have problems
     // with cache purging during deployment.

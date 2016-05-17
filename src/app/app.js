@@ -6,30 +6,26 @@ import 'normalize.css'
 // JS dependencies.
 import 'bootstrap-webpack'
 
-// Global dependencies.
-import $ from 'jquery'
-window.$ = $
-
-import angular                        from 'angular'
-import angularMaterial                from 'angular-material'
-import angularAnimate                 from 'angular-animate'
-import angularResource                from 'angular-resource'
-import angularMaterialIcons           from 'angular-material-icons'
-import angularMessages                from 'angular-messages'
-import angularRoute                   from 'angular-route'
-import angularFileUpload              from 'ng-file-upload'
-import angularUiBootstrap             from 'angular-ui-bootstrap'
-import angularBootstrapCalendar       from 'angular-bootstrap-calendar'
-import angularCookies                 from 'angular-cookies'
-import angularStorage                 from 'ngstorage'
+import angular                  from 'angular'
+import angularMaterial          from 'angular-material'
+import angularAnimate           from 'angular-animate'
+import angularResource          from 'angular-resource'
+import angularMaterialIcons     from 'angular-material-icons'
+import angularMessages          from 'angular-messages'
+import angularRoute             from 'angular-route'
+import angularFileUpload        from 'ng-file-upload'
+import angularUiBootstrap       from 'angular-ui-bootstrap'
+import angularBootstrapCalendar from 'angular-bootstrap-calendar'
+import angularCookies           from 'angular-cookies'
+import angularStorage           from 'ngstorage'
 
 // JS isolated dependencies.
 import 'ng-mask/dist/ngMask.min'
 
-import services     from './services/services'
-import components   from './components/components'
-import directives   from './directives/directives'
-import pages        from './pages/pages'
+import services   from './services/services'
+import components from './components/components'
+import directives from './directives/directives'
+import pages      from './pages/pages'
 
 angular.module('app', [
   angularMaterial,
@@ -65,25 +61,91 @@ angular.module('app', [
   calendarConfig.showTimesOnWeekView = true;
 })
 
+/**
+ * Routes
+ */
 .config(($routeProvider, $locationProvider) => {
   'ngInject'
 
   $routeProvider
     .when('/', { template: '<splash></splash>' })
-    .when('/index', { template: '<index></index>', resolve: { logged: 'angularRouteResolve' } })
 
-    .when('/universidades/consultar', { template: '<universidades-consultar></universidades-consultar>' })
-    .when('/universidades/cadastrar', { template: '<universidades-cadastrar></universidades-cadastrar>' })
-    .when('/universidades/alterar/:id', { template: '<universidades-alterar></universidades-alterar>' })
+    // Calendar
+    .when(
+      '/calendar',
+      {
+        template: '<calendar></calendar>',
+        resolve: { logged: 'angularRouteResolve' }
+      }
+    )
 
-    .when('/unidades/cadastro/:id', { template: '<cadastro-unidades></cadastro-unidades>' })
+    // Quadro de horario
+    .when(
+      '/quadro-horario',
+      { template: '<quadro-horario></quadro-horario>' }
+    )
+    .when(
+      '/quadro-horario/painel',
+      { template: '<quadro-horario-painel></quadro-horario-painel>' }
+    )
 
-    .when('/unidades', { template: '<unidades></unidades>' })
-    .when('/cursos', { template: '<cursos></cursos>' })
-    .when('/login', { template: '<login></login>' })
-    .when('/signup', { template: '<signup></signup>' })
+    // Universidade
+    .when(
+      '/universidade/read',
+      { template: '<read-universidade></read-universidade>' }
+    )
+    .when(
+      '/universidade/create',
+      { template: '<create-universidade></create-universidade>' }
+    )
+    .when(
+      '/universidade/update/:id',
+      { template: '<update-universidade></update-universidade>' }
+    )
 
-    .when('/user/edit', { template: '<user-edit></user-edit>' })
+    // Unidade
+    .when(
+      '/unidade/read',
+      { template: '<read-unidade></read-unidade>' }
+    )
+    .when(
+      '/unidade/create',
+      { template: '<create-unidade></create-unidade>' }
+    )
+    .when(
+      '/unidade/create/:id',
+      { template: '<create-unidade></create-unidade>' }
+    )
+    .when(
+      '/unidade/update/:idUniversidade/:idUnidade',
+      { template: '<create-unidade></create-unidade>' }
+    )
+
+    // Curso
+    .when(
+      '/curso/create/:idUniversidade/:idUnidade',
+      { template: '<create-curso></create-curso>' }
+    )
+     .when(
+      '/curso/create',
+      { template: '<create-curso></create-curso>' }
+    )
+
+    .when(
+      '/login',
+      { template: '<login></login>' }
+    )
+    .when(
+      '/signup',
+      { template: '<signup></signup>' }
+    )
+
+    // User
+    .when(
+      '/user/edit',
+      { template: '<user-edit></user-edit>' }
+    )
+
     .otherwise({ redirectTo: '/' });
 })
 

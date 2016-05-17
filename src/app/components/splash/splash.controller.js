@@ -8,6 +8,6 @@ export default class SplashController {
   }
 
   verifyAuth() {
-    if (this.auth.has()) this.$location.path('/index')
+    if (this.auth.has()) this.$location.path('/quadro-horario')
   }
 }

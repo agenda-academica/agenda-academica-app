@@ -1,0 +1,60 @@
+.page-quadro-horario-painel
+  h2
+    text-align center
+    color #444
+    margin-top 15px
+    margin-bottom 15px
+    position relative
+
+    &:after
+      content ''
+      position absolute
+      bottom -9px
+      left 50%
+      margin-left -4px
+      border-bottom 8px solid #ccc
+      border-left 5px solid transparent
+      border-right 5px solid transparent
+
+  .empty-message
+    text-align center
+    color #666
+
+    .md-button
+      padding 3px 15px
+
+  md-list-item
+    p.strong
+      font-weight bold
+
+    .md-avatar
+      width 30px
+      height 30px
+
+    &.md-2-line
+      min-height 60px
+
+      .md-list-item-text
+        margin 10px 0
+
+    .md-button
+      line-height 18px
+      margin-top 10px
+
+      &.md-icon-button
+        border-radius 3px
+
+  md-card
+    md-card-title-text
+      .md-subhead
+        ng-md-icon
+          position relative
+          top 6px
+          margin-right 5px
+
+  md-content
+    &.informacoes
+      md-list
+        md-list-item
+          .md-button
+            margin 0

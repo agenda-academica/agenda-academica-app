@@ -1,13 +1,14 @@
 export default class ToolbarController {
-  constructor($mdSidenav, $window, auth) {
+  constructor($localStorage, $mdSidenav, $window, auth) {
     'ngInject';
+    this.$localStorage = $localStorage
     this.$mdSidenav = $mdSidenav
     this.$window = $window
     this.auth = auth
 
     this.user = this.auth.get()
-    this.user.image = 'http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bc'+
-      'f17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG'
+    this.user.image = 'https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpf1/'+
+      't31.0-8/12646877_1124405127599695_6885608114609715521_o.jpg'
     this.sublistVisibility = 'none'
 
     // Bindings
@@ -40,6 +41,7 @@ export default class ToolbarController {
 
   logout() {
     this.auth.destroy()
+    this.$localStorage.$reset()
     this.$window.location = '/'
   }
 

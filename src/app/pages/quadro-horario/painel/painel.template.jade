@@ -1,0 +1,176 @@
+toolbar.default-color(
+  title='USJT - 4MSIN'
+  left-icon='menu'
+  on-click-method='toggleLeftSidenav'
+)
+
+md-content.page-quadro-horario-painel(layout-padding)
+  h2 Dados básicos
+  md-list
+    md-list-item.md-2-line
+      ng-md-icon.md-avatar(size='30' icon='account_balance' style='fill: #ccc')
+      .md-list-item-text
+        h3 Universidade
+        p USJT
+      md-button.md-icon-button(
+        aria-label='Editar universidade'
+        ng-href='/#/universidade/update/8'
+      )
+        ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
+
+    md-list-item.md-2-line
+      ng-md-icon.md-avatar(size='30' icon='place' style='fill: #ccc')
+      .md-list-item-text
+        h3 Unidade
+        p Butantã
+      md-button.md-icon-button(
+        aria-label='Editar unidade'
+        ng-href='/#/unidade/update/3'
+      )
+        ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
+
+    md-list-item.md-2-line
+      ng-md-icon.md-avatar(size='30' icon='school' style='fill: #ccc')
+      .md-list-item-text
+        h3 Curso
+        p Sistemas de Informação
+      md-button.md-icon-button(aria-label='Editar curso')
+        ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
+
+    md-list-item.md-2-line
+      ng-md-icon.md-avatar(size='30' icon='insert_emoticon' style='fill: #ccc')
+      .md-list-item-text
+        h3 Turma
+        p 4MSIN
+      md-button.md-icon-button(aria-label='Editar turma')
+        ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
+
+    md-list-item.md-2-line
+      ng-md-icon.md-avatar(size='30' icon='brush' style='fill: #ccc')
+      .md-list-item-text
+        h3 Disciplina
+        p Laboratório de Projetos
+      md-button.md-icon-button(aria-label='Editar disciplina')
+        ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
+
+  h2 Provas
+  md-content
+    .empty-message(ng-hide='$ctrl.provas.length')
+      ng-md-icon(class='md-avatar' size='30%' icon='gesture' style='fill: #ccc')
+      div Nenhuma prova agendada.
+      md-button.md-raised.md-primary Agendar
+
+    md-card(ng-repeat='prova in $ctrl.provas')
+      md-card-title
+        md-card-title-media
+          .md-media-lg.card-media(ng-show='{{prova.logo !== null && prova.abreviacao !== "USJT"}}')
+            | {{prova.abreviacao | limitTo: 1: 0}}
+          img(
+            ng-src='{{$ctrl.temporaryUsjtLogoImage}}'
+            ng-show='{{prova.logo === null || prova.abreviacao === "USJT"}}'
+          )
+        md-card-title-text
+          span.md-headline {{prova.title}}
+          span.md-subhead
+            ng-md-icon(size='24' icon='event' style='fill: #ccc')
+            | {{prova.subtitle1}}
+          span.md-subhead
+            ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
+            | {{prova.subtitle3}}
+
+  h2 Trabalhos
+  md-content
+    .empty-message(ng-hide='$ctrl.trabalhos.length')
+      ng-md-icon(class='md-avatar' size='30%' icon='link' style='fill: #ccc')
+      div Nenhum trabalho agendado.
+      md-button.md-raised.md-primary Agendar
+
+    md-card(ng-repeat='trabalho in $ctrl.trabalhos')
+      md-card-title
+        md-card-title-media
+          .md-media-lg.card-media(ng-show='{{trabalho.logo !== null && trabalho.abreviacao !== "USJT"}}')
+            | {{trabalho.abreviacao | limitTo: 1: 0}}
+          img(
+            ng-src='{{$ctrl.temporaryUsjtLogoImage}}'
+            ng-show='{{trabalho.logo === null || trabalho.abreviacao === "USJT"}}'
+          )
+        md-card-title-text
+          span.md-headline {{trabalho.title}}
+          span.md-subhead
+            ng-md-icon(size='24' icon='event' style='fill: #ccc')
+            | {{trabalho.subtitle1}}
+          span.md-subhead
+            ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
+            | {{trabalho.subtitle3}}
+
+  h2 Eventos
+  md-content
+    .empty-message(ng-hide='$ctrl.eventos.length')
+      ng-md-icon(class='md-avatar' size='30%' icon='event' style='fill: #ccc')
+      div Nenhum evento agendado.
+      md-button.md-raised.md-primary Agendar
+
+    md-card(ng-repeat='evento in $ctrl.eventos')
+      md-card-title
+        md-card-title-media
+          .md-media-lg.card-media(ng-show='{{evento.logo !== null && evento.abreviacao !== "USJT"}}')
+            | {{evento.abreviacao | limitTo: 1: 0}}
+          img(
+            ng-src='{{$ctrl.temporaryUsjtLogoImage}}'
+            ng-show='{{evento.logo === null || evento.abreviacao === "USJT"}}'
+          )
+        md-card-title-text
+          span.md-headline {{evento.title | limitTo: 19: 0}}
+          span.md-subhead
+            ng-md-icon(size='24' icon='event' style='fill: #ccc')
+            | {{evento.subtitle1}}
+          span.md-subhead
+            ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
+            | {{evento.subtitle3}}
+
+  h2 Materiais
+  md-content
+    .empty-message(ng-hide='true')
+      ng-md-icon(class='md-avatar' size='30%' icon='book' style='fill: #ccc')
+      div Nenhum material cadastrado.
+      md-button.md-raised.md-primary Cadastrar
+
+    md-list
+      md-list-item(ng-repeat='material in $ctrl.materiais')
+        ng-md-icon.md-avatar(size='30' icon='book' style='fill: #ccc')
+        p {{material.descricao}}
+        md-button.md-icon-button(
+          aria-label='Editar universidade'
+          ng-href='/#/universidade/update/8'
+        )
+          ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
+
+  h2 Informações
+  md-content.informacoes
+    .empty-message(ng-hide='true')
+      ng-md-icon(class='md-avatar' size='30%' icon='book' style='fill: #ccc')
+      div Nenhum material cadastrado.
+      md-button.md-raised.md-primary Cadastrar
+
+    md-list
+      md-list-item(layout='row' layout-align='start start')
+        p(flex='40').strong Total de aulas
+        p(flex='60') 250
+      md-list-item(layout='row' layout-align='start start')
+        p(flex='40').strong Aulas dadas
+        p(flex='60') 120
+      md-list-item(layout='row' layout-align='start start')
+        p(flex='40').strong Aulas restantes
+        p(flex='60') 130
+      md-list-item.md-no-proxy(layout='row' layout-align='start start')
+        p(flex='50').strong Representantes
+        div(flex='60')
+          p Fillipi Ramos
+          p Henrique Diniz
+          p Sergio Bertolazo
+          p Wesley Almeida
+        md-button.md-icon-button(
+          aria-label='Editar universidade'
+          ng-href='/#/universidade/update/8'
+        )
+          ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')

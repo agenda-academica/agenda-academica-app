@@ -1,0 +1,43 @@
+[
+  {
+    "title": "19h10 - 20h00",
+    "universidade": "USJT",
+    "unidade": "Butantã",
+    "curso": "SI",
+    "turma": "4MSIN",
+    "disciplina": "Laboratório de Projetos",
+    "abreviacao": "USJT",
+    "nome": "Universidade São Judas Tadeu",
+    "location": "/quadro-horario/painel"
+  },
+  {
+    "title": "20h00 - 20h50",
+    "universidade": "USJT",
+    "unidade": "Butantã",
+    "curso": "SI",
+    "turma": "4MSIN",
+    "disciplina": "Laboratório de Projetos",
+    "abreviacao": "USJT",
+    "nome": "Universidade São Judas Tadeu"
+  },
+  {
+    "title": "21h00 - 21h50",
+    "universidade": "USJT",
+    "unidade": "Butantã",
+    "curso": "SI",
+    "turma": "4MSIN",
+    "disciplina": "Segurança da Informação e Auditoria de Sistemas",
+    "abreviacao": "USJT",
+    "nome": "Universidade São Judas Tadeu"
+  },
+  {
+    "title": "21h50 - 22h40",
+    "universidade": "USJT",
+    "unidade": "Butantã",
+    "curso": "SI",
+    "turma": "4MSIN",
+    "disciplina": "Segurança da Informação e Auditoria de Sistemas",
+    "abreviacao": "USJT",
+    "nome": "Universidade São Judas Tadeu"
+  }
+]

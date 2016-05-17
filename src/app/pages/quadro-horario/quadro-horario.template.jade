@@ -1,0 +1,198 @@
+toolbar.default-color(
+  title='Quadro de horario'
+  left-icon='menu'
+  on-click-method='toggleLeftSidenav'
+)
+
+md-content.page-read-universidade(
+  layout-padding
+  md-swipe-left='$ctrl.onSwipeLeft()'
+  md-swipe-right ='$ctrl.onSwipeRight()'
+)
+  md-tabs(md-dynamic-height md-selected='$ctrl.tabsSelectedIndex')
+    md-tab(label='dom')
+      md-content
+        .empty-message
+          ng-md-icon(class='md-avatar' size='50%' icon='wb_sunny' style='fill: #ccc')
+          div Aproveite você está de folga! (:
+
+    md-tab(label='seg')
+      md-content
+        .empty-message(ng-hide='$ctrl.quadroSegunda.length')
+          ng-md-icon(class='md-avatar' size='50%' icon='wb_sunny' style='fill: #ccc')
+          div Aproveite você está de folga! (:
+
+        md-card(ng-repeat='quadro in $ctrl.quadroSegunda' ng-click='$ctrl.redir(quadro.location)')
+          md-card-title
+            md-card-title-media
+              .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(quadro)')
+                | {{quadro.abreviacao | limitTo: 1: 0}}
+              img(
+                ng-src='{{$ctrl.getLogoImage(quadro)}}'
+                ng-show='$ctrl.showLogo(quadro)'
+              )
+            md-card-title-text
+              span.md-headline {{quadro.title}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='account_balance' style='fill: #ccc')
+                  | {{quadro.universidade}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
+                  | {{quadro.unidade}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='school' style='fill: #ccc')
+                  | {{quadro.curso}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='insert_emoticon' style='fill: #ccc')
+                  | {{quadro.turma}}
+              span.md-subhead.fix-padding(layout='row')
+                ng-md-icon(size='24' icon='brush' style='fill: #ccc')
+                | {{quadro.disciplina}}
+
+    md-tab(label='ter')
+      md-content
+        .empty-message(ng-hide='$ctrl.quadroTerca.length')
+          ng-md-icon(class='md-avatar' size='50%' icon='wb_sunny' style='fill: #ccc')
+          div Aproveite você está de folga! (:
+
+        md-card(ng-repeat='quadro in $ctrl.quadroTerca' ng-click='$ctrl.redir(quadro.location)')
+          md-card-title
+            md-card-title-media
+              .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(quadro)')
+                | {{quadro.abreviacao | limitTo: 1: 0}}
+              img(
+                ng-src='{{$ctrl.getLogoImage(quadro)}}'
+                ng-show='$ctrl.showLogo(quadro)'
+              )
+            md-card-title-text
+              span.md-headline {{quadro.title}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='account_balance' style='fill: #ccc')
+                  | {{quadro.universidade}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
+                  | {{quadro.unidade}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='school' style='fill: #ccc')
+                  | {{quadro.curso}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='insert_emoticon' style='fill: #ccc')
+                  | {{quadro.turma}}
+              span.md-subhead.fix-padding(layout='row')
+                ng-md-icon(size='24' icon='brush' style='fill: #ccc')
+                | {{quadro.disciplina}}
+
+    md-tab(label='qua')
+      md-content
+        .empty-message(ng-hide='$ctrl.quadroQuarta.length')
+          ng-md-icon(class='md-avatar' size='50%' icon='wb_sunny' style='fill: #ccc')
+          div Aproveite você está de folga! (:
+
+        md-card(ng-repeat='quadro in $ctrl.quadroQuarta')
+          md-card-title
+            md-card-title-media
+              .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(quadro)')
+                | {{quadro.abreviacao | limitTo: 1: 0}}
+              img(
+                ng-src='{{$ctrl.getLogoImage(quadro)}}'
+                ng-show='$ctrl.showLogo(quadro)'
+              )
+            md-card-title-text
+              span.md-headline {{quadro.title}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='account_balance' style='fill: #ccc')
+                  | {{quadro.universidade}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
+                  | {{quadro.unidade}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='school' style='fill: #ccc')
+                  | {{quadro.curso}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='insert_emoticon' style='fill: #ccc')
+                  | {{quadro.turma}}
+              span.md-subhead.fix-padding(layout='row')
+                ng-md-icon(size='24' icon='brush' style='fill: #ccc')
+                | {{quadro.disciplina}}
+
+    md-tab(label='qui')
+      md-content
+        .empty-message(ng-hide='$ctrl.quadroQuinta.length')
+          ng-md-icon(class='md-avatar' size='50%' icon='wb_sunny' style='fill: #ccc')
+          div Aproveite você está de folga! (:
+
+        md-card(ng-repeat='quadro in $ctrl.quadroQuinta')
+          md-card-title
+            md-card-title-media
+              .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(quadro)')
+                | {{quadro.abreviacao | limitTo: 1: 0}}
+              img(
+                ng-src='{{$ctrl.getLogoImage(quadro)}}'
+                ng-show='$ctrl.showLogo(quadro)'
+              )
+            md-card-title-text
+              span.md-headline {{quadro.title}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='account_balance' style='fill: #ccc')
+                  | {{quadro.universidade}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
+                  | {{quadro.unidade}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='school' style='fill: #ccc')
+                  | {{quadro.curso}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='insert_emoticon' style='fill: #ccc')
+                  | {{quadro.turma}}
+              span.md-subhead.fix-padding(layout='row')
+                ng-md-icon(size='24' icon='brush' style='fill: #ccc')
+                | {{quadro.disciplina}}
+
+    md-tab(label='sex')
+      md-content
+        .empty-message(ng-hide='$ctrl.quadroSexta.length')
+          ng-md-icon(class='md-avatar' size='50%' icon='wb_sunny' style='fill: #ccc')
+          div Aproveite você está de folga! (:
+
+        md-card(ng-repeat='quadro in $ctrl.quadroSexta')
+          md-card-title
+            md-card-title-media
+              .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(quadro)')
+                | {{quadro.abreviacao | limitTo: 1: 0}}
+              img(
+                ng-src='{{$ctrl.getLogoImage(quadro)}}'
+                ng-show='$ctrl.showLogo(quadro)'
+              )
+            md-card-title-text
+              span.md-headline {{quadro.title}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='account_balance' style='fill: #ccc')
+                  | {{quadro.universidade}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
+                  | {{quadro.unidade}}
+              span.md-subhead(layout='row')
+                span(flex='50')
+                  ng-md-icon(size='24' icon='school' style='fill: #ccc')
+                  | {{quadro.curso}}
+                span(flex='50')
+                  ng-md-icon(size='24' icon='insert_emoticon' style='fill: #ccc')
+                  | {{quadro.turma}}
+              span.md-subhead.fix-padding(layout='row')
+                ng-md-icon(size='24' icon='brush' style='fill: #ccc')
+                | {{quadro.disciplina}}
+
+    md-tab(label='sáb')
+      md-content
+        .empty-message
+          ng-md-icon(class='md-avatar' size='50%' icon='wb_sunny' style='fill: #ccc')
+          div Aproveite você está de folga! (:

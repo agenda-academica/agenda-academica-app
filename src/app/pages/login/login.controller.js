@@ -21,8 +21,8 @@ export default class LoginController {
       .validate(data).$promise.then(
         (success) => {
           if (success.authenticated === 'true') {
-            this.$location.path('/index')
             this.auth.set(success)
+            this.$location.path('/quadro-horario')
           }
           else
             this.$mdDialog.show(

@@ -25,7 +25,11 @@ export default class UniversidadeApiService {
   getUsuarioResource() {
     return this.$resource(
       `${this.apiUrl}/${this.apiPath}/usuario/:id`, { id: '@id' }, {
-        'show'    : { method: 'GET', isArray: false, transformResponse: (data) => {return {list: angular.fromJson(data)}} }
+        'show'    : {
+          method: 'GET',
+          isArray: false,
+          transformResponse: (data) => {return {list: angular.fromJson(data)}}
+        }
       }
     )
   }

@@ -1,0 +1,42 @@
+[
+  {
+    "title": "19h10 - 20h00",
+    "universidade": "USJT",
+    "unidade": "Butantã",
+    "curso": "SI",
+    "turma": "4MSIN",
+    "disciplina": "Teoria e Gerenciamento de Redes de Computadores",
+    "abreviacao": "USJT",
+    "nome": "Universidade São Judas Tadeu"
+  },
+  {
+    "title": "20h00 - 20h50",
+    "universidade": "USJT",
+    "unidade": "Butantã",
+    "curso": "SI",
+    "turma": "4MSIN",
+    "disciplina": "Teoria e Gerenciamento de Redes de Computadores",
+    "abreviacao": "USJT",
+    "nome": "Universidade São Judas Tadeu"
+  },
+  {
+    "title": "21h00 - 21h50",
+    "universidade": "USJT",
+    "unidade": "Butantã",
+    "curso": "SI",
+    "turma": "4MSIN",
+    "disciplina": "Governança de Tecnologia da Informação",
+    "abreviacao": "USJT",
+    "nome": "Universidade São Judas Tadeu"
+  },
+  {
+    "title": "21h50 - 22h40",
+    "universidade": "USJT",
+    "unidade": "Butantã",
+    "curso": "SI",
+    "turma": "4MSIN",
+    "disciplina": "Governança de Tecnologia da Informação",
+    "abreviacao": "USJT",
+    "nome": "Universidade São Judas Tadeu"
+  }
+]

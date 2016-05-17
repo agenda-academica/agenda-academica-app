@@ -1,0 +1,42 @@
+[
+  {
+    "title": "19h10 - 20h00",
+    "universidade": "FIAP",
+    "unidade": "Aclimação",
+    "curso": "SI",
+    "turma": "3ECA",
+    "disciplina": "Pesquisa Operacional",
+    "abreviacao": "FIAP",
+    "nome": "Universidade São Judas Tadeu"
+  },
+  {
+    "title": "20h00 - 20h50",
+    "universidade": "FIAP",
+    "unidade": "Aclimação",
+    "curso": "SI",
+    "turma": "3ECA",
+    "disciplina": "Pesquisa Operacional",
+    "abreviacao": "FIAP",
+    "nome": "Universidade São Judas Tadeu"
+  },
+  {
+    "title": "21h00 - 21h50",
+    "universidade": "FIAP",
+    "unidade": "Aclimação",
+    "curso": "SI",
+    "turma": "3ECA",
+    "disciplina": "Sistemas Distribuídos",
+    "abreviacao": "FIAP",
+    "nome": "Universidade São Judas Tadeu"
+  },
+  {
+    "title": "21h50 - 22h40",
+    "universidade": "FIAP",
+    "unidade": "Aclimação",
+    "curso": "SI",
+    "turma": "3ECA",
+    "disciplina": "Sistemas Distribuídos",
+    "abreviacao": "FIAP",
+    "nome": "Universidade São Judas Tadeu"
+  }
+]
