@@ -92,7 +92,7 @@ angular.module('app', [
     // Universidade
     .when(
       '/universidade/read',
-      { template: '<read-universidade></read-universidade>' }
+      { template: '<universidade-read></universidade-read>' }
     )
     .when(
       '/universidade/create',

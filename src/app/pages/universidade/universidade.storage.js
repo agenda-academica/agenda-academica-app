@@ -1,11 +1,11 @@
 export default class UniversidadeStorage {
   constructor($localStorage, $q, universidade, errorHandler, auth) {
     'ngInject'
-    this.$localStorage = $localStorage
-    this.$q = $q
+    this.$localStorage       = $localStorage
+    this.$q                  = $q
     this.universidadeService = universidade
-    this.errorHandler = errorHandler
-    this.authService = auth
+    this.errorHandler        = errorHandler
+    this.authService         = auth
   }
 
   has() {
@@ -17,6 +17,19 @@ export default class UniversidadeStorage {
     return this.$localStorage.universidades
   }
 
+  getIndexOf(idUniversidade) {
+    return this.take().findIndex(
+      universidade => universidade.codigo == idUniversidade
+    )
+  }
+
+  getById(idUniversidade) {
+    return this.take()[this.getIndexOf(idUniversidade)]
+  }
+
+  ////
+  // READ
+  ////
   requestByUsuario() {
     let deferred = this.$q.defer()
 
@@ -45,6 +58,9 @@ export default class UniversidadeStorage {
     }
   }
 
+  ////
+  // UPDATE
+  ////
   update(options, data) {
     let deferred = this.$q.defer()
 
@@ -74,6 +90,9 @@ export default class UniversidadeStorage {
     this.take()[index] = data
   }
 
+  ////
+  // DELETE
+  ////
   delete(options) {
     let deferred = this.$q.defer()
 
@@ -101,15 +120,5 @@ export default class UniversidadeStorage {
   deleteIndex(options) {
     let index = this.getIndexOf(options.id)
     delete this.take()[index]
-  }
-
-  getIndexOf(idUniversidade) {
-    return this.take().findIndex(
-      universidade => universidade.codigo == idUniversidade
-    )
-  }
-
-  getById(idUniversidade) {
-    return this.take()[this.getIndexOf(idUniversidade)]
   }
 }

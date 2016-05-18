@@ -1,0 +1,15 @@
+toolbar.default-color(
+  title='Universidades'
+  left-icon='menu'
+  on-click-method='toggleLeftSidenav'
+  right-button-enable='true'
+  right-button-classes='md-icon-button'
+  right-button-type='icon'
+  right-button-icon='filter_list'
+  right-button-icon-style='fill: #fff'
+  right-button-on-click-method='$ctrl.toggleFilterFormVisibility()'
+)
+
+md-content.page-read-universidade(layout-padding)
+  universidade-read-filter
+  universidade-read-form

@@ -1,8 +1,9 @@
-import './read.styl'
-import template from './read.template.jade'
-import controller from './read.controller'
+import filter from './filter/filter.component'
+import form   from './form/form.component'
+import read   from './read/read.component'
 
 export default {
-  template: template,
-  controller: controller,
+  filter,
+  form,
+  read
 }
