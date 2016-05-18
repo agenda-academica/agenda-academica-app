@@ -5,31 +5,31 @@ toolbar.default-color(
   right-button-enable='true'
   right-button-classes='md-icon-button'
   right-button-type='icon'
-  right-button-icon='search'
+  right-button-icon='filter_list'
   right-button-icon-style='fill: #fff'
-  right-button-on-click-method='$ctrl.toggleSearchFormVisibility()'
+  right-button-on-click-method='$ctrl.toggleFilterFormVisibility()'
 )
 
 md-content.page-read-universidade(layout-padding)
   div.filtros(
     layout-padding
     layout-gt-sm='row'
-    ng-show='$ctrl.searchFormVisibility'
+    ng-show='$ctrl.filterFormVisibility'
   )
     h2 Filtros
     md-input-container.md-block(flex-gt-sm)
       label Consultar por:
-      md-select(ng-model='$ctrl.searchKey')
-        md-option(ng-repeat='item in $ctrl.searchKeys' value='{{item.key}}')
+      md-select(ng-model='$ctrl.filterKeySelected')
+        md-option(ng-repeat='item in $ctrl.filterKeyOptions' value='{{item.key}}')
           | {{item.label}}
       .md-errors-spacer
 
     md-input-container.md-block(flex-gt-sm)
       label Apelido/Abreviação
-      input(ng-model='$ctrl.searchQuery')
+      input(ng-model='$ctrl.filterQuery')
 
     .actions(layout='row' layout-align='end center')
-      md-button.md-raised.md-primary(ng-click='$ctrl.clearSearchFilters()')
+      md-button.md-raised.md-primary(ng-click='$ctrl.clearFilters()')
         | Limpar
 
   h2 Consulta
@@ -40,11 +40,11 @@ md-content.page-read-universidade(layout-padding)
   md-card(ng-repeat='universidade in $ctrl.universidades')
     md-card-title
       md-card-title-media
-        .md-media-lg.card-media(ng-show='{{universidade.logo !== null && universidade.abreviacao !== "USJT"}}')
+        .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(universidade)')
           | {{universidade.abreviacao | limitTo: 1: 0}}
         img(
-          ng-src='{{$ctrl.temporaryUsjtLogoImage}}'
-          ng-show='{{universidade.logo === null || universidade.abreviacao === "USJT"}}'
+          ng-src='{{$ctrl.getLogoImage(universidade)}}'
+          ng-show='$ctrl.showLogo(universidade)'
         )
       md-card-title-text
         span.md-headline {{universidade.abreviacao}}

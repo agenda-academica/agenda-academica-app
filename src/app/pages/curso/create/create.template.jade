@@ -12,8 +12,6 @@ md-content.page-create-universidade(layout-padding)
   h2 Cadastro
   form(name='createCurso' layout-padding ng-submit='$ctrl.submit()')
     div(layout-gt-sm='row')
-      pre createCurso.$error = {{ createCurso.$error | json }}
-      pre createCurso.$invalid = {{ createCurso.$invalid | json }}
 
       //- campo de combobox universidade
       md-input-container.md-block.md-input-invalid(flex-gt-sm)

@@ -4,7 +4,7 @@ export default class UniversidadeStorage {
     this.$localStorage = $localStorage
     this.$q = $q
     this.universidadeService = universidade
-    this.errorHandlerService = errorHandler
+    this.errorHandler = errorHandler
     this.authService = auth
   }
 
@@ -13,38 +13,103 @@ export default class UniversidadeStorage {
     return storage && angular.isArray(storage)
   }
 
-  get() {
+  take() {
     return this.$localStorage.universidades
   }
 
   requestByUsuario() {
     let deferred = this.$q.defer()
 
-    if (!this.has())
-      this.universidadeService.api.usuario
-        .show({id: this.authService.get().id}).$promise.then(
-          this.getSuccessCallback(deferred),
-          this.errorHandlerService.requestDeferred(deferred)
-        )
-    else deferred.resolve()
+    this.universidadeService
+      .api.usuario.show({id: this.authService.get().id})
+      .$promise.then(
+        this.getSuccessCallback(deferred),
+        this.errorHandler.request()
+      )
     return deferred.promise
   }
 
+  getSuccessCallback(deferred) {
+    return (success) => {
+      if (success.list.length > 0) {
+        this.$localStorage.universidades = success.list
+        deferred.resolve()
+      }
+      else if (success.list.requestStatus === true) {
+        this.$localStorage.universidades = []
+        deferred.resolve()
+      }
+      else deferred.reject('error')
+
+      return deferred.promise
+    }
+  }
+
+  update(options, data) {
+    let deferred = this.$q.defer()
+
+    this.universidadeService
+      .api.root
+      .update(options, data).$promise.then(
+        this.getUpdateSuccessCallback(deferred, data),
+        this.errorHandler.request()
+      )
+    return deferred.promise
+  }
+
+  getUpdateSuccessCallback(deferred, data) {
+    return (success) => {
+      if (success.requestStatus === true) {
+        this.updateIndex(data)
+        deferred.resolve()
+      }
+      else deferred.reject('error')
+
+      return deferred.promise
+    }
+  }
+
+  updateIndex(data) {
+    let index = this.getIndexOf(data.codigo)
+    this.take()[index] = data
+  }
+
+  delete(options) {
+    let deferred = this.$q.defer()
+
+    this.universidadeService
+      .api.root
+      .destroy(options).$promise.then(
+        this.getDeleteSuccessCallback(deferred, options),
+        this.errorHandler.request()
+      )
+    return deferred.promise
+  }
+
+  getDeleteSuccessCallback(deferred, options) {
+    return (success) => {
+      if (success.requestStatus === true) {
+        this.deleteIndex(options)
+        deferred.resolve()
+      }
+      else deferred.reject('error')
+
+      return deferred.promise
+    }
+  }
+
+  deleteIndex(options) {
+    let index = this.getIndexOf(options.id)
+    delete this.take()[index]
+  }
+
   getIndexOf(idUniversidade) {
-    return this.get().findIndex(
+    return this.take().findIndex(
       universidade => universidade.codigo == idUniversidade
     )
   }
 
   getById(idUniversidade) {
-    return this.get()[this.getIndexOf(idUniversidade)]
-  }
-
-  getSuccessCallback(deferred) {
-    return (success) => {
-      this.$localStorage.universidades = success.list
-      deferred.resolve()
-      return deferred
-    }
+    return this.take()[this.getIndexOf(idUniversidade)]
   }
 }

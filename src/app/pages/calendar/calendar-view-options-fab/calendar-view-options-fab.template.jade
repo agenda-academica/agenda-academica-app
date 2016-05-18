@@ -1,0 +1,54 @@
+md-fab-speed-dial.page-calendar-fabs.md-scale.md-fab-bottom-left(
+  md-direction='up'
+  md-open='$ctrl.isViewFabOpen'
+  ng-mouseenter='$ctrl.isViewFabOpen=true'
+  ng-mouseleave='$ctrl.isViewFabOpen=false'
+  style='position: fixed'
+)
+  md-fab-trigger
+    md-button.md-fab.md-raised(aria-label='Calendar View')
+      ng-md-icon(
+        md-menu-align-target=''
+        icon='visibility'
+        aria-label='Calendar View'
+      )
+
+  md-fab-actions
+    //- FAB Button Semana
+    md-button.md-fab.md-raised.md-mini.default-color(
+      aria-label='Semana'
+      ng-class='$ctrl.getCssActiveCalendarViewType("week")'
+      ng-click='$ctrl.changeCalendarView("week")'
+    )
+      md-tooltip(
+        md-direction='right'
+        md-visible='$ctrl.viewTooltipVisible'
+        md-autohide='false'
+      ) Semana
+      span S
+
+    //- FAB Button Mês
+    md-button.md-fab.md-raised.md-mini.default-color(
+      aria-label='Mês'
+      ng-class='$ctrl.getCssActiveCalendarViewType("month")'
+      ng-click='$ctrl.changeCalendarView("month")'
+    )
+      md-tooltip(
+        md-direction='right'
+        md-visible='$ctrl.viewTooltipVisible'
+        md-autohide='false'
+      ) Mês
+      span M
+
+    //- FAB Button Ano
+    md-button.md-fab.md-raised.md-mini.default-color(
+      aria-label='Ano'
+      ng-class='$ctrl.getCssActiveCalendarViewType("year")'
+      ng-click='$ctrl.changeCalendarView("year")'
+    )
+      md-tooltip(
+        md-direction='right'
+        md-visible='$ctrl.viewTooltipVisible'
+        md-autohide='false'
+      ) Ano
+      span A

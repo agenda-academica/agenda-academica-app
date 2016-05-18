@@ -2,8 +2,8 @@ section.calendar-navigation(layout='row' layout-align='center center')
   md-button.md-icon-button(
     layout='column'
     mwl-date-modifier
-    date="$ctrl.calendarDate"
-    decrement="$ctrl.calendarView"
+    date="$ctrl.parent.calendarDate"
+    decrement="$ctrl.parent.calendarView"
     layout-align='center center')
     ng-md-icon(
       layout='column'
@@ -14,7 +14,7 @@ section.calendar-navigation(layout='row' layout-align='center center')
   md-button.md-icon-button(
     layout='column'
     mwl-date-modifier
-    date='$ctrl.calendarDate'
+    date='$ctrl.parent.calendarDate'
     set-to-today
     layout-align='center center')
     ng-md-icon(
@@ -26,8 +26,8 @@ section.calendar-navigation(layout='row' layout-align='center center')
   md-button.md-icon-button(
     layout='column'
     mwl-date-modifier
-    date='$ctrl.calendarDate'
-    increment='$ctrl.calendarView'
+    date='$ctrl.parent.calendarDate'
+    increment='$ctrl.parent.calendarView'
     layout-align='center center')
     ng-md-icon(
       layout='column'

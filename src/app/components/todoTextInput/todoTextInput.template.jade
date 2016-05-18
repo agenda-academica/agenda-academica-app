@@ -1,7 +1,0 @@
-form(ng-submit='vm.save()')
-  md-input-container.md-block
-    label Description
-    input(autofocus='', on-escape='vm.onEscape()', ng-model='vm.text', placeholder='{{vm.placeholder}}')
-    div(ng-messages='projectForm.description.$error')
-      div(ng-message='required') This is required.
-      div(ng-message='md-maxlength') The name has to be less than 30 characters long.

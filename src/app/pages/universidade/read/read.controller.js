@@ -1,79 +1,102 @@
 import temporaryUsjtLogoImage from './usjt.jpg'
+import temporaryMackLogoImage from './mackenzie.jpg'
+import temporaryFiapLogoImage from './fiap.jpg'
 
 export default class ReadUniversidadeController {
-  constructor($localStorage, $scope, auth, universidade, errorHandler) {
+  constructor($scope, universidadeStorage, errorHandler) {
     'ngInject'
-    this.$localStorage = $localStorage
     this.$scope = $scope
-    this.authService = auth
-    this.universidadeService = universidade
-    this.errorHandlerService = errorHandler
-    this.temporaryUsjtLogoImage = temporaryUsjtLogoImage
+    this.universidadeStorage = universidadeStorage
+    this.errorHandler = errorHandler
 
-    this.searchFormVisibility = false
-    this.permanentUniversidadesData = []
-    this.searchKeys = [
+    ////
+    // Temporary
+    ////
+    this.temporaryUsjtLogoImage = temporaryUsjtLogoImage
+    this.temporaryMackLogoImage = temporaryMackLogoImage
+    this.temporaryFiapLogoImage = temporaryFiapLogoImage
+
+    this.permUniversidades = []
+    this.initStorageRequests()
+
+    this.universidades = []
+    this.$scope.$watch(() => this.permUniversidades, this.watchPermUniversidades())
+
+    ////
+    // Filtro
+    ////
+    this.filterKeyOptions = [
       {key: 'abreviacao', label: 'Abreviação'},
       {key: 'nome', label: 'Nome'}
     ]
-    this.sendShowRequest((success) => {
-      if (this.validateSuccess(success)) {
-        this.permanentUniversidadesData = success.list
-        this.$localStorage.universidades = success.list
-      }
-      else
-        this.errorHandlerService.request()()
-    })
+    this.filterFormVisibility = false
+    this.filterKeySelected = 'none'
+    this.filterQuery = ''
+    this.$scope.$watch(() => this.filterKeySelected, this.filterUniversidades())
+    this.$scope.$watch(() => this.filterQuery, this.filterUniversidades());
+  }
 
-    this.universidades = []
-    this.$scope.$watch(
-      () => this.permanentUniversidadesData,
-      this.watchPermanentUniversidadesData()
+  initStorageRequests() {
+    this.universidadeStorage.requestByUsuario().then(
+      this.requestUniversidadesByUsuarioSuccess(),
+      this.errorHandler.request()
     )
-
-    this.searchKey = 'none'
-    this.searchQuery = ''
-    this.$scope.$watch(() => this.searchQuery, this.filterUniversidades());
   }
 
-  validateSuccess(success) {
-    return success.list
-      && success.list.length > 0
-      && success.list[success.list.length - 1].requestStatus === true
+  requestUniversidadesByUsuarioSuccess() {
+    return () => {
+      this.permUniversidades = this.universidadeStorage.take()
+    }
   }
 
-  watchPermanentUniversidadesData() {
+  watchPermUniversidades() {
     return (data) => this.universidades = data
   }
 
+  ////
+  // Temporary
+  ////
+
+  showFirstLetterLogo(quadro) {
+    return quadro.logo !== null
+      && ['USJT', 'Mackenzie', 'FIAP'].indexOf(quadro.abreviacao) === -1
+  }
+
+  showLogo(quadro) {
+    return quadro.logo === null
+      || ['USJT', 'Mackenzie', 'FIAP'].indexOf(quadro.abreviacao) !== -1
+  }
+
+  getLogoImage(quadro) {
+    if (quadro.abreviacao === 'USJT')
+      return this.temporaryUsjtLogoImage
+
+    else if (quadro.abreviacao === 'Mackenzie')
+      return this.temporaryMackLogoImage
+
+    else if (quadro.abreviacao === 'FIAP')
+      return this.temporaryFiapLogoImage
+  }
+
+  ////
+  // Filtro
+  ////
   filterUniversidades () {
     return (key) => {
-      this.universidades = this.permanentUniversidadesData
+      this.universidades = this.permUniversidades
         .filter((universidade) =>
-          new RegExp(this.searchQuery, 'gi')
-            .test(universidade[this.searchKey])
+          new RegExp(this.filterQuery, 'gi')
+            .test(universidade[this.filterKeySelected])
         )
     }
   }
 
-  toggleSearchFormVisibility() {
-    this.searchFormVisibility = !this.searchFormVisibility
+  toggleFilterFormVisibility() {
+    this.filterFormVisibility = !this.filterFormVisibility
   }
 
-  clearSearchFilters() {
-    this.searchKey = 'none'
-    this.searchQuery = ''
-  }
-
-  sendShowRequest(successCallback) {
-    let authObject = this.authService.get()
-    let data = {id: authObject.id}
-
-    this.universidadeService
-      .api.usuario
-      .show(data).$promise.then(
-        successCallback,
-        this.errorHandlerService.request()
-      )
+  clearFilters() {
+    this.filterKeySelected = 'none'
+    this.filterQuery = ''
   }
 }

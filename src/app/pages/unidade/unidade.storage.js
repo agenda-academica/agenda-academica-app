@@ -14,7 +14,7 @@ export default class UnidadeStorage {
       && angular.isArray(storage)
   }
 
-  get() {
+  take() {
     return this.$localStorage.unidades
   }
 

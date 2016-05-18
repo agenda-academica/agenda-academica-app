@@ -1,5 +1,5 @@
 export default class UpdateUniversidadeController {
-  constructor($scope, $mdDialog, $localStorage, $routeParams, $location, auth, universidade, errorHandler) {
+  constructor($scope, $mdDialog, $localStorage, $routeParams, $location, auth, universidade, universidadeStorage, errorHandler) {
     'ngInject'
     this.$scope = $scope
     this.$mdDialog = $mdDialog
@@ -7,31 +7,45 @@ export default class UpdateUniversidadeController {
     this.$routeParams = $routeParams
     this.$location = $location
     this.authService = auth
-    this.errorHandlerService = errorHandler
     this.universidadeService = universidade
+    this.universidadeStorage = universidadeStorage
+    this.errorHandler = errorHandler
 
-    this.universidadeIndex = this.getCurrentIndex(this.$routeParams.id)
-    this.universidadeForm = this.getCurrentUniversidade(this.universidadeIndex)
-    this.validateExists(this.universidadeIndex)
+    this.initStorageRequests()
   }
 
-  validateExists(index) {
-    if (index < 0) this.$location.path('/universidade/read')
+  initStorageRequests() {
+    if (!this.universidadeStorage.has())
+      this.universidadeStorage.requestByUsuario().then(
+        this.requestUniversidadesByUsuarioSuccess(this.init()),
+        this.errorHandler.request()
+      )
+    else
+      this.init()()
   }
 
-  getCurrentUniversidade(index) {
-    return this.$localStorage.universidades[index]
+  requestUniversidadesByUsuarioSuccess(initCallback) {
+    return () => { initCallback() }
+  }
+
+  init() {
+    return () => {
+      this.universidadeIndex = this.getCurrentIndex(this.$routeParams.id)
+      this.universidadeForm = this.getCurrentUniversidade(this.universidadeIndex)
+
+      if (this.universidadeIndex < 0)
+        this.$location.path('/universidade/read')
+    }
   }
 
   getCurrentIndex(id) {
-    return this.$localStorage.universidades.findIndex(
+    return this.universidadeStorage.take().findIndex(
       universidade => universidade.codigo == id
     )
   }
 
-  deleteFromStorage(id) {
-    let index = this.getCurrentIndex(id)
-    delete this.$localStorage.universidades[index]
+  getCurrentUniversidade(index) {
+    return this.universidadeStorage.take()[index]
   }
 
   submit() {
@@ -46,34 +60,29 @@ export default class UpdateUniversidadeController {
     this.sendUpdateRequest()
   }
 
-  sendUpdateRequest() {
-    let authObject = this.authService.get()
-    let data = angular.copy(this.universidadeForm)
-    let options = {id: data.codigo}
-
-    this.universidadeService
-      .api.root
-      .update(options, data).$promise.then(
-        this.getUpdateSuccessCallback(data),
-        this.errorHandlerService.request()
-      )
-  }
-
-  getUpdateSuccessCallback(data) {
-    return (success) => {
-      if (success.$resolved === true) {
-        this.$localStorage.universidades[this.universidadeIndex] = data
-        this.$location.path('/universidade/read')
-      }
-    }
-  }
-
   getPreenchimentoAlert() {
     return this.$mdDialog.alert()
       .title('Tudo preenchido?')
       .textContent(`Verifique se o preenchimento dos campos obrigatórios
         foram feitos corretamente.`)
       .ok('Ok, vou verificar')
+  }
+
+  sendUpdateRequest() {
+    let authObject = this.authService.get()
+    let data = angular.copy(this.universidadeForm)
+    let options = {id: data.codigo}
+
+    this.universidadeStorage.update(options, data).then(
+      this.getUpdateSuccessCallback(),
+      this.errorHandler.request()
+    )
+  }
+
+  getUpdateSuccessCallback() {
+    return () => {
+      this.$location.path('/universidade/read')
+    }
   }
 
   delete() {
@@ -98,26 +107,19 @@ export default class UpdateUniversidadeController {
 
   getDeleteOkCallback() {
     return () => {
-      let data = {id: this.$routeParams.id}
-      this.universidadeService
-        .api.root.destroy(data)
-        .$promise.then(
-          this.getDestroySuccessCallback(data),
-          this.errorHandlerService.request()
-        )
+      let options = {id: this.$routeParams.id}
+      this.universidadeStorage.delete(options).then(
+        this.getDeleteSuccessCallback(),
+        this.errorHandler.request()
+      )
     }
   }
 
-  getDestroySuccessCallback(data) {
-    return (success) => {
-      if (success.requestStatus === 'true') {
-        this.deleteFromStorage(data.id)
-        this.$mdDialog
-          .show(this.getDeleteOkCallbackAlert())
-          .then(() => { this.$location.path('/universidade/read') })
-      }
-      else
-        this.errorHandlerService.request()()
+  getDeleteSuccessCallback() {
+    return () => {
+      this.$mdDialog
+        .show(this.getDeleteOkCallbackAlert())
+        .then(() => { this.$location.path('/universidade/read') })
     }
   }
 

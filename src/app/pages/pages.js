@@ -14,10 +14,12 @@ export default angular
   .module('app.pages', [])
 
   // Calendar
+  .component('calendarViewOptionsFab', calendar.calendarViewOptionsFab)
+  .component('calendarAddEventsFab', calendar.calendarAddEventsFab)
   .component('calendarNavigation', calendar.calendarNavigation)
   .component('calendar', calendar.calendar)
 
-  // Quadro de horario
+  // Quadro de horário
   .component('quadroHorario', quadroHorario)
   .component('quadroHorarioPainel', quadroHorarioPainel)
 

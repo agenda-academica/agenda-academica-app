@@ -16,24 +16,15 @@ export default class ReadUnidadeController {
     this.errorHandler = errorHandler
     this.temporaryUsjtLogoImage = temporaryUsjtLogoImage
 
-    this.$localStorage.$reset
-    this.initStorageRequests()
-
     this.permUniversidades = []
     this.permUnidades = []
+    this.initStorageRequests()
 
     this.filterQuery = ''
     this.$scope.$watch(() => this.filterQuery, this.filterUnidades())
 
     this.unidades = []
-    this.$scope.$watch(() => this.permUnidades, this.watchPermUnidade())
-  }
-
-  getUniversidadesByUsuarioSuccess() {
-    return () => {
-      this.permUniversidades = this.universidadeStorage.get()
-      this.getUnidadesByUsuario()
-    }
+    this.$scope.$watch(() => this.permUnidades, this.watchPermUnidades())
   }
 
   initStorageRequests() {
@@ -43,15 +34,10 @@ export default class ReadUnidadeController {
     )
   }
 
-  getUnidadesByUsuarioSuccess() {
+  getUniversidadesByUsuarioSuccess() {
     return () => {
-      this.permUnidades = this.unidadeStorage.get()
-        .map(unidade => {
-          unidade.universidade = this.universidadeStorage
-            .getById(unidade.idUniversidade)
-          console.log(unidade)
-          return unidade
-        })
+      this.permUniversidades = this.universidadeStorage.take()
+      this.getUnidadesByUsuario()
     }
   }
 
@@ -62,6 +48,29 @@ export default class ReadUnidadeController {
     )
   }
 
+  getUnidadesByUsuarioSuccess() {
+    return () => {
+      this.permUnidades = this.unidadeStorage.take()
+        .map(this.mapUniversidadeByUnidade())
+    }
+  }
+
+  mapUniversidadeByUnidade() {
+    return (unidade) => {
+      let storage = this.universidadeStorage
+      unidade.universidade = storage.getById(unidade.idUniversidade)
+      return unidade
+    }
+  }
+
+  watchPermUnidades() {
+    return (data) => this.unidades = data
+  }
+
+  toggleFilterFormVisibility() {
+    this.filterFormVisibility = !this.filterFormVisibility
+  }
+
   filterUnidades () {
     return (key) => {
       this.universidades = this.permUnidades
@@ -70,14 +79,6 @@ export default class ReadUnidadeController {
             .test(unidade[this.searchKey])
         )
     }
-  }
-
-  watchPermUnidade() {
-    return (data) => this.unidades = data
-  }
-
-  toggleFilterFormVisibility() {
-    this.filterFormVisibility = !this.filterFormVisibility
   }
 
   clearFilters() {
