@@ -27,6 +27,10 @@ export default class UniversidadeStorage {
     return this.take()[this.getIndexOf(idUniversidade)]
   }
 
+  getByIndex(index) {
+    return this.take()[index]
+  }
+
   ////
   // READ
   ////

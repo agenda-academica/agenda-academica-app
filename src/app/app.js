@@ -100,7 +100,7 @@ angular.module('app', [
     )
     .when(
       '/universidade/update/:id',
-      { template: '<update-universidade></update-universidade>' }
+      { template: '<universidade-update></universidade-update>' }
     )
 
     // Unidade

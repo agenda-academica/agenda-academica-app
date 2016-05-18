@@ -23,13 +23,23 @@ export default angular
   .component('quadroHorario', quadroHorario)
   .component('quadroHorarioPainel', quadroHorarioPainel)
 
+  ////
   // Universidades
-  .service('universidadeStorage'      , universidade.storage)
-  .component('createUniversidade'     , universidade.create)
-  .component('universidadeReadFilter' , universidade.read.filter)
-  .component('universidadeReadForm'   , universidade.read.form)
-  .component('universidadeRead'       , universidade.read.read)
-  .component('updateUniversidade'     , universidade.update)
+  ////
+    // Services
+    .service('universidadeStorage'      , universidade.storage)
+
+    // Create
+    .component('createUniversidade'     , universidade.create)
+
+    // Read
+    .component('universidadeReadFilter' , universidade.read.filter)
+    .component('universidadeReadForm'   , universidade.read.form)
+    .component('universidadeRead'       , universidade.read.read)
+
+    // Update
+    .component('universidadeUpdateForm' , universidade.update.form)
+    .component('universidadeUpdate'     , universidade.update.update)
 
   // Unidades
   .service('unidadeStorage', unidade.storage)

@@ -1,8 +1,7 @@
-import './update.styl'
-import template from './update.template.jade'
-import controller from './update.controller'
+import form   from './form/form.component'
+import update from './update/update.component'
 
 export default {
-  template: template,
-  controller: controller,
+  form,
+  update,
 }
