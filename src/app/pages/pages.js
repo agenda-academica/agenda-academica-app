@@ -3,7 +3,7 @@ import angular from 'angular'
 import calendar             from './calendar/calendar.component'
 import quadroHorario        from './quadro-horario/quadro-horario.component'
 import quadroHorarioPainel  from './quadro-horario/painel/painel.component'
-import universidade         from './universidade/universidade.component'
+import universidade         from './universidade/universidade.feature'
 import unidade              from './unidade/unidade.component'
 import curso                from './curso/curso.component'
 import login                from './login/login.component'
@@ -14,10 +14,10 @@ export default angular
   .module('app.pages', [])
 
   // Calendar
-  .component('calendarViewOptionsFab', calendar.calendarViewOptionsFab)
-  .component('calendarAddEventsFab', calendar.calendarAddEventsFab)
-  .component('calendarNavigation', calendar.calendarNavigation)
-  .component('calendar', calendar.calendar)
+  .component('calendarViewOptionsFab' , calendar.calendarViewOptionsFab)
+  .component('calendarAddEventsFab'   , calendar.calendarAddEventsFab)
+  .component('calendarNavigation'     , calendar.calendarNavigation)
+  .component('calendar'               , calendar.calendar)
 
   // Quadro de horário
   .component('quadroHorario', quadroHorario)
@@ -26,20 +26,18 @@ export default angular
   ////
   // Universidades
   ////
-    // Services
-    .service('universidadeStorage'      , universidade.storage)
+  .service('universidadeStorage'      , universidade.storage)
 
-    // Create
-    .component('createUniversidade'     , universidade.create)
+  .component('universidadeCreateForm' , universidade.create.form)
+  .component('universidadeCreate'     , universidade.create.create)
 
-    // Read
-    .component('universidadeReadFilter' , universidade.read.filter)
-    .component('universidadeReadForm'   , universidade.read.form)
-    .component('universidadeRead'       , universidade.read.read)
+  .component('universidadeReadAddFab' , universidade.read.addFab)
+  .component('universidadeReadFilter' , universidade.read.filter)
+  .component('universidadeReadForm'   , universidade.read.form)
+  .component('universidadeRead'       , universidade.read.read)
 
-    // Update
-    .component('universidadeUpdateForm' , universidade.update.form)
-    .component('universidadeUpdate'     , universidade.update.update)
+  .component('universidadeUpdateForm' , universidade.update.form)
+  .component('universidadeUpdate'     , universidade.update.update)
 
   // Unidades
   .service('unidadeStorage', unidade.storage)

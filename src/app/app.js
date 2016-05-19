@@ -96,7 +96,7 @@ angular.module('app', [
     )
     .when(
       '/universidade/create',
-      { template: '<create-universidade></create-universidade>' }
+      { template: '<universidade-create></universidade-create>' }
     )
     .when(
       '/universidade/update/:id',

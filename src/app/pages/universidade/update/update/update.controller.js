@@ -46,7 +46,8 @@ export default class UpdateUniversidadeController {
   }
 
   submitOutsideForm() {
-    if (this.$scope.updateUniversidade.$invalid) {
+    let childScope = this.$scope.$parent.$$childTail.$$childTail
+    if (childScope.updateUniversidade.$invalid) {
       this.$mdDialog.show(this.getPreenchimentoAlert())
       return
     }

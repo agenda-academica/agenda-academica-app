@@ -53,6 +53,36 @@ md-content.page-quadro-horario-painel(layout-padding)
       md-button.md-icon-button(aria-label='Editar disciplina')
         ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
 
+  h2 Informações
+  md-content.informacoes
+    .empty-message(ng-hide='true')
+      ng-md-icon(class='md-avatar' size='30%' icon='book' style='fill: #ccc')
+      div Nenhum material cadastrado.
+      md-button.md-raised.md-primary Cadastrar
+
+    md-list
+      md-list-item(layout='row' layout-align='start start')
+        p(flex='40').strong Total de aulas
+        p(flex='60') 250
+      md-list-item(layout='row' layout-align='start start')
+        p(flex='40').strong Aulas dadas
+        p(flex='60') 120
+      md-list-item(layout='row' layout-align='start start')
+        p(flex='40').strong Aulas restantes
+        p(flex='60') 130
+      md-list-item.md-no-proxy(layout='row' layout-align='start start')
+        p(flex='50').strong Representantes
+        div(flex='60')
+          p Fillipi Ramos
+          p Henrique Diniz
+          p Sergio Bertolazo
+          p Wesley Almeida
+        md-button.md-icon-button(
+          aria-label='Editar universidade'
+          ng-href='/#/universidade/update/8'
+        )
+          ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
+
   h2 Provas
   md-content
     .empty-message(ng-hide='$ctrl.provas.length')
@@ -139,36 +169,6 @@ md-content.page-quadro-horario-painel(layout-padding)
       md-list-item(ng-repeat='material in $ctrl.materiais')
         ng-md-icon.md-avatar(size='30' icon='book' style='fill: #ccc')
         p {{material.descricao}}
-        md-button.md-icon-button(
-          aria-label='Editar universidade'
-          ng-href='/#/universidade/update/8'
-        )
-          ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
-
-  h2 Informações
-  md-content.informacoes
-    .empty-message(ng-hide='true')
-      ng-md-icon(class='md-avatar' size='30%' icon='book' style='fill: #ccc')
-      div Nenhum material cadastrado.
-      md-button.md-raised.md-primary Cadastrar
-
-    md-list
-      md-list-item(layout='row' layout-align='start start')
-        p(flex='40').strong Total de aulas
-        p(flex='60') 250
-      md-list-item(layout='row' layout-align='start start')
-        p(flex='40').strong Aulas dadas
-        p(flex='60') 120
-      md-list-item(layout='row' layout-align='start start')
-        p(flex='40').strong Aulas restantes
-        p(flex='60') 130
-      md-list-item.md-no-proxy(layout='row' layout-align='start start')
-        p(flex='50').strong Representantes
-        div(flex='60')
-          p Fillipi Ramos
-          p Henrique Diniz
-          p Sergio Bertolazo
-          p Wesley Almeida
         md-button.md-icon-button(
           aria-label='Editar universidade'
           ng-href='/#/universidade/update/8'

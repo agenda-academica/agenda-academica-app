@@ -1,8 +1,7 @@
-import './create.styl'
-import template from './create.template.jade'
-import controller from './create.controller'
+import form   from './form/form.component'
+import create from './create/create.component'
 
 export default {
-  template: template,
-  controller: controller,
+  form,
+  create,
 }

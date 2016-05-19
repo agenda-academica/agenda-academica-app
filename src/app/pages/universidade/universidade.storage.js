@@ -6,15 +6,26 @@ export default class UniversidadeStorage {
     this.universidadeService = universidade
     this.errorHandler        = errorHandler
     this.authService         = auth
+
+    this.name = 'universidades'
   }
 
   has() {
-    let storage = this.$localStorage.universidades
+    let storage = this.$localStorage[this.name]
     return storage && angular.isArray(storage)
   }
 
   take() {
-    return this.$localStorage.universidades
+    if (!this.has()) this.put([])
+    return this.$localStorage[this.name]
+  }
+
+  put(universidades) {
+    this.$localStorage[this.name] = universidades
+  }
+
+  push(universidade) {
+    this.take().push(universidade)
   }
 
   getIndexOf(idUniversidade) {
@@ -29,6 +40,37 @@ export default class UniversidadeStorage {
 
   getByIndex(index) {
     return this.take()[index]
+  }
+
+  getLast() {
+    return this.take()[this.take().length - 1]
+  }
+
+  ////
+  // CREATE
+  ////
+  create(data) {
+    let deferred = this.$q.defer()
+
+    this.universidadeService
+      .api.root
+      .create(data).$promise.then(
+        this.getCreateSuccessCallback(deferred, data),
+        this.errorHandler.request()
+      )
+    return deferred.promise
+  }
+
+  getCreateSuccessCallback(deferred, data) {
+    return (success) => {
+      if (success.requestStatus) {
+        this.push(success)
+        deferred.resolve()
+      }
+      else deferred.reject('error')
+
+      return deferred.promise
+    }
   }
 
   ////
@@ -49,11 +91,11 @@ export default class UniversidadeStorage {
   getSuccessCallback(deferred) {
     return (success) => {
       if (success.list.length > 0) {
-        this.$localStorage.universidades = success.list
+        this.$localStorage[this.name] = success.list
         deferred.resolve()
       }
       else if (success.list.requestStatus === true) {
-        this.$localStorage.universidades = []
+        this.$localStorage[this.name] = []
         deferred.resolve()
       }
       else deferred.reject('error')
