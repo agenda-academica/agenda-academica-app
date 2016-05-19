@@ -1,10 +1,10 @@
 import angular from 'angular'
 
-import calendar             from './calendar/calendar.component'
+import calendar             from './calendar/calendar.feature'
 import quadroHorario        from './quadro-horario/quadro-horario.component'
 import quadroHorarioPainel  from './quadro-horario/painel/painel.component'
 import universidade         from './universidade/universidade.feature'
-import unidade              from './unidade/unidade.component'
+import unidade              from './unidade/unidade.feature'
 import curso                from './curso/curso.component'
 import login                from './login/login.component'
 import signup               from './signup/signup.component'
