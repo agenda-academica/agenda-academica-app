@@ -1,0 +1,93 @@
+h2.aa Cadastro
+form(name='createUnidade' layout-padding ng-submit='$ctrl.parent.submit()')
+  div(layout-gt-sm='row')
+
+    //-//
+    //- Universidade
+    //-//
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Universidade
+      md-select(
+        name='idUniversidade'
+        ng-model='$ctrl.parent.unidadeForm.universidade'
+        ng-disabled='$ctrl.hasUniversidadeId'
+        required
+      )
+        md-option(
+          ng-repeat='(index, universidade) in $ctrl.universidades'
+          ng-value='universidade'
+          ng-selected='index === $ctrl.currentUniversidadeIndex'
+        )
+          | {{universidade.nome}}
+      .md-errors-spacer
+      div(ng-messages='createUnidade.idUniversidade.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Nome da unidade
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Nome da unidade
+      input(
+        md-minlength='5'
+        required=''
+        name='nome'
+        ng-model='$ctrl.parent.unidadeForm.nome'
+      )
+      div(ng-messages='createUnidade.nome.$error')
+        div(ng-message='required')
+          | This is required.
+        div(ng-message='md-maxlength')
+          | The name has to be less than 30 characters long.
+
+    //-//
+    //- Endereço completo da unidade
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Endereço completo
+      input(
+        required
+        name='endereco'
+        ng-model='$ctrl.parent.unidadeForm.endereco'
+      )
+      div(ng-messages='createUnidade.endereco.$error')
+        div(ng-message='required') This is required.
+
+    //-//
+    //- Outras informações da unidade
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Outras informações
+      input(
+        name='outrasInformacoes'
+        ng-model='$ctrl.parent.unidadeForm.outrasInformacoes'
+      )
+
+    //-//
+    //- Unidade sede?
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      md-checkbox.md-primary(
+        aria-label='Unidade sede'
+        ng-model='$ctrl.parent.unidadeForm.unidadeSede'
+      )
+        | Unidade sede
+
+    //-//
+    //- Submit Button
+    //-//
+    md-input-container.md-block
+      md-button.md-raised.submit-btn(
+        type='submit'
+        layout='row'
+        layout-align='center center'
+      ) Próximo
+        ng-md-icon(
+          layout='row'
+          layout-align='center center'
+          md-menu-origin='',
+          icon='keyboard_arrow_right',
+          style='fill: #fff',
+          aria-label='Próximo'
+        )

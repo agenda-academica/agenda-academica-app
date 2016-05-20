@@ -16,7 +16,7 @@ export default class UpdateUniversidadeController {
   }
 
   validateExists(index) {
-    if (index < 0) this.$location.path('/universidade/read')
+    if (index < 0) this.$location.path('/universidade')
   }
 
   getCurrentUniversidade(index) {
@@ -63,7 +63,7 @@ export default class UpdateUniversidadeController {
     return (success) => {
       if (success.$resolved === true) {
         this.$localStorage.universidades[this.universidadeIndex] = data
-        this.$location.path('/universidade/read')
+        this.$location.path('/universidade')
       }
     }
   }
@@ -114,7 +114,7 @@ export default class UpdateUniversidadeController {
         this.deleteFromStorage(data.id)
         this.$mdDialog
           .show(this.getDeleteOkCallbackAlert())
-          .then(() => { this.$location.path('/universidade/read') })
+          .then(() => { this.$location.path('/universidade') })
       }
       else
         this.errorHandlerService.request()()

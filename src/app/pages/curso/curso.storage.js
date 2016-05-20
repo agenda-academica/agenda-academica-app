@@ -1,13 +1,13 @@
-export default class UnidadeStorage {
-  constructor($localStorage, $q, unidade, errorHandler, auth) {
+export default class CursoStorage {
+  constructor($localStorage, $q, curso, errorHandler, auth) {
     'ngInject'
-    this.$localStorage  = $localStorage
-    this.$q             = $q
-    this.unidadeService = unidade
-    this.errorHandler   = errorHandler
-    this.authService    = auth
+    this.$localStorage       = $localStorage
+    this.$q                  = $q
+    this.cursoService        = curso
+    this.errorHandler        = errorHandler
+    this.authService         = auth
 
-    this.name = 'unidades'
+    this.name = 'cursos'
   }
 
   has() {
@@ -20,22 +20,22 @@ export default class UnidadeStorage {
     return this.$localStorage[this.name]
   }
 
-  put(unidades) {
-    this.$localStorage[this.name] = unidades
+  put(cursos) {
+    this.$localStorage[this.name] = cursos
   }
 
-  push(unidade) {
-    this.take().push(unidade)
+  push(curso) {
+    this.take().push(curso)
   }
 
-  getIndexOf(idUnidade) {
+  getIndexOf(idCurso) {
     return this.take().findIndex(
-      unidade => unidade.id == idUnidade
+      curso => curso.codigo == idCurso
     )
   }
 
-  getById(idUnidade) {
-    return this.take()[this.getIndexOf(idUnidade)]
+  getById(idCurso) {
+    return this.take()[this.getIndexOf(idCurso)]
   }
 
   getByIndex(index) {
@@ -52,7 +52,7 @@ export default class UnidadeStorage {
   create(data) {
     let deferred = this.$q.defer()
 
-    this.unidadeService
+    this.cursoService
       .api.root
       .create(data).$promise.then(
         this.getCreateSuccessCallback(deferred, data),
@@ -79,7 +79,7 @@ export default class UnidadeStorage {
   requestByUsuario() {
     let deferred = this.$q.defer()
 
-    this.unidadeService
+    this.cursoService
       .api.usuario.show({id: this.authService.get().id})
       .$promise.then(
         this.getSuccessCallback(deferred),
@@ -110,7 +110,7 @@ export default class UnidadeStorage {
   update(options, data) {
     let deferred = this.$q.defer()
 
-    this.unidadeService
+    this.cursoService
       .api.root
       .update(options, data).$promise.then(
         this.getUpdateSuccessCallback(deferred, data),
@@ -142,7 +142,7 @@ export default class UnidadeStorage {
   delete(options) {
     let deferred = this.$q.defer()
 
-    this.unidadeService
+    this.cursoService
       .api.root
       .destroy(options).$promise.then(
         this.getDeleteSuccessCallback(deferred, options),

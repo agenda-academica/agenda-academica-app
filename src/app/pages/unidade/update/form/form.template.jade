@@ -1,0 +1,99 @@
+h2.aa Alterar
+form(name='updateUnidade' layout-padding ng-submit='$ctrl.parent.submit()')
+  input(
+    type='hidden'
+    name='id'
+    ng-model='$ctrl.parent.unidadeForm.id'
+  )
+
+  div(layout-gt-sm='row')
+
+    //-//
+    //- Universidade
+    //-//
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Universidade
+      md-select(
+        name='idUniversidade'
+        ng-model='$ctrl.parent.unidadeForm.idUniversidade'
+        required
+      )
+        md-option(
+          ng-repeat='(index, universidade) in $ctrl.parent.universidades'
+          ng-value='universidade.codigo'
+          ng-selected='index === $ctrl.parent.universidadeSelectedIndex'
+        )
+          | {{universidade.nome}}
+      .md-errors-spacer
+      div(ng-messages='updateUnidade.idUniversidade.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Nome da unidade
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Nome da unidade
+      input(
+        md-minlength='5'
+        required=''
+        name='nome'
+        ng-model='$ctrl.parent.unidadeForm.nome'
+      )
+      div(ng-messages='updateUnidade.nome.$error')
+        div(ng-message='required')
+          | This is required.
+        div(ng-message='md-maxlength')
+          | The name has to be less than 30 characters long.
+
+    //-//
+    //- Endereço completo da unidade
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Endereço completo
+      input(
+        required
+        name='endereco'
+        ng-model='$ctrl.parent.unidadeForm.endereco'
+      )
+      div(ng-messages='updateUnidade.endereco.$error')
+        div(ng-message='required') This is required.
+
+    //-//
+    //- Outras informações da unidade
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Outras informações
+      input(
+        name='outrasInformacoes'
+        ng-model='$ctrl.parent.unidadeForm.outrasInformacoes'
+      )
+
+    //-//
+    //- Unidade sede?
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      md-checkbox.md-primary(
+        aria-label='Unidade sede'
+        ng-model='$ctrl.parent.unidadeForm.unidadeSede'
+      )
+        | Unidade sede
+
+    //-//
+    //- Delete Button
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      md-button.md-raised.delete-btn(
+        ng-click='$ctrl.delete()'
+        aria-label='Deletar'
+      ) Deletar
+
+    //-//
+    //- Form Submit Hidden Button
+    //-//
+    md-input-container.md-block
+      md-button.hide(
+        name='submitForm'
+        type='submit'
+        aria-label='Enviar formulário'
+      )

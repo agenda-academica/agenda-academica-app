@@ -40,9 +40,12 @@ export default class CreateUniversidadeController {
         this.cursoForm.unidades = this.permUnidades.filter((unidade) =>
           unidade.idUniversidade === universidade.codigo
         )
-        console.log(this.cursoForm.unidades)
       }
     }
+  }
+
+  submitGoBack () {
+    this.cursoForm
   }
 
   submit() {

@@ -22,10 +22,10 @@ import angularStorage           from 'ngstorage'
 // JS isolated dependencies.
 import 'ng-mask/dist/ngMask.min'
 
-import services   from './services/services'
-import components from './components/components'
-import directives from './directives/directives'
-import pages      from './pages/pages'
+import services    from './services/services'
+import components  from './components/components'
+import directives  from './directives/directives'
+import pages       from './pages/pages'
 
 angular.module('app', [
   angularMaterial,
@@ -64,20 +64,11 @@ angular.module('app', [
 /**
  * Routes
  */
-.config(($routeProvider, $locationProvider) => {
+.config(($routeProvider) => {
   'ngInject'
 
   $routeProvider
     .when('/', { template: '<splash></splash>' })
-
-    // Calendar
-    .when(
-      '/calendar',
-      {
-        template: '<calendar></calendar>',
-        resolve: { logged: 'angularRouteResolve' }
-      }
-    )
 
     // Quadro de horario
     .when(
@@ -87,38 +78,6 @@ angular.module('app', [
     .when(
       '/quadro-horario/painel',
       { template: '<quadro-horario-painel></quadro-horario-painel>' }
-    )
-
-    // Universidade
-    .when(
-      '/universidade/read',
-      { template: '<universidade-read></universidade-read>' }
-    )
-    .when(
-      '/universidade/create',
-      { template: '<universidade-create></universidade-create>' }
-    )
-    .when(
-      '/universidade/update/:id',
-      { template: '<universidade-update></universidade-update>' }
-    )
-
-    // Unidade
-    .when(
-      '/unidade/read',
-      { template: '<read-unidade></read-unidade>' }
-    )
-    .when(
-      '/unidade/create',
-      { template: '<create-unidade></create-unidade>' }
-    )
-    .when(
-      '/unidade/create/:id',
-      { template: '<create-unidade></create-unidade>' }
-    )
-    .when(
-      '/unidade/update/:idUniversidade/:idUnidade',
-      { template: '<create-unidade></create-unidade>' }
     )
 
     // Curso

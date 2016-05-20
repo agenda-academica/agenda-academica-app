@@ -1,17 +1,17 @@
-export default class UniversidadeUpdateFormController {
-  constructor($routeParams, $mdDialog, $location, universidadeStorage, errorHandler) {
+export default class UnidadeUpdateFormController {
+  constructor($routeParams, $mdDialog, $location, unidadeStorage, errorHandler) {
     'ngInject'
     this.$routeParams = $routeParams
     this.$mdDialog    = $mdDialog
     this.$location    = $location
 
-    this.universidadeStorage = universidadeStorage
-    this.errorHandler        = errorHandler
+    this.unidadeStorage = unidadeStorage
+    this.errorHandler   = errorHandler
   }
 
   ////
   // As funcionalidades de `update` ficaram centralizadas
-  // no componente principal em `universidade/update/update`,
+  // no componente principal em `unidade/update/update`,
   // devido à dependência de submit do form através de um botão
   // externo. e.g. `submitOutsideForm()`
   ////
@@ -30,8 +30,8 @@ export default class UniversidadeUpdateFormController {
     return this.$mdDialog.confirm()
       .title('Atenção!')
       .textContent(`Tem certeza que deseja excluir permanentemente os dados
-        desta universidade?`)
-      .ariaLabel('Excluir universidade')
+        desta unidade?`)
+      .ariaLabel('Excluir unidade')
       .ok('Sim.')
       .cancel('Não, por favor!')
   }
@@ -39,7 +39,7 @@ export default class UniversidadeUpdateFormController {
   getDeleteOkCallback() {
     return () => {
       let options = {id: this.$routeParams.id}
-      this.universidadeStorage.delete(options).then(
+      this.unidadeStorage.delete(options).then(
         this.getDeleteSuccessCallback(),
         this.errorHandler.request()
       )
@@ -50,14 +50,14 @@ export default class UniversidadeUpdateFormController {
     return () => {
       this.$mdDialog
         .show(this.getDeleteOkCallbackAlert())
-        .then(() => { this.$location.path('/universidade') })
+        .then(() => { this.$location.path('/unidade') })
     }
   }
 
   getDeleteOkCallbackAlert() {
     return this.$mdDialog.alert()
       .title('Concluído.')
-      .textContent(`Os dados da universidade foram excluídos com sucesso.`)
+      .textContent(`Os dados da unidade foram excluídos com sucesso.`)
       .ok('Obrigado')
   }
 
@@ -66,7 +66,7 @@ export default class UniversidadeUpdateFormController {
       this.$mdDialog.show(
         this.$mdDialog.alert()
           .title('Cancelado.')
-          .textContent(`Fique tranquilo, os dados da universidade continuam
+          .textContent(`Fique tranquilo, os dados da unidade continuam
             intactos.`)
           .ok('Obrigado')
       )

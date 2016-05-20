@@ -1,11 +1,28 @@
-import create   from './create/create.package'
-import read     from './read/read.package'
-import update   from './update/update.package'
-import storage  from './universidade.storage'
+import routes  from './universidade.routes'
+
+import storage from './universidade.storage'
+import api     from './universidade.api'
+
+import create  from './create/create.package'
+import read    from './read/read.package'
+import update  from './update/update.package'
 
 export default {
-  create  : create,
-  read    : read,
-  update  : update,
-  storage : storage,
+  ////
+  // Configs
+  ////
+  routes,
+
+  ////
+  // Services
+  ////
+  storage,
+  api,
+
+  ////
+  // Components
+  ////
+  create,
+  read,
+  update,
 }

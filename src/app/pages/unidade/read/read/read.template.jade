@@ -1,0 +1,17 @@
+toolbar.default-color(
+  title='Unidades'
+  left-icon='menu'
+  on-click-method='toggleLeftSidenav'
+  right-button-enable='true'
+  right-button-classes='md-icon-button'
+  right-button-type='icon'
+  right-button-icon='filter_list'
+  right-button-icon-style='fill: #fff'
+  right-button-on-click-method='$ctrl.toggleFilterFormVisibility()'
+)
+
+unidade-read-add-fab
+
+md-content.page-unidade-read(layout-padding)
+  unidade-read-filter
+  unidade-read-cards

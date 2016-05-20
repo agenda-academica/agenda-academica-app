@@ -27,7 +27,7 @@ export default class CreateUniversidadeController {
     }
     this.sendCreateRequest(
       this.getCreateSuccessCallback(() => {
-        this.$location.path(`/universidade/read`)
+        this.$location.path('/universidade')
       })
     )
   }

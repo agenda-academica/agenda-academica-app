@@ -37,7 +37,7 @@ export default class UpdateUniversidadeController {
         .universidadeStorage
         .getById(this.$routeParams.id)
 
-      if (!this.universidadeForm) this.$location.path('/universidade/read')
+      if (!this.universidadeForm) this.$location.path('/universidade')
     }
   }
 
@@ -75,7 +75,7 @@ export default class UpdateUniversidadeController {
 
   getUpdateSuccessCallback() {
     return () => {
-      this.$location.path('/universidade/read')
+      this.$location.path('/universidade')
     }
   }
 }

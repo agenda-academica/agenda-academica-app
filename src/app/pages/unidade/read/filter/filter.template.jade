@@ -1,0 +1,40 @@
+.filters(
+  layout-padding
+  layout-gt-sm='row'
+  ng-show='$ctrl.parent.filterVisibility'
+)
+  h2.aa Filtros
+
+  //-//
+  //- Universidades
+  //-//
+  md-input-container.md-block(flex-gt-sm)
+    label Universidade
+    md-select(ng-model='$ctrl.selectedUniversidade')
+      md-option(
+        ng-repeat='(index, universidade) in $ctrl.parent.universidades'
+        ng-value='universidade'
+      )
+        | {{universidade.nome}}
+    .md-errors-spacer
+
+  //-//
+  //- Unidade Columns
+  //-//
+  md-input-container.md-block(flex-gt-sm)
+    label Campo
+    md-select(ng-model='$ctrl.selectedField')
+      md-option(ng-repeat='item in $ctrl.filterBy' value='{{item.key}}')
+        | {{item.label}}
+    .md-errors-spacer
+
+  //-//
+  //- Query
+  //-//
+  md-input-container.md-block(flex-gt-sm)
+    label Apelido/Abreviação
+    input(ng-model='$ctrl.query')
+
+  .actions(layout='row' layout-align='end center')
+    md-button.md-raised.md-primary(ng-click='$ctrl.clear()')
+      | Limpar

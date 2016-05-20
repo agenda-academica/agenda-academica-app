@@ -1,0 +1,22 @@
+h2.aa Consulta
+.empty-message(ng-hide='$ctrl.parent.unidades.length')
+  ng-md-icon(class='md-avatar' size='50%' icon='place' style='fill: #ccc')
+  div Não há unidades.
+
+md-card(ng-repeat='unidade in $ctrl.parent.unidades')
+  md-card-title
+    md-card-title-media
+      .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(unidade.universidade)')
+        | {{unidade.universidade.abreviacao | limitTo: 1: 0}}
+      img(
+        ng-src='{{$ctrl.getLogoImage(unidade.universidade)}}'
+        ng-show='$ctrl.showLogo(unidade.universidade)'
+      )
+    md-card-title-text
+      span.md-headline {{unidade.nome}}
+      span.md-subhead {{unidade.universidade.nome}}
+      .actions(layout='row')
+        md-button(
+          ng-href='{{$ctrl.getUpdateHref(unidade)}}'
+          aria-label='{{$ctrl.getUpdateAriaLabel(unidade)}}'
+        ) detalhes
