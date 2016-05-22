@@ -1,8 +1,9 @@
 export default class AuthService {
-  constructor($q, $location, $cookies) {
+  constructor($q, $location, $cookies, moment) {
     'ngInject'
     this.$cookies = $cookies
-    this.keyName = 'auth'
+    this.moment   = moment
+    this.keyName  = 'auth'
   }
 
   has() {
@@ -16,7 +17,8 @@ export default class AuthService {
   set(usuarioObject) {
     this.$cookies.putObject(
       this.keyName,
-      this.buildAuthObject(usuarioObject)
+      this.buildAuthObject(usuarioObject),
+      { expires: this.moment().add(1, 'months').toDate() }
     )
   }
 
@@ -26,12 +28,12 @@ export default class AuthService {
 
   buildAuthObject(usuarioObject) {
     return {
-      id: usuarioObject.codigo,
-      phone: usuarioObject.celular,
-      email: usuarioObject.email,
-      login: usuarioObject.login,
-      name: usuarioObject.nome,
-      password: usuarioObject.senha
+      id       : usuarioObject.codigo,
+      phone    : usuarioObject.celular,
+      email    : usuarioObject.email,
+      login    : usuarioObject.login,
+      name     : usuarioObject.nome,
+      password : usuarioObject.senha
     }
   }
 }
