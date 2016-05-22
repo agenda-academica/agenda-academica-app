@@ -24,7 +24,7 @@ export default class UnidadeCreateFormController {
 
   filterUnidades(universidade) {
     this.unidades = this.permUnidades.filter((unidade) =>
-      unidade.idUniversidade === universidade.codigo
+      unidade.idUniversidade === universidade.id
     )
     this.hasUnidades = this.unidades.length
   }

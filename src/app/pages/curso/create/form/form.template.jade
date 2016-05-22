@@ -31,7 +31,7 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
       ng-md-icon(class='md-avatar' size='10%' icon='location_on' style='fill: #ccc')
       div Nenhuma unidade cadastrada.
       md-button.md-raised.md-primary(
-        ng-href='{{"/#/unidade/create/" + $ctrl.parent.form.universidade.codigo}}'
+        ng-href='{{"/#/unidade/create/" + $ctrl.parent.form.universidade.id}}'
       ) Cadastrar
 
     md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasUnidades')

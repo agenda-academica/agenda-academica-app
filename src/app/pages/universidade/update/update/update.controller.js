@@ -64,8 +64,8 @@ export default class UpdateUniversidadeController {
 
   sendUpdateRequest() {
     let data    = angular.copy(this.universidadeForm)
-    let options = {id: data.codigo}
-    data.codigoUsuario = this.authService.get().id
+    let options = {id: data.id}
+    data.idUsuario = this.authService.get().id
 
     this.universidadeStorage.update(options, data).then(
       this.getUpdateSuccessCallback(),

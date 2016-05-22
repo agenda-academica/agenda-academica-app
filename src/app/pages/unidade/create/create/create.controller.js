@@ -36,7 +36,7 @@ export default class UnidadeCreateController {
   sendCreateRequest(successCallback) {
     let data            = angular.copy(this.unidadeForm)
     data.idUsuario      = this.authService.get().id
-    data.idUniversidade = data.universidade.codigo
+    data.idUniversidade = data.universidade.id
 
     this.unidadeStorage.create(data).then(
       successCallback(data),

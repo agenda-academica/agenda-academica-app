@@ -20,7 +20,7 @@ form(name='updateUnidade' layout-padding ng-submit='$ctrl.parent.submit()')
       )
         md-option(
           ng-repeat='(index, universidade) in $ctrl.parent.universidades'
-          ng-value='universidade.codigo'
+          ng-value='universidade.id'
           ng-selected='index === $ctrl.parent.universidadeSelectedIndex'
         )
           | {{universidade.nome}}

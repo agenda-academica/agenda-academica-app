@@ -31,7 +31,7 @@ export default class UnidadeReadFilterController {
 
   condUniversidade(unidade, universidade) {
     if (!universidade) return true
-    return unidade.universidade.codigo === universidade.codigo
+    return unidade.universidade.id === universidade.id
   }
 
   condQueryAndField(unidade, query, field) {

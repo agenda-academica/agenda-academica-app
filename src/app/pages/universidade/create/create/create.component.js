@@ -1,4 +1,3 @@
-import './create.styl'
 import template from './create.template.jade'
 import controller from './create.controller'
 

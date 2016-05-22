@@ -133,7 +133,7 @@ export default class CursoStorage {
   }
 
   updateIndex(data) {
-    let index = this.getIndexOf(data.codigo)
+    let index = this.getIndexOf(data.id)
     this.take()[index] = data
   }
 

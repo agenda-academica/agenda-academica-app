@@ -30,7 +30,7 @@ export default class UniversidadeStorage {
 
   getIndexOf(idUniversidade) {
     return this.take().findIndex(
-      universidade => universidade.codigo == idUniversidade
+      universidade => universidade.id == idUniversidade
     )
   }
 
@@ -132,7 +132,7 @@ export default class UniversidadeStorage {
   }
 
   updateIndex(data) {
-    let index = this.getIndexOf(data.codigo)
+    let index = this.getIndexOf(data.id)
     this.take()[index] = data
   }
 

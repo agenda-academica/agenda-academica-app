@@ -1,4 +1,3 @@
-import './update.styl'
 import template from './update.template.jade'
 import controller from './update.controller'
 

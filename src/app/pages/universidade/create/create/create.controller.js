@@ -14,7 +14,7 @@ export default class CreateUniversidadeController {
   submit() {
     this.sendCreateRequest(
       this.getCreateSuccessCallback((universidade) => {
-        this.$location.path(`/unidade/create/${universidade.codigo}`)
+        this.$location.path(`/unidade/create/${universidade.id}`)
       })
     )
   }
@@ -34,7 +34,7 @@ export default class CreateUniversidadeController {
 
   sendCreateRequest(successCallback) {
     let data = angular.copy(this.universidadeForm)
-    data.codigoUsuario = this.authService.get().id
+    data.idUsuario = this.authService.get().id
 
     this.universidadeStorage.create(data).then(
       successCallback(data),

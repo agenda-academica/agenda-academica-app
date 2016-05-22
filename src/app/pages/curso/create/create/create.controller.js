@@ -40,7 +40,7 @@ export default class CursoCreateController {
   sendCreateRequest(successCallback) {
     let data            = angular.copy(this.form)
     data.idUsuario      = this.authService.get().id
-    data.idUniversidade = data.universidade.codigo
+    data.idUniversidade = data.universidade.id
     data.idUnidade      = data.unidade.id
 
     this.cursoStorage.create(data).then(

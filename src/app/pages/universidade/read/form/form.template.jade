@@ -17,6 +17,6 @@ md-card(ng-repeat='universidade in $ctrl.parent.universidades')
       span.md-subhead {{universidade.nome}}
       .actions(layout='row')
         md-button(
-          ng-href='{{"/#/universidade/update/" + universidade.codigo}}'
+          ng-href='{{"/#/universidade/update/" + universidade.id}}'
           aria-label='{{"Alterar " + universidade.nome}}'
         ) detalhes

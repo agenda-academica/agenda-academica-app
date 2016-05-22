@@ -32,7 +32,7 @@ export default class CursoReadCardsController {
 
   getUpdateHref(entity) {
     return `/#/curso/update`
-      .concat(`/${entity.universidade.codigo}`)
+      .concat(`/${entity.universidade.id}`)
       .concat(`/${entity.unidade.id}`)
       .concat(`/${entity.id}`)
   }

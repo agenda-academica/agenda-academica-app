@@ -7,7 +7,6 @@ export default class UnidadeReadCardsController {
     this.temporaryUsjtLogoImage = temporaryUsjtLogoImage
     this.temporaryMackLogoImage = temporaryMackLogoImage
     this.temporaryFiapLogoImage = temporaryFiapLogoImage
-    console.log('qqqq')
   }
 
   showFirstLetterLogo(universidade) {
@@ -32,7 +31,7 @@ export default class UnidadeReadCardsController {
   }
 
   getUpdateHref(unidade) {
-    return `/#/unidade/update/${unidade.universidade.codigo}/${unidade.id}`
+    return `/#/unidade/update/${unidade.universidade.id}/${unidade.id}`
   }
 
   getUpdateAriaLabel(unidade) {

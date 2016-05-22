@@ -41,7 +41,7 @@ export default class CursoReadFilterController {
 
   conditionUniversidade(entity, universidade) {
     if (!universidade) return true
-    return entity.universidade.codigo === universidade.codigo
+    return entity.universidade.id === universidade.id
   }
 
   conditionUnidade(entity, unidade) {
