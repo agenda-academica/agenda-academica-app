@@ -47,6 +47,17 @@ export default class UnidadeStorage {
   }
 
   ////
+  // Helpers
+  ////
+  filterByIdUniversidade(idUniversidade) {
+    return unidade => unidade.idUniversidade == idUniversidade
+  }
+
+  findIndexById(idUnidade) {
+    return unidade => unidade.id == idUnidade
+  }
+
+  ////
   // CREATE
   ////
   create(data) {

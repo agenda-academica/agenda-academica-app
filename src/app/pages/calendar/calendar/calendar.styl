@@ -1,18 +1,37 @@
 ////
 // Global scope
 ////
+$default-color = #1565c0
+
 md-toolbar
   z-index 3
 
 .default-color
   md-toolbar
-    background-color #1565c0
+    background-color $default-color
 
-.md-button.md-primary.md-raised
-  background-color #1565c0
+.md-button
+  &.md-raised
+    &.md-primary:not([disabled])
+      background-color $default-color
 
-  &:not([disabled]):hover
-    background-color #1565c0
+      svg
+        fill #fff
+
+      &:hover
+        background-color $default-color
+
+    &.md-primary[disabled]
+      svg
+        fill rgba(0,0,0,0.26) !important
+  &.btn-row
+    width 100%
+    margin 6px 0
+
+md-checkbox
+  &:not([disabled]).md-primary.md-checked
+    .md-icon
+      background-color $default-color
 
 .delete-btn
   &.md-button.md-raised
@@ -131,7 +150,7 @@ md-fab-speed-dial
             fill #fff
 
         &.default-color
-          background-color #1565c0
+          background-color $default-color
 
     a.md-button.md-default-theme.md-raised,
     a.md-button.md-raised,

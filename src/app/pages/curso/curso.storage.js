@@ -1,11 +1,11 @@
 export default class CursoStorage {
   constructor($localStorage, $q, curso, errorHandler, auth) {
     'ngInject'
-    this.$localStorage       = $localStorage
-    this.$q                  = $q
-    this.cursoService        = curso
-    this.errorHandler        = errorHandler
-    this.authService         = auth
+    this.$localStorage = $localStorage
+    this.$q            = $q
+    this.cursoService  = curso
+    this.errorHandler  = errorHandler
+    this.authService   = auth
 
     this.name = 'cursos'
   }
@@ -30,7 +30,7 @@ export default class CursoStorage {
 
   getIndexOf(idCurso) {
     return this.take().findIndex(
-      curso => curso.codigo == idCurso
+      curso => curso.id == idCurso
     )
   }
 
@@ -52,6 +52,7 @@ export default class CursoStorage {
   create(data) {
     let deferred = this.$q.defer()
 
+    console.log(data)
     this.cursoService
       .api.root
       .create(data).$promise.then(
@@ -67,7 +68,7 @@ export default class CursoStorage {
         this.push(success)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Bad Request Status')
 
       return deferred.promise
     }

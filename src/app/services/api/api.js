@@ -1,9 +1,7 @@
-import login        from './login'
-import usuario      from './usuario'
-import curso        from './curso'
+import login   from './login'
+import usuario from './usuario'
 
 export default {
   usuario,
   login,
-  curso,
 }

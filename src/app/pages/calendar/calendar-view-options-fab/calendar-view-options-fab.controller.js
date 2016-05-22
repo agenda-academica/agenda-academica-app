@@ -6,13 +6,26 @@ export default class CalendarViewOptionsFabController {
 
     this.isViewFabOpen      = false
     this.viewTooltipVisible = false
+    this.timerEventName    = 'calendar.viewTooltip.timeout.destroy'
     this.$scope.$watch(() => this.isViewFabOpen, this.viewTooltipVisibility())
   }
 
   viewTooltipVisibility () {
     return (isOpen) => {
-      this.$timeout(() => { this.viewTooltipVisible = isOpen }, 400)
+      this.timer = this.$timeout(this.timerBehaviour(isOpen), 400)
+      this.$scope.$on(this.timerEventName, this.destroyTimeout());
     }
+  }
+
+  timerBehaviour(isOpen) {
+    return () => {
+      this.viewTooltipVisible = isOpen
+      this.$scope.$emit(this.timerEventName)
+    }
+  }
+
+  destroyTimeout() {
+    return (event) => { this.$timeout.cancel(this.timer) }
   }
 
   getCssActiveCalendarViewType(type) {

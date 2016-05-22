@@ -80,16 +80,6 @@ angular.module('app', [
       { template: '<quadro-horario-painel></quadro-horario-painel>' }
     )
 
-    // Curso
-    .when(
-      '/curso/create/:idUniversidade/:idUnidade',
-      { template: '<create-curso></create-curso>' }
-    )
-     .when(
-      '/curso/create',
-      { template: '<create-curso></create-curso>' }
-    )
-
     .when(
       '/login',
       { template: '<login></login>' }

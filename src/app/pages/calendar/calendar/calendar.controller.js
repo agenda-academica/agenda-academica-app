@@ -1,15 +1,21 @@
 import events from './events.json'
 
-export default class CalendarPageController {
-  constructor($scope, $timeout) {
-    'ngInject'
-    this.$scope            = $scope
-    this.$timeout          = $timeout
+export default class CalendarController {
+  constructor() {
+    this.calendarView = 'month'
+    this.calendarDate = new Date()
 
-    this.calendarView      = 'month'
-    this.calendarDate      = new Date()
-    // important | warning | info | inverse | success | special
-    this.events            = this.normalizeDates(events)
+    ////
+    // Events
+    // Types:
+    //    - important
+    //    - warning
+    //    - info
+    //    - inverse
+    //    - success
+    //    - special
+    ////
+    this.events = this.normalizeDates(events)
   }
 
   normalizeDates(events) {

@@ -10,6 +10,7 @@ export default class ErrorHandlerService {
 
   requestErrorMessage() {
     return (err) => {
+      console.log(err)
       this.$mdDialog.show(
         this.$mdDialog.alert()
           .title('Erro ):')
