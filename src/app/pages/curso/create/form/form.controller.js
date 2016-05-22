@@ -67,9 +67,6 @@ export default class UnidadeCreateFormController {
         this.hasUnidadeId        = this.currentUnidadeIndex !== -1
         this.hasUnidades         = true
       }
-      console.log(idUnidade)
-      console.log(this.currentUnidadeIndex)
-      console.log(this.hasUnidadeId)
     }
   }
 }

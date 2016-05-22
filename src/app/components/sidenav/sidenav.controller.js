@@ -11,14 +11,10 @@ export default class SidenavController {
     this.test = 'HelloSidenav'
 
     this.isSidenavOpen = false;
-    $rootScope.$on('handleBroadcast', function() {
-      console.log('received action!');
-    })
-    console.log('qqq');
+    $rootScope.$on('handleBroadcast', function() {})
   }
 
   openLeftMenu () {
     // this.$mdSidenav('left').toggle();
-    console.log('qqq');
   }
 }

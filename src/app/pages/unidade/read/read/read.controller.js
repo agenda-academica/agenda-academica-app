@@ -36,7 +36,6 @@ export default class UnidadeReadController {
 
   getUniversidadesByUsuarioSuccess() {
     return () => {
-      console.log(this.universidadeStorage.take())
       this.permUniversidades = this.universidadeStorage.take()
       this.getUnidadesByUsuario()
     }
@@ -53,7 +52,6 @@ export default class UnidadeReadController {
     return () => {
       this.permUnidades = this.unidadeStorage.take()
         .map(this.mapUniversidadeByUnidade())
-      console.log(this.permUnidades)
     }
   }
 

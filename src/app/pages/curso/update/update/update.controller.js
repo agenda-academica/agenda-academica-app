@@ -101,7 +101,6 @@ export default class CursoUpdateController {
 
   submitOutsideForm() {
     let childScope = this.$scope.$parent.$$childTail.$$childTail
-    console.log(childScope.update)
     if (childScope.update.$invalid) {
       this.$mdDialog.show(this.getPreenchimentoAlert())
       return

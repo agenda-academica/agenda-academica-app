@@ -40,7 +40,6 @@ export default class CursoReadController {
 
   getUniversidadesByUsuarioSuccess() {
     return () => {
-      console.log(this.universidadeStorage.take())
       this.permUniversidades = this.universidadeStorage.take()
       this.getUnidadesByUsuario()
     }
@@ -73,8 +72,6 @@ export default class CursoReadController {
       this.permCursos = this.cursoStorage.take()
         .map(this.buildUniversidadeEntity())
         .map(this.buildUnidadeEntity())
-
-      console.log(this.permCursos)
     }
   }
 

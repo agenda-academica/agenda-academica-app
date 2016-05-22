@@ -1,16 +1,13 @@
 export default class UserEditController {
   constructor($mdDialog, auth) {
     'ngInject'
-    console.log('user.edit.controller')
-    console.log(auth.get())
-
     this.$mdDialog = $mdDialog
 
-    this.user = auth.get()
-    this.nome = this.user.name
+    this.user    = auth.get()
+    this.nome    = this.user.name
     this.celular = this.user.phone
-    this.email = this.user.email
-    this.login = this.user.login
+    this.email   = this.user.email
+    this.login   = this.user.login
   }
 
   submit() {

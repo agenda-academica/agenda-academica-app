@@ -52,7 +52,6 @@ export default class CursoStorage {
   create(data) {
     let deferred = this.$q.defer()
 
-    console.log(data)
     this.cursoService
       .api.root
       .create(data).$promise.then(

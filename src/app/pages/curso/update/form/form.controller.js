@@ -8,8 +8,6 @@ export default class CursoUpdateFormController {
 
     this.cursoStorage = cursoStorage
     this.errorHandler = errorHandler
-
-    this.$scope.$watch(() => this.parent.form.universidade, this.filterUnidades())
   }
 
   ////
@@ -18,12 +16,6 @@ export default class CursoUpdateFormController {
   // devido à dependência de submit do form através de um botão
   // externo. e.g. `submitOutsideForm()`
   ////
-
-  filterUnidades() {
-    return (universidade) => {
-      console.log(universidade)
-    }
-  }
 
   delete() {
     let confirm = this.getDeleteConfirmDialog()
