@@ -1,0 +1,52 @@
+form(name='form' layout-padding ng-submit='$ctrl.parent.submit()')
+  div(layout-gt-sm='row')
+    md-input-container.md-block(flex-gt-sm)
+      label Nome
+      input(md-minlength='5', required='', name='nome', ng-model='$ctrl.parent.nome', autofocus)
+      div(ng-messages='form.nome.$error')
+        div(ng-message='required') This is required.
+        div(ng-message='md-maxlength') The name has to be less than 30 characters long.
+
+    md-input-container.md-block(flex-gt-sm)
+      label Celular
+      input(required='', name='celular', ng-model='$ctrl.parent.celular', mask='(99) 9?9999-9999')
+      div(ng-messages='form.celular.$error')
+        div(ng-message='required') This is required.
+
+    md-input-container.md-block(flex-gt-sm)
+      label Email
+      input(required='', name='email', ng-model='$ctrl.parent.email', type='email')
+      div(ng-messages='form.email.$error', ng-show='form.email.$touched')
+        div(ng-message='required') This is required.
+        div(ng-message='email') Formato de email inválido.
+
+    md-input-container.md-block(flex-gt-sm)
+      label Login
+      input(required='', name='login', ng-model='$ctrl.parent.login')
+      div(ng-messages='form.login.$error')
+        div(ng-message='required') This is required.
+
+    md-input-container.md-block(flex-gt-sm)
+      label Senha
+      input(required='', name='senha', ng-model='$ctrl.parent.senha', type='password')
+      div(ng-messages='form.senha.$error')
+        div(ng-message='required') This is required.
+
+    md-input-container.md-block(flex-gt-sm)
+      label Confirmar senha
+      input(
+        required=''
+        name='confirmarSenha'
+        ng-model='$ctrl.parent.confirmarSenha'
+        type='password'
+        validate-password-confirmation="{{$ctrl.parent.senha}}"
+      )
+      div(ng-messages='form.confirmarSenha.$error', ng-show='form.confirmarSenha.$touched')
+        div(ng-message='required') This is required.
+        div(ng-message='validatePasswordConfirmation') Uppercase.
+
+    md-input-container.md-block(flex-gt-sm)
+      md-button.md-raised.md-primary.btn-row(
+        type='submit'
+        ng-disabled='$ctrl.$scope.form.$invalid'
+      ) Cadastrar

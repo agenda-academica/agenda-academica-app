@@ -1,17 +1,17 @@
 export default class AngularRouteResolveService {
-  constructor($q, $location, $mdDialog, auth) {
+  constructor($q, $location, $mdDialog, usuarioAuth) {
     'ngInject'
-    this.$q = $q
-    this.$location = $location
-    this.$mdDialog = $mdDialog
-    this.auth = auth
+    this.$q          = $q
+    this.$location   = $location
+    this.$mdDialog   = $mdDialog
+    this.usuarioAuth = usuarioAuth
 
     this.resolve()
   }
 
   resolve() {
     let deferred = this.$q.defer();
-    if (this.auth.has()) {
+    if (this.usuarioAuth.has()) {
         deferred.resolve();
     } else {
         this.$mdDialog.show(

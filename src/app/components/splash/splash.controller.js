@@ -1,13 +1,13 @@
 export default class SplashController {
-  constructor($location, auth) {
+  constructor($location, usuarioAuth) {
     'ngInject'
-    this.$location = $location
-    this.auth = auth
+    this.$location   = $location
+    this.usuarioAuth = usuarioAuth
 
-    this.verifyAuth()
+    this.verifyUsuarioAuth()
   }
 
-  verifyAuth() {
-    if (this.auth.has()) this.$location.path('/quadro-horario')
+  verifyUsuarioAuth() {
+    if (this.usuarioAuth.has()) this.$location.path('/quadro-horario')
   }
 }

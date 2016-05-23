@@ -1,10 +1,10 @@
 export default class CursoCreateController {
-  constructor($scope, $mdDialog, $location, auth, cursoStorage, errorHandler) {
+  constructor($scope, $mdDialog, $location, usuarioAuth, cursoStorage, errorHandler) {
     'ngInject'
     this.$scope       = $scope
     this.$mdDialog    = $mdDialog
     this.$location    = $location
-    this.authService  = auth
+    this.usuarioAuth  = usuarioAuth
     this.cursoStorage = cursoStorage
     this.errorHandler = errorHandler
 
@@ -39,7 +39,7 @@ export default class CursoCreateController {
 
   sendCreateRequest(successCallback) {
     let data            = angular.copy(this.form)
-    data.idUsuario      = this.authService.get().id
+    data.idUsuario      = this.usuarioAuth.take().id
     data.idUniversidade = data.universidade.id
     data.idUnidade      = data.unidade.id
 

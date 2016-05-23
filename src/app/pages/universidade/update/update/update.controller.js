@@ -1,11 +1,19 @@
 export default class UpdateUniversidadeController {
-  constructor($scope, $mdDialog, $routeParams, $location, auth, universidadeStorage, errorHandler) {
+  constructor(
+    $scope,
+    $mdDialog,
+    $routeParams,
+    $location,
+    usuarioAuth,
+    universidadeStorage,
+    errorHandler
+  ) {
     'ngInject'
     this.$scope              = $scope
     this.$mdDialog           = $mdDialog
     this.$routeParams        = $routeParams
     this.$location           = $location
-    this.authService         = auth
+    this.usuarioAuth         = usuarioAuth
     this.universidadeStorage = universidadeStorage
     this.errorHandler        = errorHandler
 
@@ -65,7 +73,7 @@ export default class UpdateUniversidadeController {
   sendUpdateRequest() {
     let data    = angular.copy(this.universidadeForm)
     let options = {id: data.id}
-    data.idUsuario = this.authService.get().id
+    data.idUsuario = this.usuarioAuth.take().id
 
     this.universidadeStorage.update(options, data).then(
       this.getUpdateSuccessCallback(),

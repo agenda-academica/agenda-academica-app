@@ -3,7 +3,6 @@ export default class CursoUpdateController {
     $scope,
     $mdDialog, $routeParams,
     $location,
-    auth,
     universidadeStorage,
     unidadeStorage,
     cursoStorage,
@@ -14,7 +13,6 @@ export default class CursoUpdateController {
     this.$mdDialog           = $mdDialog
     this.$routeParams        = $routeParams
     this.$location           = $location
-    this.authService         = auth
     this.universidadeStorage = universidadeStorage
     this.unidadeStorage      = unidadeStorage
     this.cursoStorage        = cursoStorage

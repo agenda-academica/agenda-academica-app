@@ -1,4 +1,4 @@
-export default class AuthService {
+export default class UsuarioAuthService {
   constructor($q, $location, $cookies, moment) {
     'ngInject'
     this.$cookies = $cookies
@@ -7,14 +7,14 @@ export default class AuthService {
   }
 
   has() {
-    return Object.keys(this.get()).length > 0
+    return Object.keys(this.take()).length > 0
   }
 
-  get() {
+  take() {
     return this.$cookies.getObject(this.keyName) || {}
   }
 
-  set(usuarioObject) {
+  put(usuarioObject) {
     this.$cookies.putObject(
       this.keyName,
       this.buildAuthObject(usuarioObject),

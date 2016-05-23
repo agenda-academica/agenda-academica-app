@@ -1,11 +1,11 @@
 export default class UniversidadeStorage {
-  constructor($localStorage, $q, universidade, errorHandler, auth) {
+  constructor($localStorage, $q, universidade, errorHandler, usuarioAuth) {
     'ngInject'
     this.$localStorage       = $localStorage
     this.$q                  = $q
     this.universidadeService = universidade
     this.errorHandler        = errorHandler
-    this.authService         = auth
+    this.usuarioAuth         = usuarioAuth
 
     this.name = 'universidades'
   }
@@ -80,7 +80,7 @@ export default class UniversidadeStorage {
     let deferred = this.$q.defer()
 
     this.universidadeService
-      .api.usuario.show({id: this.authService.get().id})
+      .api.usuario.show({id: this.usuarioAuth.take().id})
       .$promise.then(
         this.getSuccessCallback(deferred),
         this.errorHandler.request()

@@ -1,11 +1,11 @@
 export default class CursoStorage {
-  constructor($localStorage, $q, curso, errorHandler, auth) {
+  constructor($localStorage, $q, curso, errorHandler, usuarioAuth) {
     'ngInject'
     this.$localStorage = $localStorage
     this.$q            = $q
     this.cursoService  = curso
     this.errorHandler  = errorHandler
-    this.authService   = auth
+    this.usuarioAuth   = usuarioAuth
 
     this.name = 'cursos'
   }
@@ -80,7 +80,7 @@ export default class CursoStorage {
     let deferred = this.$q.defer()
 
     this.cursoService
-      .api.usuario.show({id: this.authService.get().id})
+      .api.usuario.show({id: this.usuarioAuth.take().id})
       .$promise.then(
         this.getSuccessCallback(deferred),
         this.errorHandler.request()

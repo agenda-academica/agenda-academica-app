@@ -1,11 +1,18 @@
 export default class UnidadeUpdateController {
-  constructor($scope, $mdDialog, $routeParams, $location, auth, universidadeStorage, unidadeStorage, errorHandler) {
+  constructor(
+    $scope,
+    $mdDialog,
+    $routeParams,
+    $location,
+    universidadeStorage,
+    unidadeStorage,
+    errorHandler
+  ) {
     'ngInject'
     this.$scope              = $scope
     this.$mdDialog           = $mdDialog
     this.$routeParams        = $routeParams
     this.$location           = $location
-    this.authService         = auth
     this.universidadeStorage = universidadeStorage
     this.unidadeStorage      = unidadeStorage
     this.errorHandler        = errorHandler

@@ -1,5 +1,14 @@
-export default class SignupController {
-  constructor($http, $q, $mdDialog, $location, crypto, usuario, auth, errorHandler) {
+export default class UsuarioCreateController {
+  constructor(
+    $http,
+    $q,
+    $mdDialog,
+    $location,
+    crypto,
+    usuario,
+    usuarioAuth,
+    errorHandler
+  ) {
     'ngInject'
     this.$http          = $http
     this.$q             = $q
@@ -7,7 +16,7 @@ export default class SignupController {
     this.$location      = $location
     this.crypto         = crypto
     this.usuarioService = usuario
-    this.authObject     = auth
+    this.usuarioAuth    = usuarioAuth
     this.errorHandler   = errorHandler
   }
 
@@ -20,8 +29,7 @@ export default class SignupController {
       senha   : this.crypto.gen(this.senha)
     }
 
-    this.usuarioService.api
-      .create(data).$promise.then(
+    this.usuarioService.api.root.create(data).$promise.then(
         this.getCreateSuccess(),
         this.errorHandler.request()
       )
@@ -32,11 +40,11 @@ export default class SignupController {
       let deferred = this.$q.defer()
 
       if (success.codigo) {
-        this.authObject.set(success)
+        this.usuarioAuth.put(success)
         this.$location.path('/quadro-horario')
         deferred.resolve()
       }
-      else deferred.reject('Error: Create Usuário Request.')
+      else deferred.reject('Error: Usuário Create Request.')
       return deferred.promise
     }
   }

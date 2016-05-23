@@ -1,0 +1,23 @@
+header
+  ng-md-icon.aa-trg(icon='person' size='70%')
+
+form(name='form' layout-padding, ng-submit='$ctrl.parent.submit()')
+  div(layout-gt-sm='row')
+    md-input-container.md-block(flex-gt-sm)
+      label Login
+      input(md-minlength='5', required='', name='login', ng-model='$ctrl.parent.login' autofocus)
+      div(ng-messages='form.login.$error')
+        div(ng-message='required') This is required.
+        div(ng-message='md-maxlength') The name has to be less than 30 characters long.
+
+    md-input-container.md-block(flex-gt-sm)
+      label Senha
+      input(required='', name='senha', ng-model='$ctrl.parent.senha', type='password')
+      div(ng-messages='form.senha.$error')
+        div(ng-message='required') This is required.
+
+    md-input-container.md-block(flex-gt-sm)
+      md-button.md-raised.md-primary.btn-row(
+        type='submit'
+        ng-disabled='$ctrl.$scope.form.$invalid'
+      ) Logar

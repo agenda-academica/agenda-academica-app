@@ -73,21 +73,6 @@ angular.module('app', [
       { template: '<splash></splash>' }
     )
 
-    .when(
-      '/login',
-      { template: '<login></login>' }
-    )
-    .when(
-      '/signup',
-      { template: '<signup></signup>' }
-    )
-
-    // User
-    .when(
-      '/user/edit',
-      { template: '<user-edit></user-edit>' }
-    )
-
     .otherwise({ redirectTo: '/' });
 })
 

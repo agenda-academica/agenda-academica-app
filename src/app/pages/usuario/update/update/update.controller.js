@@ -1,9 +1,9 @@
-export default class UserEditController {
-  constructor($mdDialog, auth) {
+export default class UsuarioUpdateController {
+  constructor($mdDialog, usuarioAuth) {
     'ngInject'
     this.$mdDialog = $mdDialog
 
-    this.user    = auth.get()
+    this.user    = usuarioAuth.take()
     this.nome    = this.user.name
     this.celular = this.user.phone
     this.email   = this.user.email
