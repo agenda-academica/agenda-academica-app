@@ -22,7 +22,7 @@ export default class UnidadeCreateController {
 
   submitOutsideForm() {
     let childScope = this.$scope.$parent.$$childTail.$$childTail
-    if (childScope.createUnidade.$invalid) {
+    if (childScope.create.$invalid) {
       this.$mdDialog.show(this.getPreenchimentoAlert())
       return
     }

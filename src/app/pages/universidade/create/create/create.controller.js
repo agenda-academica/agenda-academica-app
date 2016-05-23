@@ -21,7 +21,7 @@ export default class CreateUniversidadeController {
 
   submitOutsideForm() {
     let childScope = this.$scope.$parent.$$childTail.$$childTail
-    if (childScope.createUniversidade.$invalid) {
+    if (childScope.create.$invalid) {
       this.$mdDialog.show(this.getPreenchimentoAlert())
       return
     }

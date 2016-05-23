@@ -1,5 +1,5 @@
 h2.aa Cadastro
-form(name='createUnidade' layout-padding ng-submit='$ctrl.parent.submit()')
+form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
   div(layout-gt-sm='row')
 
     //-//
@@ -20,7 +20,7 @@ form(name='createUnidade' layout-padding ng-submit='$ctrl.parent.submit()')
         )
           | {{universidade.nome}}
       .md-errors-spacer
-      div(ng-messages='createUnidade.idUniversidade.$error')
+      div(ng-messages='create.idUniversidade.$error')
         div(ng-message='required')
           | This is required.
 
@@ -35,7 +35,7 @@ form(name='createUnidade' layout-padding ng-submit='$ctrl.parent.submit()')
         name='nome'
         ng-model='$ctrl.parent.unidadeForm.nome'
       )
-      div(ng-messages='createUnidade.nome.$error')
+      div(ng-messages='create.nome.$error')
         div(ng-message='required')
           | This is required.
         div(ng-message='md-maxlength')
@@ -51,7 +51,7 @@ form(name='createUnidade' layout-padding ng-submit='$ctrl.parent.submit()')
         name='endereco'
         ng-model='$ctrl.parent.unidadeForm.endereco'
       )
-      div(ng-messages='createUnidade.endereco.$error')
+      div(ng-messages='create.endereco.$error')
         div(ng-message='required') This is required.
 
     //-//
@@ -78,10 +78,11 @@ form(name='createUnidade' layout-padding ng-submit='$ctrl.parent.submit()')
     //- Submit Button
     //-//
     md-input-container.md-block
-      md-button.md-raised.submit-btn(
+      md-button.md-raised.md-primary.btn-row(
         type='submit'
         layout='row'
         layout-align='center center'
+        ng-disabled='$ctrl.$scope.create.$invalid'
       ) Próximo
         ng-md-icon(
           layout='row'

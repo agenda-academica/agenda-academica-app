@@ -1,5 +1,5 @@
 h2.aa Cadastro
-form(name='createUniversidade' layout-padding ng-submit='$ctrl.parent.submit()')
+form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
   div(layout-gt-sm='row')
     md-input-container.md-block(flex-gt-sm)
       label Apelido/Abreviação
@@ -9,7 +9,7 @@ form(name='createUniversidade' layout-padding ng-submit='$ctrl.parent.submit()')
         name='abreviacao'
         ng-model='$ctrl.parent.universidadeForm.abreviacao'
       )
-      div(ng-messages='createUniversidade.abreviacao.$error')
+      div(ng-messages='create.abreviacao.$error')
         div(ng-message='required')
           | This is required.
         div(ng-message='md-maxlength')
@@ -18,7 +18,7 @@ form(name='createUniversidade' layout-padding ng-submit='$ctrl.parent.submit()')
     md-input-container.md-block(flex-gt-sm)
       label Nome da universidades
       input(required='', name='nome', ng-model='$ctrl.parent.universidadeForm.nome')
-      div(ng-messages='createUniversidade.nome.$error')
+      div(ng-messages='create.nome.$error')
         div(ng-message='required') This is required.
 
     md-input-container.md-block(flex-gt-sm)
@@ -30,10 +30,11 @@ form(name='createUniversidade' layout-padding ng-submit='$ctrl.parent.submit()')
       input(name='logo', ng-model='$ctrl.parent.universidadeForm.logo')
 
     md-input-container.md-block
-      md-button.md-raised.md-primary.submit-btn(
+      md-button.md-raised.md-primary.btn-row(
         type='submit'
         layout='row'
         layout-align='center center'
+        ng-disabled='$ctrl.$scope.create.$invalid'
       ) Próximo
         ng-md-icon(
           layout='row'
