@@ -7,18 +7,18 @@ import tercaFeira    from './terca-feira.json'
 import quartaFeira   from './quarta-feira.json'
 import quintaFeira   from './quinta-feira.json'
 import sextaFeira    from './sexta-feira.json'
-import moment        from 'moment'
 
 export default class QuadroHorarioController {
-  constructor($location) {
+  constructor($location, moment) {
     'ngInject'
     this.$location              = $location
+    this.moment                 = moment
 
     this.temporaryUsjtLogoImage = usjtLogoImage
     this.temporaryMackLogoImage = mackLogoImage
     this.temporaryFiapLogoImage = fiapLogoImage
 
-    this.tabsSelectedIndex      = moment().day()
+    this.tabsSelectedIndex      = this.moment().day()
     this.quadroSegunda          = segundaFeira
     this.quadroTerca            = tercaFeira
     this.quadroQuarta           = quartaFeira
