@@ -1,4 +1,3 @@
-import './read.styl'
 import template from './read.template.jade'
 import controller from './read.controller'
 

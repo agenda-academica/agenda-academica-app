@@ -1,35 +1,35 @@
 import angular from 'angular'
-import curso from './curso.feature'
+import curso   from './curso.feature'
 
 export default angular.module('app.pages.curso', [])
 
   ////
   // Configs
   ////
-  .config(curso.routes)
+  .config(curso.config.routes)
 
   ////
   // Services
   ////
-  .service('curso'        , curso.api)
-  .service('cursoStorage' , curso.storage)
+  .service('curso'        , curso.service.api)
+  .service('cursoStorage' , curso.service.storage)
 
   ////
   // Create
   ////
-  .component('cursoCreateForm' , curso.create.form)
-  .component('cursoCreate'     , curso.create.create)
+  .component('cursoCreateForm' , curso.package.create.form)
+  .component('cursoCreate'     , curso.package.create.create)
 
   ////
   // Read
   ////
-  .component('cursoReadAddFab' , curso.read.addFab)
-  .component('cursoReadFilter' , curso.read.filter)
-  .component('cursoReadCards'  , curso.read.cards)
-  .component('cursoRead'       , curso.read.read)
+  .component('cursoReadAddFab' , curso.package.read.addFab)
+  .component('cursoReadFilter' , curso.package.read.filter)
+  .component('cursoReadCards'  , curso.package.read.cards)
+  .component('cursoRead'       , curso.package.read.read)
 
   ////
   // Update
   ////
-  .component('cursoUpdateForm' , curso.update.form)
-  .component('cursoUpdate'     , curso.update.update)
+  .component('cursoUpdateForm' , curso.package.update.form)
+  .component('cursoUpdate'     , curso.package.update.update)

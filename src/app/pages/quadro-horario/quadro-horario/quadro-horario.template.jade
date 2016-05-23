@@ -1,0 +1,53 @@
+toolbar.default-color(
+  title='Quadro de horario'
+  left-icon='menu'
+  on-click-method='toggleLeftSidenav'
+)
+
+md-content.page-quadro-horario(
+  layout-padding
+  md-swipe-left='$ctrl.onSwipeLeft()'
+  md-swipe-right ='$ctrl.onSwipeRight()'
+)
+  md-tabs(md-dynamic-height md-selected='$ctrl.tabsSelectedIndex')
+    md-tab(label='dom')
+      md-content
+        quadro-horario-empty-message(list='$ctrl.quadroDomingo')
+        quadro-horario-cards(list='$ctrl.quadroDomingo')
+        quadro-horario-card-add-aula(week-day='domingo')
+
+    md-tab(label='seg')
+      md-content
+        quadro-horario-empty-message(list='$ctrl.quadroSegunda')
+        quadro-horario-cards(list='$ctrl.quadroSegunda')
+        quadro-horario-card-add-aula(week-day='segunda')
+
+    md-tab(label='ter')
+      md-content
+        quadro-horario-empty-message(list='$ctrl.quadroTerca')
+        quadro-horario-cards(list='$ctrl.quadroTerca')
+        quadro-horario-card-add-aula(week-day='terca')
+
+    md-tab(label='qua')
+      md-content
+        quadro-horario-empty-message(list='$ctrl.quadroQuarta')
+        quadro-horario-cards(list='$ctrl.quadroQuarta')
+        quadro-horario-card-add-aula(week-day='quarta')
+
+    md-tab(label='qui')
+      md-content
+        quadro-horario-empty-message(list='$ctrl.quadroQuinta')
+        quadro-horario-cards(list='$ctrl.quadroQuinta')
+        quadro-horario-card-add-aula(week-day='quinta')
+
+    md-tab(label='sex')
+      md-content
+        quadro-horario-empty-message(list='$ctrl.quadroSexta')
+        quadro-horario-cards(list='$ctrl.quadroSexta')
+        quadro-horario-card-add-aula(week-day='sexta')
+
+    md-tab(label='sáb')
+      md-content
+        quadro-horario-empty-message(list='$ctrl.quadroSabado')
+        quadro-horario-cards(list='$ctrl.quadroSabado')
+        quadro-horario-card-add-aula(week-day='sabado')

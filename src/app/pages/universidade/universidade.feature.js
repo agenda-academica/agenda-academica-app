@@ -8,21 +8,18 @@ import read    from './read/read.package'
 import update  from './update/update.package'
 
 export default {
-  ////
-  // Configs
-  ////
-  routes,
+  config: {
+    routes,
+  },
 
-  ////
-  // Services
-  ////
-  storage,
-  api,
+  service: {
+    storage,
+    api,
+  },
 
-  ////
-  // Components
-  ////
-  create,
-  read,
-  update,
+  package: {
+    create,
+    read,
+    update,
+  },
 }

@@ -29,4 +29,6 @@ export default function($routeProvider) {
       '/unidade/update/:idUniversidade/:id',
       { template: '<unidade-update></unidade-update>' }
     )
+
+    .otherwise({ redirectTo: '/' });
 }

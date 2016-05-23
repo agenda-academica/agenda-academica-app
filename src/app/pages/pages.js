@@ -1,8 +1,7 @@
 import angular from 'angular'
 
 import calendar            from './calendar/calendar.pages'
-import quadroHorario       from './quadro-horario/quadro-horario.component'
-import quadroHorarioPainel from './quadro-horario/painel/painel.component'
+import quadroHorario       from './quadro-horario/quadro-horario.pages'
 import universidade        from './universidade/universidade.pages'
 import unidade             from './unidade/unidade.pages'
 import curso               from './curso/curso.pages'
@@ -12,16 +11,13 @@ import user                from './user/user.component'
 
 export default angular
   .module('app.pages', [
-    calendar.name,
-    universidade.name,
-    unidade.name,
-    curso.name,
+    quadroHorario . name,
+    calendar      . name,
+    universidade  . name,
+    unidade       . name,
+    curso         . name,
   ])
 
-  // Quadro de horário
-  .component('quadroHorario', quadroHorario)
-  .component('quadroHorarioPainel', quadroHorarioPainel)
-
-  .component('login', login)
-  .component('signup', signup)
-  .component('userEdit', user.edit)
+  .component('login'    , login)
+  .component('signup'   , signup)
+  .component('userEdit' , user.edit)

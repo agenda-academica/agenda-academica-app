@@ -68,16 +68,9 @@ angular.module('app', [
   'ngInject'
 
   $routeProvider
-    .when('/', { template: '<splash></splash>' })
-
-    // Quadro de horario
     .when(
-      '/quadro-horario',
-      { template: '<quadro-horario></quadro-horario>' }
-    )
-    .when(
-      '/quadro-horario/painel',
-      { template: '<quadro-horario-painel></quadro-horario-painel>' }
+      '/',
+      { template: '<splash></splash>' }
     )
 
     .when(

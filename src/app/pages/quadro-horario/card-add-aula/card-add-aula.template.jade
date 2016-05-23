@@ -1,0 +1,25 @@
+md-card.card-add-aula(ng-click='$ctrl.redir(quadro.location)')
+  md-card-title
+    md-card-title-media
+      .md-media-lg.card-media(ng-show='true')
+        ng-md-icon(size='80%' icon='add_circle_outline')
+    md-card-title-text
+      span.md-headline
+        | Adicionar aula
+      span.md-subhead(layout='row')
+        span(flex='50')
+          ng-md-icon(size='24' icon='account_balance')
+          .empty-row
+        span(flex='50')
+          ng-md-icon(size='24' icon='location_on')
+          .empty-row
+      span.md-subhead(layout='row')
+        span(flex='50')
+          ng-md-icon(size='24' icon='school')
+          .empty-row
+        span(flex='50')
+          ng-md-icon(size='24' icon='insert_emoticon')
+          .empty-row
+      span.md-subhead.fix-padding(layout='row')
+        ng-md-icon(size='24' icon='brush')
+        .empty-row
