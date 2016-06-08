@@ -67,7 +67,7 @@ export default class UniversidadeStorage {
         this.push(success)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Universidade Create Request.')
 
       return deferred.promise
     }
@@ -98,7 +98,7 @@ export default class UniversidadeStorage {
         this.$localStorage[this.name] = []
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Universidade Read Request.')
 
       return deferred.promise
     }
@@ -125,7 +125,7 @@ export default class UniversidadeStorage {
         this.updateIndex(data)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Universidade Update Request.')
 
       return deferred.promise
     }
@@ -157,7 +157,7 @@ export default class UniversidadeStorage {
         this.deleteIndex(options)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Universidade Delete Request.')
 
       return deferred.promise
     }

@@ -67,7 +67,7 @@ export default class CursoStorage {
         this.push(success)
         deferred.resolve()
       }
-      else deferred.reject('Bad Request Status')
+      else deferred.reject('Error: Curso Create Request.')
 
       return deferred.promise
     }
@@ -98,7 +98,7 @@ export default class CursoStorage {
         this.$localStorage[this.name] = []
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Curso Read Request.')
 
       return deferred.promise
     }
@@ -125,7 +125,7 @@ export default class CursoStorage {
         this.updateIndex(data)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Curso Update Request.')
 
       return deferred.promise
     }
@@ -157,7 +157,7 @@ export default class CursoStorage {
         this.deleteIndex(options)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Curso Delete Request.')
 
       return deferred.promise
     }

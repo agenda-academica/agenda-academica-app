@@ -1,13 +1,19 @@
-export default class UnidadeStorage {
-  constructor($localStorage, $q, unidade, errorHandler, usuarioAuth) {
-    'ngInject'
-    this.$localStorage  = $localStorage
-    this.$q             = $q
-    this.unidadeService = unidade
-    this.errorHandler   = errorHandler
-    this.usuarioAuth    = usuarioAuth
+/*
+Classe responsavel por manipular os dados retornados da api e armazenar em cache
+*/
 
-    this.name = 'unidades'
+export default class TurmaStorage {
+
+
+  constructor($localStorage, $q, turma, errorHandler, usuarioAuth) {
+    'ngInject'
+    this.$localStorage = $localStorage
+    this.$q            = $q
+    this.turmaService  = turma
+    this.errorHandler  = errorHandler
+    this.usuarioAuth   = usuarioAuth
+
+    this.name = 'turmas'
   }
 
   has() {
@@ -20,22 +26,22 @@ export default class UnidadeStorage {
     return this.$localStorage[this.name]
   }
 
-  put(unidades) {
-    this.$localStorage[this.name] = unidades
+  put(turmas) {
+    this.$localStorage[this.name] = turmas
   }
 
-  push(unidade) {
-    this.take().push(unidade)
+  push(turma) {
+    this.take().push(turma)
   }
 
-  getIndexOf(idUnidade) {
+  getIndexOf(idTurma) {
     return this.take().findIndex(
-      unidade => unidade.id == idUnidade
+      turma => turma.id == idTurma
     )
   }
 
-  getById(idUnidade) {
-    return this.take()[this.getIndexOf(idUnidade)]
+  getById(idTurma) {
+    return this.take()[this.getIndexOf(idTurma)]
   }
 
   getByIndex(index) {
@@ -47,23 +53,12 @@ export default class UnidadeStorage {
   }
 
   ////
-  // Helpers
-  ////
-  filterByIdUniversidade(idUniversidade) {
-    return unidade => unidade.idUniversidade == idUniversidade
-  }
-
-  findIndexById(idUnidade) {
-    return unidade => unidade.id == idUnidade
-  }
-
-  ////
   // CREATE
   ////
   create(data) {
     let deferred = this.$q.defer()
 
-    this.unidadeService
+    this.turmaService
       .api.root
       .create(data).$promise.then(
         this.getCreateSuccessCallback(deferred, data),
@@ -78,7 +73,7 @@ export default class UnidadeStorage {
         this.push(success)
         deferred.resolve()
       }
-      else deferred.reject('Error: Unidade Create Request.')
+      else deferred.reject('Error: Turma Create Request.')
 
       return deferred.promise
     }
@@ -90,7 +85,7 @@ export default class UnidadeStorage {
   requestByUsuario() {
     let deferred = this.$q.defer()
 
-    this.unidadeService
+    this.turmaService
       .api.usuario.show({id: this.usuarioAuth.take().id})
       .$promise.then(
         this.getSuccessCallback(deferred),
@@ -109,7 +104,7 @@ export default class UnidadeStorage {
         this.$localStorage[this.name] = []
         deferred.resolve()
       }
-      else deferred.reject('Error: Unidade Read Request.')
+      else deferred.reject('Error: Turma Read Request.')
 
       return deferred.promise
     }
@@ -121,7 +116,7 @@ export default class UnidadeStorage {
   update(options, data) {
     let deferred = this.$q.defer()
 
-    this.unidadeService
+    this.turmaService
       .api.root
       .update(options, data).$promise.then(
         this.getUpdateSuccessCallback(deferred, data),
@@ -136,7 +131,7 @@ export default class UnidadeStorage {
         this.updateIndex(data)
         deferred.resolve()
       }
-      else deferred.reject('Error: Unidade Update Request.')
+      else deferred.reject('Error: Turma Update Request.')
 
       return deferred.promise
     }
@@ -153,7 +148,7 @@ export default class UnidadeStorage {
   delete(options) {
     let deferred = this.$q.defer()
 
-    this.unidadeService
+    this.turmaService
       .api.root
       .destroy(options).$promise.then(
         this.getDeleteSuccessCallback(deferred, options),
@@ -168,7 +163,7 @@ export default class UnidadeStorage {
         this.deleteIndex(options)
         deferred.resolve()
       }
-      else deferred.reject('Error: Unidade Delete Request.')
+      else deferred.reject('Error: Turma Delete Request.')
 
       return deferred.promise
     }

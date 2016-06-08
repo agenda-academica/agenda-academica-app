@@ -6,6 +6,7 @@ import quadroHorario from './quadro-horario/quadro-horario.pages'
 import universidade  from './universidade/universidade.pages'
 import unidade       from './unidade/unidade.pages'
 import curso         from './curso/curso.pages'
+import turma         from './turma/turma.pages'
 
 export default angular
   .module('app.pages', [
@@ -15,4 +16,5 @@ export default angular
     universidade  . name,
     unidade       . name,
     curso         . name,
+    turma         . name,
   ])

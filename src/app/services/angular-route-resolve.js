@@ -21,7 +21,7 @@ export default class AngularRouteResolveService {
               prosseguir (:`)
             .ok('ok')
         )
-        deferred.reject();
+        deferred.reject('Error: Route Resolve.');
         this.$location.url('/login');
     }
     return deferred.promise;

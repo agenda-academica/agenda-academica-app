@@ -1,0 +1,181 @@
+h2.aa Cadastro
+form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
+  div(layout-gt-sm='row')
+
+    //-//
+    //- Universidade
+    //-//
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Universidade
+      md-select(
+        name='idUniversidade'
+        ng-model='$ctrl.parent.form.universidade'
+        ng-disabled='$ctrl.hasUniversidadeId'
+        required
+      )
+        md-option(
+          ng-repeat='(index, universidade) in $ctrl.universidades'
+          ng-value='universidade'
+          ng-selected='index === $ctrl.currentUniversidadeIndex'
+        )
+          | {{universidade.nome}}
+      .md-errors-spacer
+      div(ng-messages='create.idUniversidade.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Unidade
+    //-//
+    .empty-message(ng-show='!$ctrl.hasUnidades && $ctrl.parent.form.universidade !== undefined')
+      ng-md-icon(class='md-avatar' size='10%' icon='location_on' style='fill: #ccc')
+      div Nenhuma unidade cadastrada.
+      md-button.md-raised.md-primary(
+        ng-href='{{"/#/unidade/create/" + $ctrl.parent.form.universidade.id}}'
+      ) Cadastrar
+
+    md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasUnidades')
+      label Unidade
+      md-select(
+        name='idUnidade'
+        ng-model='$ctrl.parent.form.unidade'
+        ng-disabled='$ctrl.hasUnidadeId'
+        required
+      )
+        md-option(
+          ng-repeat='(index, unidade) in $ctrl.unidades'
+          ng-value='unidade'
+          ng-selected='index === $ctrl.currentUnidadeIndex'
+        )
+          | {{unidade.nome}}
+      .md-errors-spacer
+      div(ng-messages='create.idUnidade.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Curso
+    //-//
+    .empty-message(ng-show='!$ctrl.hasCursos && $ctrl.parent.form.unidade !== undefined')
+      ng-md-icon(class='md-avatar' size='10%' icon='school' style='fill: #ccc')
+      div Nenhum curso cadastrado.
+      md-button.md-raised.md-primary(
+        ng-href='{{"/#/curso/create/" + $ctrl.parent.form.universidade.id + "/" +$ctrl.parent.form.unidade.id}}'
+      ) Cadastrar
+
+    md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasCursos')
+      label Curso
+      md-select(
+        name='idCurso'
+        ng-model='$ctrl.parent.form.curso'
+        ng-disabled='$ctrl.hasCursoId'
+        required
+      )
+        md-option(
+          ng-repeat='(index, curso) in $ctrl.cursos'
+          ng-value='curso'
+          ng-selected='index === $ctrl.currentCursoIndex'
+        )
+          | {{curso.nome}}
+      .md-errors-spacer
+      div(ng-messages='create.idCurso.$error')
+        div(ng-message='required')
+          | This is required.
+
+    
+
+    //-//
+    //- Nome da turma
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Nome da turma
+      input(
+        md-minlength='5'
+        required=''
+        name='nome'
+        ng-model='$ctrl.parent.form.nome'
+      )
+      div(ng-messages='create.nome.$error')
+        div(ng-message='required')
+          | This is required.
+        div(ng-message='md-maxlength')
+          | The name has to be less than 30 characters long.
+
+    //-//
+    //- Abreviação do nome da turma
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Site
+      input(
+        md-minlength='5'
+        required=''
+        name='abreviacao'
+        ng-model='$ctrl.parent.form.site'
+      )
+      div(ng-messages='create.site.$error')
+        div(ng-message='required')
+          | This is required.
+        div(ng-message='md-maxlength')
+          | The name has to be less than 30 characters long.
+
+    //-//
+    //- Abreviação do nome da turma
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Email
+      input(
+        md-minlength='5'
+        required=''
+        name='abreviacao'
+        ng-model='$ctrl.parent.form.email'
+      )
+      div(ng-messages='create.email.$error')
+        div(ng-message='required')
+          | This is required.
+        div(ng-message='md-maxlength')
+          | The name has to be less than 30 characters long.
+
+
+    //-//
+    //- Outras informações da turma
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Outras informações
+      input(
+        name='outrasInformacoes'
+        ng-model='$ctrl.parent.form.outrasInformacoes'
+      )
+
+      md-list
+        md-list-item.md-no-proxy(layout='row' layout-align='start start')
+        p(flex='50').strong Representantes
+        div(flex='60')
+          p Fillipi Ramos
+          p Henrique Diniz
+          p Sergio Bertolazo
+          p Wesley Almeida
+        md-button.md-icon-button(
+          aria-label='Editar universidade'
+          ng-href='/#/universidade/update/8'
+        )
+          ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
+
+ 
+    //-//
+    //- Submit Button
+    //-//
+    md-input-container.md-block
+      md-button.md-raised.md-primary.btn-row(
+        type='submit'
+        layout='row'
+        layout-align='center center'
+        ng-disabled='$ctrl.$scope.create.$invalid'
+      )
+        span Próximo
+        ng-md-icon(
+          layout='row'
+          layout-align='center center'
+          md-menu-origin='',
+          icon='keyboard_arrow_right',
+          aria-label='Próximo'
+        )
