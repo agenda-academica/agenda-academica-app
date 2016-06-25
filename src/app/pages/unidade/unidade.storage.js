@@ -78,7 +78,7 @@ export default class UnidadeStorage {
         this.push(success)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Unidade Create Request.')
 
       return deferred.promise
     }
@@ -109,7 +109,7 @@ export default class UnidadeStorage {
         this.$localStorage[this.name] = []
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Unidade Read Request.')
 
       return deferred.promise
     }
@@ -136,7 +136,7 @@ export default class UnidadeStorage {
         this.updateIndex(data)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Unidade Update Request.')
 
       return deferred.promise
     }
@@ -168,7 +168,7 @@ export default class UnidadeStorage {
         this.deleteIndex(options)
         deferred.resolve()
       }
-      else deferred.reject('error')
+      else deferred.reject('Error: Unidade Delete Request.')
 
       return deferred.promise
     }

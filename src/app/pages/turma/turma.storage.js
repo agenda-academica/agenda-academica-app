@@ -1,13 +1,19 @@
-export default class CursoStorage {
-  constructor($localStorage, $q, curso, errorHandler, usuarioAuth) {
+/*
+Classe responsavel por manipular os dados retornados da api e armazenar em cache
+*/
+
+export default class TurmaStorage {
+
+
+  constructor($localStorage, $q, turma, errorHandler, usuarioAuth) {
     'ngInject'
     this.$localStorage = $localStorage
     this.$q            = $q
-    this.cursoService  = curso
+    this.turmaService  = turma
     this.errorHandler  = errorHandler
     this.usuarioAuth   = usuarioAuth
 
-    this.name = 'cursos'
+    this.name = 'turmas'
   }
 
   has() {
@@ -20,22 +26,22 @@ export default class CursoStorage {
     return this.$localStorage[this.name]
   }
 
-  put(cursos) {
-    this.$localStorage[this.name] = cursos
+  put(turmas) {
+    this.$localStorage[this.name] = turmas
   }
 
-  push(curso) {
-    this.take().push(curso)
+  push(turma) {
+    this.take().push(turma)
   }
 
-  getIndexOf(idCurso) {
+  getIndexOf(idTurma) {
     return this.take().findIndex(
-      curso => curso.id == idCurso
+      turma => turma.id == idTurma
     )
   }
 
-  getById(idCurso) {
-    return this.take()[this.getIndexOf(idCurso)]
+  getById(idTurma) {
+    return this.take()[this.getIndexOf(idTurma)]
   }
 
   getByIndex(index) {
@@ -49,12 +55,12 @@ export default class CursoStorage {
   ////
   // Helpers
   ////
-  filterByIdUnidade(idUnidade) {
-    return curso => curso.idUnidade == idUnidade
+  filterByIdCurso(idCurso) {
+    return turma => turma.idCurso == idCurso
   }
 
-  findIndexById(idCurso) {
-    return curso => curso.id == idCurso
+  findIndexById(idTurma) {
+    return turma => turma.id == idTurma
   }
 
   ////
@@ -63,7 +69,7 @@ export default class CursoStorage {
   create(data) {
     let deferred = this.$q.defer()
 
-    this.cursoService
+    this.turmaService
       .api.root
       .create(data).$promise.then(
         this.getCreateSuccessCallback(deferred, data),
@@ -78,7 +84,7 @@ export default class CursoStorage {
         this.push(success)
         deferred.resolve()
       }
-      else deferred.reject('Error: Curso Create Request.')
+      else deferred.reject('Error: Turma Create Request.')
 
       return deferred.promise
     }
@@ -90,7 +96,7 @@ export default class CursoStorage {
   requestByUsuario() {
     let deferred = this.$q.defer()
 
-    this.cursoService
+    this.turmaService
       .api.usuario.show({id: this.usuarioAuth.take().id})
       .$promise.then(
         this.getSuccessCallback(deferred),
@@ -109,7 +115,7 @@ export default class CursoStorage {
         this.$localStorage[this.name] = []
         deferred.resolve()
       }
-      else deferred.reject('Error: Curso Read Request.')
+      else deferred.reject('Error: Turma Read Request.')
 
       return deferred.promise
     }
@@ -121,7 +127,7 @@ export default class CursoStorage {
   update(options, data) {
     let deferred = this.$q.defer()
 
-    this.cursoService
+    this.turmaService
       .api.root
       .update(options, data).$promise.then(
         this.getUpdateSuccessCallback(deferred, data),
@@ -136,7 +142,7 @@ export default class CursoStorage {
         this.updateIndex(data)
         deferred.resolve()
       }
-      else deferred.reject('Error: Curso Update Request.')
+      else deferred.reject('Error: Turma Update Request.')
 
       return deferred.promise
     }
@@ -153,7 +159,7 @@ export default class CursoStorage {
   delete(options) {
     let deferred = this.$q.defer()
 
-    this.cursoService
+    this.turmaService
       .api.root
       .destroy(options).$promise.then(
         this.getDeleteSuccessCallback(deferred, options),
@@ -168,7 +174,7 @@ export default class CursoStorage {
         this.deleteIndex(options)
         deferred.resolve()
       }
-      else deferred.reject('Error: Curso Delete Request.')
+      else deferred.reject('Error: Turma Delete Request.')
 
       return deferred.promise
     }

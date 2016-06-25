@@ -1,0 +1,66 @@
+.filters(
+  layout-padding
+  layout-gt-sm='row'
+  ng-show='$ctrl.parent.filterVisibility'
+)
+  h2.aa Filtros
+
+  //-//
+  //- Universidades
+  //-//
+  md-input-container.md-block(flex-gt-sm)
+    label Universidade
+    md-select(ng-model='$ctrl.selectedUniversidade')
+      md-option(
+        ng-repeat='(index, universidade) in $ctrl.parent.universidades'
+        ng-value='universidade'
+      )
+        | {{universidade.nome}}
+    .md-errors-spacer
+
+  //-//
+  //- Unidades
+  //-//
+  md-input-container.md-block(flex-gt-sm ng-hide='!$ctrl.selectedUniversidade')
+    label Unidade
+    md-select(ng-model='$ctrl.selectedUnidade')
+      md-option(
+        ng-repeat='(index, unidade) in $ctrl.parent.unidades'
+        ng-value='unidade'
+      )
+        | {{unidade.nome}}
+    .md-errors-spacer
+
+  //-//
+  //- Cursos
+  //-//
+  md-input-container.md-block(flex-gt-sm ng-hide='!$ctrl.selectedUnidade')
+    label Curso
+    md-select(ng-model='$ctrl.selectedCurso')
+      md-option(
+        ng-repeat='(index, curso) in $ctrl.parent.cursos'
+        ng-value='curso'
+      )
+        | {{curso.nome}}
+    .md-errors-spacer
+
+  //-//
+  //- Curso Columns
+  //-//
+  md-input-container.md-block(flex-gt-sm)
+    label Campo
+    md-select(ng-model='$ctrl.selectedField' disabled)
+      md-option(ng-repeat='item in $ctrl.filterBy' value='{{item.key}}')
+        | {{item.label}}
+    .md-errors-spacer
+
+  //-//
+  //- Query
+  //-//
+  md-input-container.md-block(flex-gt-sm)
+    label Nome da turma
+    input(ng-model='$ctrl.query')
+
+  .actions(layout='row' layout-align='end center')
+    md-button.md-raised.md-primary(ng-click='$ctrl.clear()')
+      | Limpar

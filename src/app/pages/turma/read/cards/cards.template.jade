@@ -1,0 +1,22 @@
+h2.aa Consulta
+.empty-message(ng-hide='$ctrl.parent.turmas.length')
+  ng-md-icon(class='md-avatar' size='50%' icon='insert_emoticon' style='fill: #ccc')
+  div Não há turmas.
+
+md-card(ng-repeat='turma in $ctrl.parent.turmas')
+  md-card-title
+    md-card-title-media
+      .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(turma.universidade)')
+        | {{turma.universidade.abreviacao | limitTo: 1: 0}}
+      img(
+        ng-src='{{$ctrl.getLogoImage(turma.universidade)}}'
+        ng-show='$ctrl.showLogo(turma.universidade)'
+      )
+    md-card-title-text
+      span.md-headline {{turma.nome}}
+      span.md-subhead {{turma.universidade.abreviacao}} - {{turma.unidade.nome}}
+      .actions(layout='row')
+        md-button(
+          ng-href='{{$ctrl.getUpdateHref(turma)}}'
+          aria-label='{{$ctrl.getUpdateAriaLabel(turma)}}'
+        ) detalhes

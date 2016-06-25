@@ -1,0 +1,17 @@
+toolbar.default-color(
+  title='Turmas'
+  left-icon='menu'
+  on-click-method='toggleLeftSidenav'
+  right-button-enable='true'
+  right-button-classes='md-icon-button'
+  right-button-type='icon'
+  right-button-icon='filter_list'
+  right-button-icon-style='fill: #fff'
+  right-button-on-click-method='$ctrl.toggleFilterFormVisibility()'
+)
+
+turma-read-add-fab
+
+md-content.page-turma-read(layout-padding)
+  turma-read-filter
+  turma-read-cards
