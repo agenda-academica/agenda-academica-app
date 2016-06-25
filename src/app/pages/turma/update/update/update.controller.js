@@ -1,4 +1,4 @@
-export default class CursoUpdateController {
+export default class TurmaUpdateController {
   constructor(
     $scope,
     $mdDialog, $routeParams,
@@ -6,6 +6,7 @@ export default class CursoUpdateController {
     universidadeStorage,
     unidadeStorage,
     cursoStorage,
+    turmaStorage,
     errorHandler
   ) {
     'ngInject'
@@ -16,6 +17,7 @@ export default class CursoUpdateController {
     this.universidadeStorage = universidadeStorage
     this.unidadeStorage      = unidadeStorage
     this.cursoStorage        = cursoStorage
+    this.turmaStorage        = turmaStorage
     this.errorHandler        = errorHandler
 
     ////
@@ -29,9 +31,11 @@ export default class CursoUpdateController {
     this.universidades     = []
     this.unidades          = []
     this.cursos            = []
+    this.turmas            = []
     this.permUniversidades = []
     this.permUnidades      = []
     this.permCursos        = []
+    this.permTurmas        = []
     this.initStorageRequests()
   }
 
@@ -72,24 +76,32 @@ export default class CursoUpdateController {
       // Universidade
       let idUniversidade = this.$routeParams.idUniversidade
       this.universidades = this.universidadeStorage.take()
-      this.universidadeSelectedIndex = this.universidadeStorage
-        .getIndexOf(idUniversidade)
+      this.universidadeSelectedIndex = this.universidadeStorage.getIndexOf(idUniversidade)
 
       // Unidade
       let idUnidade = this.$routeParams.idUnidade
-      this.unidades = this.unidadeStorage.take()
-        .filter(this.unidadeStorage.filterByIdUniversidade(idUniversidade))
-      this.unidadeSelectedIndex = this.unidades
-        .findIndex(this.unidadeStorage.findIndexById(idUnidade))
+      let unidadeFilter = this.unidadeStorage.filterByIdUniversidade(idUniversidade)
+      let unidadeIndex = this.unidadeStorage.findIndexById(idUnidade)
+
+      this.unidades = this.unidadeStorage.take().filter(unidadeFilter)
+      this.unidadeSelectedIndex = this.unidades.findIndex(unidadeIndex)
 
       // Curso
-      this.form = this.cursoStorage.getById(this.$routeParams.id)
+      let idCurso = this.$routeParams.idCurso
+      let cursoFilter = this.cursoStorage.filterByIdUnidade(idUnidade)
+      let cursoIndex = this.cursoStorage.findIndexById(idCurso)
+      this.cursos = this.cursoStorage.take().filter(cursoFilter)
+      this.cursoSelectedIndex = this.cursos.findIndex(cursoIndex)
+
+      // Turma
+      this.form = this.turmaStorage.getById(this.$routeParams.id)
 
       let valid = !!this.form
         && this.universidadeSelectedIndex !== -1
         && this.unidadeSelectedIndex !== -1
+        && this.cursoSelectedIndex !== -1
 
-      if (!valid) this.$location.path('/curso')
+      if (!valid) this.$location.path('/turma')
     }
   }
 
@@ -118,13 +130,13 @@ export default class CursoUpdateController {
     let data    = angular.copy(this.form)
     let options = {id: data.id}
 
-    this.cursoStorage.update(options, data).then(
+    this.turmaStorage.update(options, data).then(
       this.getUpdateSuccessCallback(),
       this.errorHandler.request()
     )
   }
 
   getUpdateSuccessCallback() {
-    return () => { this.$location.path('/curso') }
+    return () => { this.$location.path('/turma') }
   }
 }

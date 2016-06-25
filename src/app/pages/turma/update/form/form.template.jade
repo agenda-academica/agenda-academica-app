@@ -51,27 +51,31 @@ form(name='update' layout-padding ng-submit='$ctrl.parent.submit()')
           | This is required.
 
     //-//
-    //- Abreviação do nome do curso
+    //- Curso
     //-//
-    md-input-container.md-block(flex-gt-sm)
-      label Abreviação/Apelido
-      input(
-        md-minlength='5'
-        required=''
-        name='abreviacao'
-        ng-model='$ctrl.parent.form.abreviacao'
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Curso
+      md-select(
+        name='idCurso'
+        ng-model='$ctrl.parent.form.curso'
+        required
       )
-      div(ng-messages='update.abreviacao.$error')
+        md-option(
+          ng-repeat='(index, curso) in $ctrl.parent.cursos'
+          ng-value='curso'
+          ng-selected='index === $ctrl.parent.cursoSelectedIndex'
+        )
+          | {{curso.nome}}
+      .md-errors-spacer
+      div(ng-messages='update.idCurso.$error')
         div(ng-message='required')
           | This is required.
-        div(ng-message='md-maxlength')
-          | The name has to be less than 30 characters long.
 
     //-//
-    //- Nome do curso
+    //- Nome da turma
     //-//
     md-input-container.md-block(flex-gt-sm)
-      label Nome do curso
+      label Nome da turma
       input(
         md-minlength='5'
         required=''
@@ -85,7 +89,7 @@ form(name='update' layout-padding ng-submit='$ctrl.parent.submit()')
           | The name has to be less than 30 characters long.
 
     //-//
-    //- Outras informações do curso
+    //- Outras informações da turma
     //-//
     md-input-container.md-block(flex-gt-sm)
       label Outras informações

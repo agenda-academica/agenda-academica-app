@@ -82,7 +82,7 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
         div(ng-message='required')
           | This is required.
 
-    
+
 
     //-//
     //- Nome da turma
@@ -109,7 +109,7 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
       input(
         md-minlength='5'
         required=''
-        name='abreviacao'
+        name='site'
         ng-model='$ctrl.parent.form.site'
       )
       div(ng-messages='create.site.$error')
@@ -126,7 +126,7 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
       input(
         md-minlength='5'
         required=''
-        name='abreviacao'
+        name='email'
         ng-model='$ctrl.parent.form.email'
       )
       div(ng-messages='create.email.$error')
@@ -146,21 +146,6 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
         ng-model='$ctrl.parent.form.outrasInformacoes'
       )
 
-      md-list
-        md-list-item.md-no-proxy(layout='row' layout-align='start start')
-        p(flex='50').strong Representantes
-        div(flex='60')
-          p Fillipi Ramos
-          p Henrique Diniz
-          p Sergio Bertolazo
-          p Wesley Almeida
-        md-button.md-icon-button(
-          aria-label='Editar universidade'
-          ng-href='/#/universidade/update/8'
-        )
-          ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
-
- 
     //-//
     //- Submit Button
     //-//
@@ -179,3 +164,31 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
           icon='keyboard_arrow_right',
           aria-label='Próximo'
         )
+
+//- h2.aa Representantes
+//- form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
+//-   div(layout-gt-sm='row')
+//-     //-//
+//-     //- Nome do representante
+//-     //-//
+//-     md-input-container.md-block(flex-gt-sm)
+//-       label Nome
+//-       input(
+//-         name='nome'
+//-         ng-model='$ctrl.parent.form.outrasInformacoes'
+//-       )
+
+//-     //-//
+//-     //- Email do representante
+//-     //-//
+//-     md-input-container.md-block(flex-gt-sm)
+//-       label Email
+//-       input(
+//-         name='nome'
+//-         ng-model='$ctrl.parent.form.outrasInformacoes'
+//-       )
+
+//-     div(layout='row' layout-align='end center')
+//-       md-button.md-raised.md-primary.btn-icon
+//-         ng-md-icon(size='20' icon='add' style='fill: #ccc')
+//-         | Adicionar

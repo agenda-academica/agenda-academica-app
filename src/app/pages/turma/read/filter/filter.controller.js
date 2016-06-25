@@ -1,4 +1,4 @@
-export default class CursoReadFilterController {
+export default class TurmaReadFilterController {
   constructor($scope) {
     'ngInject'
     this.$scope = $scope
@@ -25,17 +25,25 @@ export default class CursoReadFilterController {
     return (currentWatchedValue) => {
       this.parent.unidades = this.parent.permUnidades.filter(this.getUnidadesFilter())
       this.parent.cursos = this.parent.permCursos.filter(this.getCursosFilter())
+      this.parent.turmas = this.parent.permTurmas.filter(this.getTurmasFilter())
     }
   }
 
   getUnidadesFilter() {
-    return (entity) => this.conditionUniversidade(entity, this.selectedUniversidade)
+    return entity => this.conditionUniversidade(entity, this.selectedUniversidade)
   }
 
   getCursosFilter() {
-    return (entity) =>
+    return entity =>
       this.conditionUniversidade(entity, this.selectedUniversidade)
         && this.conditionUnidade(entity, this.selectedUnidade)
+  }
+
+  getTurmasFilter() {
+    return entity =>
+      this.conditionUniversidade(entity, this.selectedUniversidade)
+        && this.conditionUnidade(entity, this.selectedUnidade)
+        && this.conditionCurso(entity, this.selectedCurso)
         && this.conditionQueryAndField(entity, this.query, this.selectedField)
   }
 
@@ -49,6 +57,11 @@ export default class CursoReadFilterController {
     return entity.unidade.id === unidade.id
   }
 
+  conditionCurso(entity, curso) {
+    if (!curso) return true
+    return entity.curso.id === curso.id
+  }
+
   conditionQueryAndField(entity, query, field) {
     return new RegExp(query, 'gi').test(entity[field])
   }
@@ -56,8 +69,9 @@ export default class CursoReadFilterController {
   clear() {
     this.selectedUniversidade = undefined
     this.selectedUnidade      = undefined
+    this.selectedCurso        = undefined
     this.selectedField        = 'nome'
     this.query                = undefined
-    this.parent.cursos        = this.parent.permCursos
+    this.parent.turmas        = this.parent.permTurmas
   }
 }

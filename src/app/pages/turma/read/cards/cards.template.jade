@@ -1,22 +1,22 @@
 h2.aa Consulta
-.empty-message(ng-hide='$ctrl.parent.cursos.length')
-  ng-md-icon(class='md-avatar' size='50%' icon='place' style='fill: #ccc')
-  div Não há cursos.
+.empty-message(ng-hide='$ctrl.parent.turmas.length')
+  ng-md-icon(class='md-avatar' size='50%' icon='insert_emoticon' style='fill: #ccc')
+  div Não há turmas.
 
-md-card(ng-repeat='curso in $ctrl.parent.cursos')
+md-card(ng-repeat='turma in $ctrl.parent.turmas')
   md-card-title
     md-card-title-media
-      .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(curso.universidade)')
-        | {{curso.universidade.abreviacao | limitTo: 1: 0}}
+      .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(turma.universidade)')
+        | {{turma.universidade.abreviacao | limitTo: 1: 0}}
       img(
-        ng-src='{{$ctrl.getLogoImage(curso.universidade)}}'
-        ng-show='$ctrl.showLogo(curso.universidade)'
+        ng-src='{{$ctrl.getLogoImage(turma.universidade)}}'
+        ng-show='$ctrl.showLogo(turma.universidade)'
       )
     md-card-title-text
-      span.md-headline {{curso.nome}}
-      span.md-subhead {{curso.universidade.abreviacao}} - {{curso.unidade.nome}}
+      span.md-headline {{turma.nome}}
+      span.md-subhead {{turma.universidade.abreviacao}} - {{turma.unidade.nome}}
       .actions(layout='row')
         md-button(
-          ng-href='{{$ctrl.getUpdateHref(curso)}}'
-          aria-label='{{$ctrl.getUpdateAriaLabel(curso)}}'
+          ng-href='{{$ctrl.getUpdateHref(turma)}}'
+          aria-label='{{$ctrl.getUpdateAriaLabel(turma)}}'
         ) detalhes

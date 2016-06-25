@@ -1,5 +1,5 @@
 /*
-classe controller TWO WAY DATA BINDING (ALTERAR AQUI, ALTERA NO FORM, ALTERAR 
+classe controller TWO WAY DATA BINDING (ALTERAR AQUI, ALTERA NO FORM, ALTERAR
 LA, ALTERA AQUI)
 */
 
@@ -20,7 +20,7 @@ export default class TurmaCreateController {
     this.sendCreateRequest(
       this.getCreateSuccessCallback((turma) => {
         this.$location.path(
-          '/turma/create'
+          '/disciplina/create'
             .concat(`/${turma.idUniversidade}`)
             .concat(`/${turma.idUnidade}`)
             .concat(`/${turma.idCurso}`)

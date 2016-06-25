@@ -1,12 +1,19 @@
-export default class CursoUpdateFormController {
-  constructor($scope, $routeParams, $mdDialog, $location, cursoStorage, errorHandler) {
+export default class TurmaUpdateFormController {
+  constructor(
+    $scope,
+    $routeParams,
+    $mdDialog,
+    $location,
+    turmaStorage,
+    errorHandler
+  ) {
     'ngInject'
     this.$scope       = $scope
     this.$routeParams = $routeParams
     this.$mdDialog    = $mdDialog
     this.$location    = $location
 
-    this.cursoStorage = cursoStorage
+    this.turmaStorage = turmaStorage
     this.errorHandler = errorHandler
   }
 
@@ -31,8 +38,8 @@ export default class CursoUpdateFormController {
     return this.$mdDialog.confirm()
       .title('Atenção!')
       .textContent(`Tem certeza que deseja excluir permanentemente os dados
-        desta unidade?`)
-      .ariaLabel('Excluir unidade')
+        desta turma?`)
+      .ariaLabel('Excluir turma')
       .ok('Sim.')
       .cancel('Não, por favor!')
   }
@@ -40,7 +47,7 @@ export default class CursoUpdateFormController {
   getDeleteOkCallback() {
     return () => {
       let options = {id: this.$routeParams.id}
-      this.cursoStorage.delete(options).then(
+      this.turmaStorage.delete(options).then(
         this.getDeleteSuccessCallback(),
         this.errorHandler.request()
       )
@@ -51,14 +58,14 @@ export default class CursoUpdateFormController {
     return () => {
       this.$mdDialog
         .show(this.getDeleteOkCallbackAlert())
-        .then(() => { this.$location.path('/curso') })
+        .then(() => { this.$location.path('/turma') })
     }
   }
 
   getDeleteOkCallbackAlert() {
     return this.$mdDialog.alert()
       .title('Concluído.')
-      .textContent(`Os dados da unidade foram excluídos com sucesso.`)
+      .textContent(`Os dados da turma foram excluídos com sucesso.`)
       .ok('Obrigado')
   }
 
@@ -67,8 +74,7 @@ export default class CursoUpdateFormController {
       this.$mdDialog.show(
         this.$mdDialog.alert()
           .title('Cancelado.')
-          .textContent(`Fique tranquilo, os dados da unidade continuam
-            intactos.`)
+          .textContent(`Fique tranquilo, os dados da turma continuam intactos.`)
           .ok('Obrigado')
       )
     }

@@ -32,11 +32,24 @@
     .md-errors-spacer
 
   //-//
+  //- Cursos
+  //-//
+  md-input-container.md-block(flex-gt-sm ng-hide='!$ctrl.selectedUnidade')
+    label Curso
+    md-select(ng-model='$ctrl.selectedCurso')
+      md-option(
+        ng-repeat='(index, curso) in $ctrl.parent.cursos'
+        ng-value='curso'
+      )
+        | {{curso.nome}}
+    .md-errors-spacer
+
+  //-//
   //- Curso Columns
   //-//
   md-input-container.md-block(flex-gt-sm)
     label Campo
-    md-select(ng-model='$ctrl.selectedField')
+    md-select(ng-model='$ctrl.selectedField' disabled)
       md-option(ng-repeat='item in $ctrl.filterBy' value='{{item.key}}')
         | {{item.label}}
     .md-errors-spacer
@@ -45,7 +58,7 @@
   //- Query
   //-//
   md-input-container.md-block(flex-gt-sm)
-    label Apelido/Abreviação
+    label Nome da turma
     input(ng-model='$ctrl.query')
 
   .actions(layout='row' layout-align='end center')

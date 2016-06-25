@@ -28,7 +28,6 @@ export default class UnidadeCreateFormController {
   }
 
   watchUnidadeSelect() {
-    console.log('qqq')
     return (unidade) => {
       this.filterCursos(unidade)
     }
@@ -81,13 +80,14 @@ export default class UnidadeCreateFormController {
 
       if (idUnidade) {
         this.filterUnidades(this.currentUniversidade)
+        this.currentUnidade = this.unidadeStorage.getById(idUnidade)
         this.currentUnidadeIndex = this.unidades
           .findIndex(this.unidadeStorage.findIndexById(idUnidade))
         this.hasUnidadeId        = this.currentUnidadeIndex !== -1
         this.hasUnidades         = true
       }
 
-      // cursos
+      // Cursos
       this.cursoStorage.requestByUsuario().then(
         this.requestCursosByUsuarioSuccess(),
         this.errorHandler.request()
@@ -102,6 +102,7 @@ export default class UnidadeCreateFormController {
 
       if (idCurso) {
         this.filterCursos(this.currentUnidade)
+        this.currentCurso = this.cursoStorage.getById(idCurso)
         this.currentCursoIndex = this.cursos
           .findIndex(this.cursoStorage.findIndexById(idCurso))
         this.hasCursoId        = this.currentCursoIndex !== -1

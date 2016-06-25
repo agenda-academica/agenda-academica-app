@@ -2,7 +2,7 @@ import temporaryUsjtLogoImage from './../../../universidade/read/usjt.jpg'
 import temporaryMackLogoImage from './../../../universidade/read/mackenzie.jpg'
 import temporaryFiapLogoImage from './../../../universidade/read/fiap.jpg'
 
-export default class CursoReadCardsController {
+export default class TurmaReadCardsController {
   constructor() {
     this.temporaryUsjtLogoImage = temporaryUsjtLogoImage
     this.temporaryMackLogoImage = temporaryMackLogoImage
@@ -31,13 +31,14 @@ export default class CursoReadCardsController {
   }
 
   getUpdateHref(entity) {
-    return `/#/curso/update`
+    return `/#/turma/update`
       .concat(`/${entity.universidade.id}`)
       .concat(`/${entity.unidade.id}`)
+      .concat(`/${entity.curso.id}`)
       .concat(`/${entity.id}`)
   }
 
   getUpdateAriaLabel(entity) {
-    return `Alterar Curso ${entity.nome}`
+    return `Alterar Turma ${entity.nome}`
   }
 }

@@ -38,7 +38,7 @@ export default function($routeProvider) {
     // Update
     ////
     .when(
-      '/turma/update/:idUniversidade/:idUnidade/:id',
+      '/turma/update/:idUniversidade/:idUnidade/:idCurso/:id',
       { template: '<turma-update></turma-update>' }
     )
 

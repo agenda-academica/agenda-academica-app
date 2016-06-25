@@ -5,6 +5,6 @@ export default {
   controller,
   template,
   require: {
-    parent: '^cursoUpdate'
+    parent: '^turmaUpdate'
   }
 }

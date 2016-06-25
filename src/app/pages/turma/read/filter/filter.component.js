@@ -6,6 +6,6 @@ export default {
   controller,
   template,
   require: {
-    parent: '^cursoRead'
+    parent: '^turmaRead'
   }
 }

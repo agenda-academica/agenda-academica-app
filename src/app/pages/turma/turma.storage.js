@@ -53,6 +53,17 @@ export default class TurmaStorage {
   }
 
   ////
+  // Helpers
+  ////
+  filterByIdCurso(idCurso) {
+    return turma => turma.idCurso == idCurso
+  }
+
+  findIndexById(idTurma) {
+    return turma => turma.id == idTurma
+  }
+
+  ////
   // CREATE
   ////
   create(data) {
