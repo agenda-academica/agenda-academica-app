@@ -6,6 +6,6 @@ export default {
   template,
   controller,
   bindings: {
-    weekDay: '<'
+    weekDay: '@'
   }
 }
