@@ -47,6 +47,17 @@ export default class CursoStorage {
   }
 
   ////
+  // Helpers
+  ////
+  filterByIdUnidade(idUnidade) {
+    return curso => curso.idUnidade == idUnidade
+  }
+
+  findIndexById(idCurso) {
+    return curso => curso.id == idCurso
+  }
+
+  ////
   // CREATE
   ////
   create(data) {

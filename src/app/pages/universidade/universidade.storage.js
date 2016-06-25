@@ -47,6 +47,13 @@ export default class UniversidadeStorage {
   }
 
   ////
+  // Helpers
+  ////
+  findIndexById(idUniversidade) {
+    return universidade => universidade.id == idUniversidade
+  }
+
+  ////
   // CREATE
   ////
   create(data) {
