@@ -2,27 +2,27 @@ md-card(ng-repeat='quadro in $ctrl.list' ng-click='$ctrl.redir(quadro.location)'
   md-card-title
     md-card-title-media
       .md-media-lg.card-media(ng-show='$ctrl.showFirstLetterLogo(quadro)')
-        | {{quadro.abreviacao | limitTo: 1: 0}}
+        | {{quadro.universidade.abreviacao | limitTo: 1: 0}}
       img(
         ng-src='{{$ctrl.getLogoImage(quadro)}}'
         ng-show='$ctrl.showLogo(quadro)'
       )
     md-card-title-text
-      span.md-headline {{quadro.title}}
+      span.md-headline {{quadro.horario}}
       span.md-subhead(layout='row')
         span(flex='50')
           ng-md-icon(size='24' icon='account_balance' style='fill: #ccc')
-          | {{quadro.universidade}}
+          | {{quadro.universidade.abreviacao}}
         span(flex='50')
           ng-md-icon(size='24' icon='location_on' style='fill: #ccc')
-          | {{quadro.unidade}}
+          | {{quadro.unidade.nome}}
       span.md-subhead(layout='row')
         span(flex='50')
           ng-md-icon(size='24' icon='school' style='fill: #ccc')
-          | {{quadro.curso}}
+          | {{quadro.curso.abreviacao}}
         span(flex='50')
           ng-md-icon(size='24' icon='insert_emoticon' style='fill: #ccc')
-          | {{quadro.turma}}
+          | {{quadro.turma.nome}}
       span.md-subhead.fix-padding(layout='row')
         ng-md-icon(size='24' icon='brush' style='fill: #ccc')
-        | {{quadro.disciplina}}
+        | {{quadro.disciplina.nome}}

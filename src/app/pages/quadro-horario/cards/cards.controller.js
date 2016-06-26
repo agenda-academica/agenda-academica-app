@@ -10,26 +10,27 @@ export default class QuadroHorarioCardsController {
     this.temporaryUsjtLogoImage = usjtLogoImage
     this.temporaryMackLogoImage = mackLogoImage
     this.temporaryFiapLogoImage = fiapLogoImage
+    this.mockUniversidade = ['USJT', 'Mackenzie', 'FIAP']
   }
 
   showFirstLetterLogo(quadro) {
-    return quadro.logo !== null
-      && ['USJT', 'Mackenzie', 'FIAP'].indexOf(quadro.abreviacao) === -1
+    return quadro.universidade.logo !== null
+      && this.mockUniversidade.indexOf(quadro.universidade.abreviacao) === -1
   }
 
   showLogo(quadro) {
-    return quadro.logo === null
-      || ['USJT', 'Mackenzie', 'FIAP'].indexOf(quadro.abreviacao) !== -1
+    return quadro.universidade.logo === null
+      || this.mockUniversidade.indexOf(quadro.universidade.abreviacao) !== -1
   }
 
   getLogoImage(quadro) {
-    if (quadro.abreviacao === 'USJT')
+    if (quadro.universidade.abreviacao === 'USJT')
       return this.temporaryUsjtLogoImage
 
-    else if (quadro.abreviacao === 'Mackenzie')
+    else if (quadro.universidade.abreviacao === 'Mackenzie')
       return this.temporaryMackLogoImage
 
-    else if (quadro.abreviacao === 'FIAP')
+    else if (quadro.universidade.abreviacao === 'FIAP')
       return this.temporaryFiapLogoImage
   }
 

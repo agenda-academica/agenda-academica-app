@@ -1,9 +1,10 @@
 export default class QuadroHorarioCardAddAulaController {
-  constructor() {
+  constructor($location) {
     'ngInject'
+    this.$location = $location
   }
 
   redir() {
-    console.log(this.weekDay)
+    this.$location.path(`/disciplina/createFromDiaSemana/${this.weekDay}`)
   }
 }

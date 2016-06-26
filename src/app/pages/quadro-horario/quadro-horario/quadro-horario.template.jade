@@ -12,42 +12,42 @@ md-content.page-quadro-horario(
   md-tabs(md-dynamic-height md-selected='$ctrl.tabsSelectedIndex')
     md-tab(label='dom')
       md-content
-        quadro-horario-empty-message(list='$ctrl.quadroDomingo')
-        quadro-horario-cards(list='$ctrl.quadroDomingo')
-        quadro-horario-card-add-aula(week-day='domingo')
+        quadro-horario-empty-message(list='$ctrl.domingo')
+        quadro-horario-cards(list='$ctrl.domingo')
+        quadro-horario-card-add-aula(week-day='{{$ctrl.domingo.index}}')
 
     md-tab(label='seg')
       md-content
-        quadro-horario-empty-message(list='$ctrl.quadroSegunda')
-        quadro-horario-cards(list='$ctrl.quadroSegunda')
-        quadro-horario-card-add-aula(week-day='segunda')
+        quadro-horario-empty-message(list='$ctrl.segunda')
+        quadro-horario-cards(list='$ctrl.segunda')
+        quadro-horario-card-add-aula(week-day='{{$ctrl.segunda.index}}')
 
     md-tab(label='ter')
       md-content
-        quadro-horario-empty-message(list='$ctrl.quadroTerca')
-        quadro-horario-cards(list='$ctrl.quadroTerca')
-        quadro-horario-card-add-aula(week-day='terca')
+        quadro-horario-empty-message(list='$ctrl.terca')
+        quadro-horario-cards(list='$ctrl.terca')
+        quadro-horario-card-add-aula(week-day='{{$ctrl.terca.index}}')
 
     md-tab(label='qua')
       md-content
-        quadro-horario-empty-message(list='$ctrl.quadroQuarta')
-        quadro-horario-cards(list='$ctrl.quadroQuarta')
-        quadro-horario-card-add-aula(week-day='quarta')
+        quadro-horario-empty-message(list='$ctrl.quarta')
+        quadro-horario-cards(list='$ctrl.quarta')
+        quadro-horario-card-add-aula(week-day='{{$ctrl.quarta.index}}')
 
     md-tab(label='qui')
       md-content
-        quadro-horario-empty-message(list='$ctrl.quadroQuinta')
-        quadro-horario-cards(list='$ctrl.quadroQuinta')
-        quadro-horario-card-add-aula(week-day='quinta')
+        quadro-horario-empty-message(list='$ctrl.quinta')
+        quadro-horario-cards(list='$ctrl.quinta')
+        quadro-horario-card-add-aula(week-day='{{$ctrl.quinta.index}}')
 
     md-tab(label='sex')
       md-content
-        quadro-horario-empty-message(list='$ctrl.quadroSexta')
-        quadro-horario-cards(list='$ctrl.quadroSexta')
-        quadro-horario-card-add-aula(week-day='sexta')
+        quadro-horario-empty-message(list='$ctrl.sexta')
+        quadro-horario-cards(list='$ctrl.sexta')
+        quadro-horario-card-add-aula(week-day='{{$ctrl.sexta.index}}')
 
     md-tab(label='sáb')
       md-content
-        quadro-horario-empty-message(list='$ctrl.quadroSabado')
-        quadro-horario-cards(list='$ctrl.quadroSabado')
-        quadro-horario-card-add-aula(week-day='sabado')
+        quadro-horario-empty-message(list='$ctrl.sabado')
+        quadro-horario-cards(list='$ctrl.sabado')
+        quadro-horario-card-add-aula(week-day='{{$ctrl.sabado.index}}')
