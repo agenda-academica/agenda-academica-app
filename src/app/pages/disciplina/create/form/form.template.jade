@@ -197,7 +197,7 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
           ng-value='index'
           ng-selected='index == $ctrl.currentDiaSemana'
         )
-          | {{diaSemana}}
+          | {{diaSemana.label}}
       .md-errors-spacer
       div(ng-messages='create.diaSemana.$error')
         div(ng-message='required')

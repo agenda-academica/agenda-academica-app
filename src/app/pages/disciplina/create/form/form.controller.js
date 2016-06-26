@@ -1,9 +1,8 @@
-import diasSemana from './../../diasSemana.json'
-
 export default class DisciplinaCreateFormController {
   constructor(
     $scope,
     $routeParams,
+    diasSemana,
     universidadeStorage,
     unidadeStorage,
     cursoStorage,
@@ -13,6 +12,7 @@ export default class DisciplinaCreateFormController {
     'ngInject'
     this.$scope              = $scope
     this.$routeParams        = $routeParams
+    this.diasSemanaService   = diasSemana
     this.universidadeStorage = universidadeStorage
     this.unidadeStorage      = unidadeStorage
     this.cursoStorage        = cursoStorage
@@ -26,7 +26,7 @@ export default class DisciplinaCreateFormController {
     this.unidades         = []
     this.cursos           = []
     this.turmas           = []
-    this.diasSemana       = diasSemana
+    this.diasSemana       = this.diasSemanaService.getDays()
     this.currentDiaSemana = this.$routeParams.diaSemana
     this.initStorageRequests()
 
