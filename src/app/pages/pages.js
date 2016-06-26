@@ -7,14 +7,16 @@ import universidade  from './universidade/universidade.pages'
 import unidade       from './unidade/unidade.pages'
 import curso         from './curso/curso.pages'
 import turma         from './turma/turma.pages'
+import disciplina    from './disciplina/disciplina.pages'
 
 export default angular
   .module('app.pages', [
-    usuario       . name,
-    quadroHorario . name,
-    calendar      . name,
-    universidade  . name,
-    unidade       . name,
-    curso         . name,
-    turma         . name,
+    usuario.name,
+    quadroHorario.name,
+    calendar.name,
+    universidade.name,
+    unidade.name,
+    curso.name,
+    turma.name,
+    disciplina.name,
   ])
