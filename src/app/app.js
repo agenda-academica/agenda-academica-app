@@ -17,9 +17,9 @@ import angularFileUpload        from 'ng-file-upload'
 import angularUiBootstrap       from 'angular-ui-bootstrap'
 import angularBootstrapCalendar from 'angular-bootstrap-calendar'
 import angularCookies           from 'angular-cookies'
-import angularStorage           from 'ngstorage'
 
 // JS isolated dependencies.
+import 'ngstorage'
 import 'ng-mask/dist/ngMask.min'
 
 import services    from './services/services'
@@ -38,8 +38,8 @@ angular.module('app', [
   angularUiBootstrap,
   angularBootstrapCalendar,
   angularCookies,
-  'ngStorage',
 
+  'ngStorage',
   'ngMask',
 
   services.name,
