@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "TCC USJT - Agenda Academica App (Front-end)",
   "main": "index.js",
+  "engines": {
+    "node": "6.4.0"
+  },
   "dependencies": {
     "angular": "^1.5.3",
     "angular-animate": "^1.5.0",
@@ -55,7 +58,8 @@
     "raw-loader": "^0.5.1",
     "run-sequence": "^1.1.0",
     "sinon": "^1.17.2",
-    "style-loader": "^0.13.1",
+    "style-loader": "^0.12.2",
+    "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
     "supports-color": "^3.1.2",
     "svg-loader": "0.0.2",
@@ -71,9 +75,9 @@
     "connect-history-api-fallback": "^1.1.0",
     "karma": "^1.2.0",
     "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^1.0.1",
     "karma-mocha": "^1.1.1",
     "karma-mocha-reporter": "^2.1.0",
+    "karma-phantomjs-launcher": "^1.0.1",
     "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.4",
     "karma-webpack": "^1.5.1",
@@ -81,6 +85,7 @@
   },
   "scripts": {
     "test": "karma start",
+    "test:w": "karma start --auto-watch --no-single-run --browsers PhantomJS",
     "start": "node index.js",
     "postinstall": "gulp webpack"
   },

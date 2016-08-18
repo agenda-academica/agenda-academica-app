@@ -1,3 +1,5 @@
+var webpack = require('webpack')
+
 module.exports = function (config) {
   config.set({
     // base path used to resolve all patterns
@@ -14,13 +16,13 @@ module.exports = function (config) {
     exclude: [],
 
     plugins: [
-      require("karma-chai"),
-      require("karma-chrome-launcher"),
-      require("karma-mocha"),
-      require("karma-mocha-reporter"),
-      require("karma-sinon"),
-      require("karma-sourcemap-loader"),
-      require("karma-webpack")
+      require('karma-chai'),
+      require('karma-phantomjs-launcher'),
+      require('karma-mocha'),
+      require('karma-mocha-reporter'),
+      require('karma-sinon'),
+      require('karma-sourcemap-loader'),
+      require('karma-webpack')
     ],
 
     // preprocess matching files before serving them to the browser
@@ -31,12 +33,35 @@ module.exports = function (config) {
       devtool: 'inline-source-map',
       module: {
         loaders: [
-          { test: /\.js/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
-          { test: /\.html/, loader: 'raw' },
-          { test: /\.less/, loader: 'style!css!less' },
-          { test: /\.css$/, loader: 'style!css' }
+          { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
+          { test: /\.json$/, loader: 'json' },
+          { test: /\.html$/, loader: 'raw' },
+          { test: /\.jade$/, loader: 'raw!jade-html' },
+          { test: /\.less$/, loader: 'style!css!less' },
+          { test: /\.css$/, loader: 'style!css' },
+          { test: /\.(png|jpg)$/, loader: 'url?limit=25000' },
+          { test: /\.styl$/, loader: 'style!css!stylus' },
+          { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
+          { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
+          { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
+          { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
+          { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
+          { test: /\.otf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
+          { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
+          { test: /\.svg$/, loader: 'svg' },
+          { test: /\.(woff|woff2|ttf|eot|svg)(\?]?.*)?$/, loader: 'file-loader?name=res/[name].[ext]?[hash]' }
         ]
-      }
+      },
+      stylus: {
+        use: [require('nib')()],
+        import: ['~nib/lib/nib/index.styl']
+      },
+      plugins: [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery'
+        }),
+      ]
     },
 
     webpackServer: {
@@ -61,7 +86,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     // if true, Karma runs tests once and exits
     singleRun: true
