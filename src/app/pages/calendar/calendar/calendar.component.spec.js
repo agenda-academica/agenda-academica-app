@@ -1,55 +1,48 @@
-import {TodoAppController} from './index.component';
+import { expect } from 'chai'
+import moment from 'moment'
 
-describe('Application Component', () => {
+describe('app/pages/calendar/calendar.component', () => {
+  let element
+  let scope
 
-  /** @type {TodoAppController} */
-  let ctrl;
-  let todoManager, todoManagerMock;
+  beforeEach(angular.mock.module('app'))
+  beforeEach(inject(($rootScope, $compile) => {
+    scope = $rootScope.$new()
+    element = angular.element('<calendar></calendar>')
+    element = $compile(element)(scope)
+    scope.$apply()
+  }))
 
-  beforeEach(() => {
-    todoManager = {
-      add: (task) => {},
-      showAll: () => {},
-      showActive: () => {},
-      showCompleted: () => {},
-      toggleAll: () => {}
-    };
-    todoManagerMock = sinon.mock(todoManager);
-    ctrl = new TodoAppController(todoManager);
-  });
+  it('should render 1 toolbar component', () => {
+    expect(element.find('toolbar')).to.have.length(1)
+  })
 
-  it('adds task to list', () => {
-    todoManagerMock.expects('add').once().withExactArgs('description');
-    ctrl.onSave('description');
-    todoManagerMock.verify();
-  });
+  it('should render toolbar component with title as "Calendário"', () => {
+    expect(element.find('toolbar').attr('title')).to.equal('Calendário')
+  })
 
-  it('not adds task with empty description to list', () => {
-    todoManagerMock.expects('add').never();
-    ctrl.onSave('');
-    todoManagerMock.verify();
-  });
+  it('should render 1 calendar add events fab component', () => {
+    expect(element.find('calendar-add-events-fab')).to.have.length(1)
+  })
 
-  describe('Filtering', () => {
-    ['All', 'Completed', 'Active'].forEach((state) => {
+  it('should render 1 calendar view options fab component', () => {
+    expect(element.find('calendar-view-options-fab')).to.have.length(1)
+  })
 
-      it(`shows ${state.toLowerCase()} tasks`, () => {
-        todoManagerMock.expects('show'+state).once();
-        ctrl.onFilter(state.toLowerCase());
-        todoManagerMock.verify();
-      });
+  it('should render 2 calendar navigation components', () => {
+    expect(element.find('calendar-navigation')).to.have.length(2)
+  })
 
-    });
-  });
+  it('should render 1 calendar date div', () => {
+    expect(element[0].querySelectorAll('.calendar-date')).to.have.length(1)
+  })
 
-  it('toggles state of all tasks', () => {
-    todoManagerMock.expects('toggleAll').once();
-    ctrl.onToggleAll();
-    todoManagerMock.verify();
-  });
+  it('should render calendar date div with current date in MM/YYYY format', () => {
+    const date = element[0].querySelector('.calendar-date')
+    expect(date.innerText).to.have.string(moment().format('MM/YYYY'))
+  })
 
-  afterEach(() => {
-    todoManagerMock.restore();
-  });
-
-});
+  it('should render 1 mwl calendar component', () => {
+    expect(element.find('mwl-calendar')).to.have.length(1)
+  })
+})
