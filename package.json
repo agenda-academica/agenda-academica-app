@@ -75,9 +75,9 @@
     "connect-history-api-fallback": "^1.1.0",
     "karma": "^0.13.9",
     "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^0.2.0",
     "karma-mocha": "^0.2.0",
     "karma-mocha-reporter": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.1",
     "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.4",
     "karma-webpack": "^1.5.1",
@@ -85,7 +85,7 @@
   },
   "scripts": {
     "test": "karma start",
-    "test:w": "karma start --auto-watch --no-single-run",
+    "test:w": "karma start --auto-watch --no-single-run --browsers PhantomJS",
     "start": "node index.js",
     "postinstall": "gulp webpack"
   },
