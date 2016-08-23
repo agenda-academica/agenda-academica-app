@@ -1,6 +1,7 @@
 export default class DisciplinaCreateFormController {
   constructor(
     $scope,
+    $location,
     $routeParams,
     diasSemana,
     universidadeStorage,
@@ -11,6 +12,7 @@ export default class DisciplinaCreateFormController {
   ) {
     'ngInject'
     this.$scope              = $scope
+    this.$location           = $location
     this.$routeParams        = $routeParams
     this.diasSemanaService   = diasSemana
     this.universidadeStorage = universidadeStorage
@@ -81,12 +83,14 @@ export default class DisciplinaCreateFormController {
   requestUniversidadesByUsuarioSuccess() {
     return () => {
       this.universidades = this.universidadeStorage.take()
+      this.hasUniversidades = !!this.universidades.length
       let idUniversidade = this.$routeParams.idUniversidade
 
       if (idUniversidade) {
         this.currentUniversidade      = this.universidadeStorage.getById(idUniversidade)
         this.currentUniversidadeIndex = this.universidadeStorage.getIndexOf(idUniversidade)
         this.hasUniversidadeId        = this.currentUniversidadeIndex !== -1
+        this.hasUniversidades         = true
       }
 
       // Unidades

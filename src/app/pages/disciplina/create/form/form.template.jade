@@ -5,7 +5,14 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
     //-//
     //- Universidade
     //-//
-    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+    .empty-message(ng-show='!$ctrl.hasUniversidades')
+      ng-md-icon(class='md-avatar' size='10%' icon='account_balance' style='fill: #ccc')
+      div Nenhuma universidade cadastrada.
+      md-button.md-raised.md-primary(
+        ng-href='{{"/#/universidade/create"}}'
+      ) Cadastrar
+
+    md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasUniversidades')
       label Universidade
       md-select(
         name='idUniversidade'
