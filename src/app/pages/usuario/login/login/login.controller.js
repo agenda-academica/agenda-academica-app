@@ -39,20 +39,33 @@ export default class LoginController {
         deferred.resolve()
         this.$location.path('/quadro-horario')
       }
-      else if (success.usuarioAuthenticated === 'false') {
+      else if (success.hasLogin === 'false') {
+        this.$mdDialog.show(this.getUsuarioHasLoginErrorMessage())
+          .then(() => {
+            this.$location.path('/usuario/create')
+            deferred.resolve()
+          })
+      }
+      else if (success.authenticated === 'false') {
         this.$mdDialog.show(this.getUsuarioAuthErrorMessage())
         deferred.resolve()
       }
-      else deferred.reject('Error: Usuario Login Request.')
+      deferred.reject('Error: Usuario Login Request.')
       return deferred.promise
     }
+  }
+
+  getUsuarioHasLoginErrorMessage() {
+    return this.$mdDialog.alert()
+      .title('Autenticação')
+      .textContent('Este usuário não existe. Cadastre-se para poder se logar.')
+      .ok('Ok')
   }
 
   getUsuarioAuthErrorMessage() {
     return this.$mdDialog.alert()
       .title('Autenticação')
-      .textContent(`Você inseriu usuário e/ou senha incorretos.
-        Tente novamente.`)
+      .textContent('Você inseriu usuário e/ou senha incorretos. Tente novamente.')
       .ok('Ok')
   }
 }
