@@ -1,5 +1,5 @@
 import angular from 'angular'
-import disciplina   from './disciplina.feature'
+import disciplina from './disciplina.feature'
 
 export default angular.module('app.pages.disciplina', [])
 
@@ -31,5 +31,4 @@ export default angular.module('app.pages.disciplina', [])
   ////
   // Update
   ////
-  .component('disciplinaUpdateForm' , disciplina.package.update.form)
-  .component('disciplinaUpdate'     , disciplina.package.update.update)
+  // .component('disciplinaUpdate'     , disciplina.package.update.update)

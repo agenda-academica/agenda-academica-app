@@ -1,56 +1,80 @@
 toolbar.default-color(
-  title='USJT - 4MSIN'
+  title='Aula'
   left-icon='menu'
   on-click-method='toggleLeftSidenav'
 )
 
-md-content.page-quadro-horario-painel(layout-padding)
+md-content.page-aula-info(layout-padding)
   h2 Dados básicos
   md-list
+    //- 
+    //- Universidade
+    //- 
     md-list-item.md-2-line
       ng-md-icon.md-avatar(size='30' icon='account_balance' style='fill: #ccc')
       .md-list-item-text
         h3 Universidade
-        p USJT
+        p {{$ctrl.universidade.abreviacao}}
       md-button.md-icon-button(
         aria-label='Editar universidade'
-        ng-href='/#/universidade/update/8'
+        ng-click='$ctrl.redirUniversidadeUpdate()'
       )
         ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
 
+    //- 
+    //- Unidade
+    //- 
     md-list-item.md-2-line
       ng-md-icon.md-avatar(size='30' icon='place' style='fill: #ccc')
       .md-list-item-text
         h3 Unidade
-        p Butantã
+        p {{$ctrl.unidade.nome}}
       md-button.md-icon-button(
         aria-label='Editar unidade'
-        ng-href='/#/unidade/update/3'
+        ng-click='$ctrl.redirUnidadeUpdate()'
       )
         ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
 
+    //- 
+    //- Curso
+    //- 
     md-list-item.md-2-line
       ng-md-icon.md-avatar(size='30' icon='school' style='fill: #ccc')
       .md-list-item-text
         h3 Curso
-        p Sistemas de Informação
-      md-button.md-icon-button(aria-label='Editar curso')
+        p {{$ctrl.curso.abreviacao}}
+      md-button.md-icon-button(
+        aria-label='Editar curso'
+        ng-click='$ctrl.redirCursoUpdate()'
+      )
         ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
 
+    //- 
+    //- Turma
+    //- 
     md-list-item.md-2-line
       ng-md-icon.md-avatar(size='30' icon='insert_emoticon' style='fill: #ccc')
       .md-list-item-text
         h3 Turma
-        p 4MSIN
-      md-button.md-icon-button(aria-label='Editar turma')
+        p {{$ctrl.turma.nome}}
+      md-button.md-icon-button(
+        aria-label='Editar turma'
+        ng-click='$ctrl.redirTurmaUpdate()'
+      )
         ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
 
+    //- 
+    //- Disciplina
+    //- 
     md-list-item.md-2-line
       ng-md-icon.md-avatar(size='30' icon='brush' style='fill: #ccc')
       .md-list-item-text
         h3 Disciplina
-        p Laboratório de Projetos
-      md-button.md-icon-button(aria-label='Editar disciplina')
+        p {{$ctrl.disciplina.nome}}
+      md-button.md-icon-button(
+        aria-label='Editar disciplina'
+        ng-click='$ctrl.redirDisciplinaUpdate()'
+      )
         ng-md-icon(size='18' icon='mode_edit' style='fill: #ccc')
 
   h2 Informações

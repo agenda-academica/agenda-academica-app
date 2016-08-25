@@ -8,6 +8,7 @@ import unidade       from './unidade/unidade.pages'
 import curso         from './curso/curso.pages'
 import turma         from './turma/turma.pages'
 import disciplina    from './disciplina/disciplina.pages'
+import aula          from './aula/aula.pages'
 
 export default angular
   .module('app.pages', [
@@ -19,4 +20,5 @@ export default angular
     curso.name,
     turma.name,
     disciplina.name,
+    aula.name,
   ])

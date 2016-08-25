@@ -34,7 +34,14 @@ export default class QuadroHorarioCardsController {
       return this.temporaryFiapLogoImage
   }
 
-  redir(location) {
-    this.$location.path(location)
+  redir(aula) {
+    const {
+      universidade: { id: idUniversidade },
+      unidade: { id: idUnidade },
+      curso: { id: idCurso },
+      turma: { id: idTurma },
+      disciplina: { id }
+    } = aula
+    this.$location.path(`/aula/info/${idUniversidade}/${idUnidade}/${idCurso}/${idTurma}/${id}`)
   }
 }

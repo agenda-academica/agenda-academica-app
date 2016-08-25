@@ -41,10 +41,14 @@ export default function($routeProvider) {
     ////
     // Update
     ////
-    .when(
-      '/disciplina/update/:idUniversidade/:idUnidade/:id',
-      { template: '<disciplina-update></disciplina-update>' }
-    )
+    // .when(
+    //   '/disciplina/update',
+    //   { template: '<disciplina-update></disciplina-update>' }
+    // )
+    // .when(
+    //   '/disciplina/update/:idUniversidade/:idUnidade/:idCurso/:idTurma/:id',
+    //   { template: '<disciplina-update></disciplina-update>' }
+    // )
 
     .otherwise({ redirectTo: '/' });
 }

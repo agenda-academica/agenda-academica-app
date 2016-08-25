@@ -15,7 +15,8 @@ export default class UniversidadeApiService {
     return this.$resource(
       `${this.apiUrl}/${this.apiPath}/:id`, { id: '@id' }, {
         'create'  : { method: 'POST' },
-        'show'    : { method: 'GET', isArray: true },
+        'list'    : { method: 'GET', isArray: true },
+        'show'    : { method: 'GET', isArray: false },
         'update'  : { method: 'PUT' },
         'destroy' : { method: 'DELETE' }
       }

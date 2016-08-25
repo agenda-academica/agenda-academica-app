@@ -4,12 +4,12 @@
 
 export default class TurmaApiService {
   /*
-PARAMETROS: 
+PARAMETROS:
 -  $resource = Pacote do angular.js que faz a requisição http
 - apiUrl = constante definida no app.js, que vai ser responsavel pela URL
   */
   constructor($resource, apiUrl) {
-    //anotação que vai informar a webPack que os parametros acima deven ser 
+    //anotação que vai informar a webPack que os parametros acima deven ser
     //injetados no momento da compilação para produção
     'ngInject'
 
@@ -28,7 +28,8 @@ PARAMETROS:
     return this.$resource(
       `${this.apiUrl}/${this.apiPath}/:id`, { id: '@id' }, {
         'create'  : { method: 'POST' },
-        'show'    : { method: 'GET', isArray: true },
+        'list'    : { method: 'GET', isArray: true },
+        'show'    : { method: 'GET', isArray: false },
         'update'  : { method: 'PUT' },
         'destroy' : { method: 'DELETE' }
       }
