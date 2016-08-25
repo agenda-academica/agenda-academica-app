@@ -36,5 +36,23 @@ form(name='updateUniversidade' layout-padding ng-submit='$ctrl.parent.submit()')
         aria-label='Deletar'
       ) Deletar
 
+      md-input-container.md-block
+      md-button.md-raised.md-primary.btn-row(
+    type='md-button'
+    layout='row'
+    layout-align='center center'
+    ng-click="$ctrl.openPeriodoLetivo()"
+  ) Periodos Letivos
+    ng-md-icon(
+      layout='row'
+      layout-align='center center'
+      md-menu-origin='',
+      icon='keyboard_arrow_right',
+      style='fill: #fff',
+      aria-label='Periodos Letivos'
+    )
+
     md-input-container.md-block
       md-button.hide(name='submitForm' type='submit' aria-label='Enviar formulário')
+
+

@@ -1,0 +1,49 @@
+h2.aa Cadastro
+form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
+  div(layout-gt-sm='row')
+
+
+    md-input-container.md-block(flex-gt-sm)
+      label Nome do periodo
+      input(required='', name='nome', ng-model='$ctrl.parent.periodoLetivoForm.titulo')
+      div(ng-messages='create.nome.$error')
+        div(ng-message='required') This is required.
+
+
+    md-content(layout-padding='')
+        div(layout-gt-xs='row')
+          div(flex-gt-xs='')
+            h4 Data de inicio do periodo
+
+            md-datepicker(ng-model='$ctrl.parent.periodoLetivoForm.dataInicio', md-placeholder='Selecione a data')
+
+    md-content(layout-padding='')
+        div(layout-gt-xs='row')
+          div(flex-gt-xs='')
+            h4 Data de fim do periodo
+
+            md-datepicker(ng-model='$ctrl.parent.periodoLetivoForm.dataFim', md-placeholder='Selecione a data')
+
+    div(layout='row', layout-align='space-between center')
+        span Selecione a cor do evento
+
+          md-select.md-no-underline(ng-model='$ctrl.parent.periodoLetivoForm.cor', placeholder='Selecione a cor ')
+            md-option(value='#0000CD') Azul
+
+            md-option(value='#008000') Verde
+
+            md-option(value='#FF0000') Vermelho
+
+            md-option(value='#FFD700') Amarelo
+
+            md-option(value='#BA55D3') Roxo
+
+    md-input-container.md-block(flex-gt-sm)
+      md-button.md-raised.delete-btn(
+        ng-click='$ctrl.delete()'
+        aria-label='Deletar'
+      ) Deletar
+
+    md-input-container.md-block
+      md-button.hide(name='submitForm' type='submit' aria-label='Enviar formulário')
+

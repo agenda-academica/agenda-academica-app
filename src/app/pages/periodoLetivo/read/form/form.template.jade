@@ -1,0 +1,19 @@
+h2 Consulta
+.empty-message(ng-hide='$ctrl.parent.periodoLetivos.length')
+  ng-md-icon(class='md-avatar' size='50%' icon='event_note' style='fill: #ccc')
+  div Nenhum Periodo Letivo cadastrado.
+
+md-card(ng-repeat='periodoLetivo in $ctrl.parent.periodoLetivos')
+  md-card-title
+    md-card-title-media
+      .md-media-lg.card-media(style='{{"background-color:" + periodoLetivo.cor}}')
+
+    md-card-title-text
+      span.md-headline {{periodoLetivo.titulo}}
+      span.md-subhead {{periodoLetivo.dataInicio}}
+      span.md-subhead {{periodoLetivo.dataFim}}
+      .actions(layout='row')
+        md-button(
+          ng-href='{{"/#/periodo-letivo/update/" + periodoLetivo.id}}'
+          aria-label='{{"Alterar " + periodoLetivo.titulo}}'
+        ) detalhes

@@ -1,17 +1,34 @@
-export default class UniversidadeUpdateFormController {
-  constructor($routeParams, $mdDialog, $location, universidadeStorage, errorHandler) {
+export default class PeriodoLetivoUpdateFormController {
+  constructor($routeParams, $mdDialog, $location, periodoLetivoStorage, errorHandler, $scope) {
     'ngInject'
+    this.myDate = new Date();
+    this.minDate = new Date(
+      this.myDate.getFullYear(),
+      this.myDate.getMonth() - 2,
+      this.myDate.getDate());
+    this.maxDate = new Date(
+      this.myDate.getFullYear(),
+      this.myDate.getMonth() + 2,
+      this.myDate.getDate());
+    this.onlyWeekendsPredicate = function(date) {
+        var day = date.getDay();
+        return day === 0 || day === 6;
+    };
+
     this.$routeParams = $routeParams
     this.$mdDialog    = $mdDialog
     this.$location    = $location
 
-    this.universidadeStorage = universidadeStorage
+    this.periodoLetivoStorage = periodoLetivoStorage
     this.errorHandler        = errorHandler
+
+    alert($scope.parent.periodoLetivoForm.dataFim);
+    console.log(typeof $scope.parent.periodoLetivoForm.dataFim)
   }
 
   ////
   // As funcionalidades de `update` ficaram centralizadas
-  // no componente principal em `universidade/update/update`,
+  // no componente principal em `periodoLetivo/update/update`,
   // devido à dependência de submit do form através de um botão
   // externo. e.g. `submitOutsideForm()`
   ////
@@ -30,8 +47,8 @@ export default class UniversidadeUpdateFormController {
     return this.$mdDialog.confirm()
       .title('Atenção!')
       .textContent(`Tem certeza que deseja excluir permanentemente os dados
-        desta universidade?`)
-      .ariaLabel('Excluir universidade')
+        desta periodoLetivo?`)
+      .ariaLabel('Excluir periodoLetivo')
       .ok('Sim.')
       .cancel('Não, por favor!')
   }
@@ -39,7 +56,7 @@ export default class UniversidadeUpdateFormController {
   getDeleteOkCallback() {
     return () => {
       let options = {id: this.$routeParams.id}
-      this.universidadeStorage.delete(options).then(
+      this.periodoLetivoStorage.delete(options).then(
         this.getDeleteSuccessCallback(),
         this.errorHandler.request()
       )
@@ -50,14 +67,14 @@ export default class UniversidadeUpdateFormController {
     return () => {
       this.$mdDialog
         .show(this.getDeleteOkCallbackAlert())
-        .then(() => { this.$location.path('/universidade') })
+        .then(() => { this.$location.path('/periodo-letivo') })
     }
   }
 
   getDeleteOkCallbackAlert() {
     return this.$mdDialog.alert()
       .title('Concluído.')
-      .textContent(`Os dados da universidade foram excluídos com sucesso.`)
+      .textContent(`Os dados da periodoLetivo foram excluídos com sucesso.`)
       .ok('Obrigado')
   }
 
@@ -66,16 +83,10 @@ export default class UniversidadeUpdateFormController {
       this.$mdDialog.show(
         this.$mdDialog.alert()
           .title('Cancelado.')
-          .textContent(`Fique tranquilo, os dados da universidade continuam
+          .textContent(`Fique tranquilo, os dados da periodo Letivo continuam
             intactos.`)
           .ok('Obrigado')
       )
     }
-  }
-
-    openPeriodoLetivo(){
-    alert('teste japa viadaon');
-    this.$location.path('/periodo-letivo')
-
   }
 }

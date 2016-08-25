@@ -26,5 +26,11 @@ export default function($routeProvider) {
       { template: '<universidade-update></universidade-update>' }
     )
 
+    //Periodo letivo
+     .when(
+      '/periodoLetivo',
+      { template: '<periodo-letivo-read></periodo-letivo-read>' }
+    )
+
     .otherwise({ redirectTo: '/' });
 }
