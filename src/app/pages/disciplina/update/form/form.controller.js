@@ -41,8 +41,7 @@ export default class DisciplinaUpdateFormController {
   getDeleteConfirmDialog() {
     return this.$mdDialog.confirm()
       .title('Atenção!')
-      .textContent(`Tem certeza que deseja excluir permanentemente os dados
-        desta disciplina?`)
+      .textContent(`Tem certeza que deseja excluir permanentemente os dados desta disciplina?`)
       .ariaLabel('Excluir disciplina')
       .ok('Sim.')
       .cancel('Não, por favor!')
@@ -62,7 +61,7 @@ export default class DisciplinaUpdateFormController {
     return () => {
       this.$mdDialog
         .show(this.getDeleteOkCallbackAlert())
-        .then(() => { this.$location.path('/disciplina') })
+        .then(() => { this.$location.path('/quadro-horario') })
     }
   }
 

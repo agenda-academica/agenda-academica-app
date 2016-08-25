@@ -93,6 +93,23 @@ form.page-disciplina-update-form(name='update' layout-padding ng-submit='$ctrl.p
           | This is required.
 
     //-//
+    //- Abreviação do nome da disciplina
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Abreviação
+      input(
+        md-minlength='5'
+        required=''
+        name='abreviacao'
+        ng-model='$ctrl.parent.form.abreviacao'
+      )
+      div(ng-messages='create.abreviacao.$error')
+        div(ng-message='required')
+          | This is required.
+        div(ng-message='md-minlength')
+          | The name has to be less than 30 characters long.
+
+    //-//
     //- Nome da disciplina
     //-//
     md-input-container.md-block.nome-disciplina-container(flex-gt-sm)
