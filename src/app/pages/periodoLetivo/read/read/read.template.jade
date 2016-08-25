@@ -1,0 +1,17 @@
+toolbar.default-color(
+  title='Periodo Letivos'
+  left-icon='menu'
+  on-click-method='toggleLeftSidenav'
+  right-button-enable='true'
+  right-button-classes='md-icon-button'
+  right-button-type='icon'
+  right-button-icon='filter_list'
+  right-button-icon-style='fill: #fff'
+  right-button-on-click-method='$ctrl.toggleFilterFormVisibility()'
+)
+
+periodo-letivo-read-add-fab
+
+md-content.page-read-periodo-letivo(layout-padding)
+  periodo-letivo-read-filter
+  periodo-letivo-read-form

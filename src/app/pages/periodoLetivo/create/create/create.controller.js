@@ -1,39 +1,31 @@
-export default class CreateUniversidadeController {
+export default class CreatePeriodoLetivoController {
   constructor(
     $scope,
     $mdDialog,
     $location,
     usuarioAuth,
-    universidadeStorage,
-    errorHandler
+    periodoLetivoStorage,
+    errorHandler,
+    moment
   ) {
     'ngInject'
     this.$scope = $scope
     this.$mdDialog = $mdDialog
     this.$location = $location
     this.usuarioAuth = usuarioAuth
-    this.universidadeStorage = universidadeStorage
+    this.periodoLetivoStorage = periodoLetivoStorage
     this.errorHandler = errorHandler
+    this.moment = moment
 
-    this.universidadeForm = {}
+    this.periodoLetivoForm = {}
   }
 
   submit() {
     this.sendCreateRequest(
-      this.getCreateSuccessCallback((universidade) => {
-        this.$location.path(`/unidade/create/${universidade.id}`)
+      this.getCreateSuccessCallback((periodoLetivo) => {
+        this.$location.path(`/periodoLetivo/create/${periodoLetivo.id}`)
       })
     )
-  }
-
-  openPeriodoLetivo(){
-    alert('teste');
-    this.sendCreateRequest(
-      this.getCreateSuccessCallback((universidade) => {
-        this.$location.path(`/periodoLetivo`)
-      })
-    )
-
   }
 
   submitOutsideForm() {
@@ -44,16 +36,22 @@ export default class CreateUniversidadeController {
     }
     this.sendCreateRequest(
       this.getCreateSuccessCallback(() => {
-        this.$location.path('/universidade')
+        this.$location.path('/periodoLetivo')
       })
     )
   }
 
   sendCreateRequest(successCallback) {
-    let data = angular.copy(this.universidadeForm)
+    let data = angular.copy(this.periodoLetivoForm)
     data.idUsuario = this.usuarioAuth.take().id
+    //TODO: Colocar o id da universidade aqui tambem
 
-    this.universidadeStorage.create(data).then(
+
+    data.dataInicio = this.moment(data.dataInicio).format('YYYY-MM-DD')
+
+    data.dataFim = this.moment(data.dataFim).format('YYYY-MM-DD')
+
+    this.periodoLetivoStorage.create(data).then(
       successCallback(data),
       this.errorHandler.request()
     )
@@ -62,7 +60,7 @@ export default class CreateUniversidadeController {
   getCreateSuccessCallback(callback) {
     return (data) => {
       return () => {
-        callback(this.universidadeStorage.getLast())
+        callback(this.periodoLetivoStorage.getLast())
       }
     }
   }

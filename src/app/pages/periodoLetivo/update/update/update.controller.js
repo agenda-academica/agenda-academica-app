@@ -1,11 +1,11 @@
-export default class UpdateUniversidadeController {
+export default class UpdatePeriodoLetivoController {
   constructor(
     $scope,
     $mdDialog,
     $routeParams,
     $location,
     usuarioAuth,
-    universidadeStorage,
+    periodoLetivoStorage,
     errorHandler
   ) {
     'ngInject'
@@ -14,19 +14,20 @@ export default class UpdateUniversidadeController {
     this.$routeParams        = $routeParams
     this.$location           = $location
     this.usuarioAuth         = usuarioAuth
-    this.universidadeStorage = universidadeStorage
+    this.periodoLetivoStorage = periodoLetivoStorage
     this.errorHandler        = errorHandler
 
-    this.universidadeForm = {}
+    this.periodoLetivoForm = {}
     this.initStorageRequests()
   }
 
   initStorageRequests() {
-    if (!this.universidadeStorage.has())
-      this.universidadeStorage
+
+    if (!this.periodoLetivoStorage.has())
+      this.periodoLetivoStorage
         .requestByUsuario()
         .then(
-          this.requestUniversidadesByUsuarioSuccess(
+          this.requestPeriodoLetivosByUsuarioSuccess(
             this.init()
           ),
           this.errorHandler.request()
@@ -41,11 +42,11 @@ export default class UpdateUniversidadeController {
 
   init() {
     return () => {
-      this.universidadeForm = this
-        .universidadeStorage
+      this.periodoLetivoForm = this
+        .periodoLetivoStorage
         .getById(this.$routeParams.id)
 
-      if (!this.universidadeForm) this.$location.path('/universidade')
+      if (!this.periodoLetivoForm) this.$location.path('/periodo-letivo')
     }
   }
 
@@ -55,7 +56,7 @@ export default class UpdateUniversidadeController {
 
   submitOutsideForm() {
     let childScope = this.$scope.$parent.$$childTail.$$childTail
-    if (childScope.updateUniversidade.$invalid) {
+    if (childScope.updatePeriodoLetivo.$invalid) {
       this.$mdDialog.show(this.getPreenchimentoAlert())
       return
     }
@@ -71,11 +72,11 @@ export default class UpdateUniversidadeController {
   }
 
   sendUpdateRequest() {
-    let data    = angular.copy(this.universidadeForm)
+    let data    = angular.copy(this.periodoLetivoForm)
     let options = {id: data.id}
     data.idUsuario = this.usuarioAuth.take().id
 
-    this.universidadeStorage.update(options, data).then(
+    this.periodoLetivoStorage.update(options, data).then(
       this.getUpdateSuccessCallback(),
       this.errorHandler.request()
     )
@@ -83,14 +84,7 @@ export default class UpdateUniversidadeController {
 
   getUpdateSuccessCallback() {
     return () => {
-      this.$location.path('/universidade')
+      this.$location.path('/periodo-letivo')
     }
-  }
-
-  openPeriodoLetivo(){
-    alert('teste japa viadaon');
-    this.$location.path('/periodo-letivo')
-
-  }
-
+   }
 }
