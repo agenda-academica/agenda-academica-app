@@ -1,7 +1,6 @@
 var path    = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'sourcemap',
@@ -54,11 +53,6 @@ module.exports = {
       minChunks: function (module, count) {
         return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
       }
-    }),
-
-    new CopyWebpackPlugin([
-      { from: './src/app/statics/logo.png', to: path.resolve(__dirname) },
-      { from: './src/app/statics/main.css', to: path.resolve(__dirname) },
-    ])
+    })
   ]
 };

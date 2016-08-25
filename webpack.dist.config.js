@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path    = require('path');
 var config  = require('./webpack.config');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 config.output = {
   filename: '[name].bundle.js',
@@ -20,7 +21,11 @@ config.plugins = config.plugins.concat([
       // angular global variable, so we should keep it unchanged
       except: ['$super', '$', 'exports', 'require', 'angular']
     }
-  })
+  }),
+
+  new CopyWebpackPlugin([
+    { from: './src/app/statics/logo.png', to: path.resolve(__dirname) }
+  ])
 ]);
 
 module.exports = config;

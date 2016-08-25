@@ -11,7 +11,7 @@ export default function($routeProvider) {
       { template: '<quadro-horario></quadro-horario>' }
     )
     .when(
-      '/quadro-horario/painel',
+      '/quadro-horario-painel',
       { template: '<quadro-horario-painel></quadro-horario-painel>' }
     )
 
