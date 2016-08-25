@@ -23,7 +23,7 @@ export default class DisciplinaCreateController {
   submit() {
     this.sendCreateRequest(
       this.getCreateSuccessCallback((disciplina) => {
-        this.$location.path(`/quadro-horario/${disciplina.diaSemana}`)
+        this.$location.path(`/quadro-horario/dia/${disciplina.diaSemana}`)
       })
     )
   }
@@ -36,7 +36,7 @@ export default class DisciplinaCreateController {
     }
     this.sendCreateRequest(
       this.getCreateSuccessCallback(() => {
-        this.$location.path(`/quadro-horario/${disciplina.diaSemana}`)
+        this.$location.path(`/quadro-horario/dia/${disciplina.diaSemana}`)
       })
     )
   }

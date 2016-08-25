@@ -7,7 +7,7 @@ export default function($routeProvider) {
       { template: '<quadro-horario></quadro-horario>' }
     )
     .when(
-      '/quadro-horario/:diaSemana',
+      '/quadro-horario/dia/:diaSemana',
       { template: '<quadro-horario></quadro-horario>' }
     )
 

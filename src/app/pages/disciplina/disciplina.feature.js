@@ -5,7 +5,7 @@ import api     from './disciplina.api'
 
 import create  from './create/create.package'
 import read    from './read/read.package'
-// import update  from './update/update.package'
+import update  from './update/update.package'
 
 export default {
   config: {
@@ -20,6 +20,6 @@ export default {
   package: {
     create,
     read,
-    // update,
+    update,
   },
 }

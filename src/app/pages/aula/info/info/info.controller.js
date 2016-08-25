@@ -185,6 +185,6 @@ export default class AulaInfoController {
   }
   redirDisciplinaUpdate() {
     const { idUniversidade, idUnidade, idCurso, idTurma, id } = this.$routeParams
-    this.$location.path(`/turma/update/${idUniversidade}/${idUnidade}/${idCurso}/${idTurma}/${id}`)
+    this.$location.path(`/disciplina/update/${idUniversidade}/${idUnidade}/${idCurso}/${idTurma}/${id}`)
   }
 }

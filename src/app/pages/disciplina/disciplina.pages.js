@@ -31,4 +31,5 @@ export default angular.module('app.pages.disciplina', [])
   ////
   // Update
   ////
-  // .component('disciplinaUpdate'     , disciplina.package.update.update)
+  .component('disciplinaUpdateForm' , disciplina.package.update.form)
+  .component('disciplinaUpdate'     , disciplina.package.update.update)
