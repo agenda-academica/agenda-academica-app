@@ -1,9 +1,11 @@
 export default class ReadPeriodoLetivoController {
-  constructor($scope, periodoLetivoStorage, errorHandler) {
+  constructor($scope, periodoLetivoStorage, errorHandler, $routeParams, $location) {
     'ngInject'
     this.$scope = $scope
     this.periodoLetivoStorage = periodoLetivoStorage
     this.errorHandler = errorHandler
+    this.$routeParams = $routeParams
+    this.$location = $location
 
     ////
     // Storage
@@ -45,4 +47,7 @@ export default class ReadPeriodoLetivoController {
   toggleFilterFormVisibility() {
     this.filterVisibility = !this.filterVisibility
   }
+
+
+
 }

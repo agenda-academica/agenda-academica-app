@@ -6,8 +6,7 @@ export default class UniversidadeCreateFormController {
   }
 
   openPeriodoLetivo(){
-    alert('teste japa viadaon gayzAO');
-    this.$location.path('/periodo-letivo')
+     this.$location.path('/periodo-letivo')
 
   }
 }

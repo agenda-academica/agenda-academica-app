@@ -6,7 +6,7 @@ export default function($routeProvider) {
     // Read
     ////
     .when(
-      '/periodo-letivo',
+      '/periodo-letivo/:idUniversidade',
       { template: '<periodo-letivo-read></periodo-letivo-read>' }
     )
 
@@ -14,7 +14,7 @@ export default function($routeProvider) {
     // Create
     ////
     .when(
-      '/periodo-letivo/create',
+      '/periodo-letivo/create/:idUniversidade',
       { template: '<periodo-letivo-create></periodo-letivo-create>' }
     )
 
@@ -22,7 +22,7 @@ export default function($routeProvider) {
     // // Update
     // ////
     .when(
-      '/periodo-letivo/update/:id',
+      '/periodo-letivo/update/:idUniversidade/:id',
       { template: '<periodo-letivo-update></periodo-letivo-update>' }
     )
 

@@ -74,8 +74,8 @@ export default class UniversidadeUpdateFormController {
   }
 
     openPeriodoLetivo(){
-    alert('teste japa viadaon');
-    this.$location.path('/periodo-letivo')
+      alert(this.$routeParams.id)
+    this.$location.path(`/periodo-letivo/${this.$routeParams.id}`)
 
   }
 }

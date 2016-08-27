@@ -58,9 +58,9 @@ export default class PeriodoLetivoStorage {
   ////
   create(data) {
 
+//TODO: para fazer ainda essa merda
 data["idUniversidade"] = 1
 
-alert(JSON.stringify(data));
 
     let deferred = this.$q.defer()
 

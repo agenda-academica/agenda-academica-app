@@ -22,8 +22,6 @@ export default class PeriodoLetivoUpdateFormController {
     this.periodoLetivoStorage = periodoLetivoStorage
     this.errorHandler        = errorHandler
 
-    alert($scope.parent.periodoLetivoForm.dataFim);
-    console.log(typeof $scope.parent.periodoLetivoForm.dataFim)
   }
 
   ////
@@ -67,7 +65,7 @@ export default class PeriodoLetivoUpdateFormController {
     return () => {
       this.$mdDialog
         .show(this.getDeleteOkCallbackAlert())
-        .then(() => { this.$location.path('/periodo-letivo') })
+        .then(() => { this.$location.path(`/periodo-letivo/${this.$routeParams.idUniversidade}`) })
     }
   }
 

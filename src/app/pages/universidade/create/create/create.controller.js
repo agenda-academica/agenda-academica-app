@@ -27,8 +27,7 @@ export default class CreateUniversidadeController {
   }
 
   openPeriodoLetivo(){
-    alert('teste');
-    this.sendCreateRequest(
+     this.sendCreateRequest(
       this.getCreateSuccessCallback((universidade) => {
         this.$location.path(`/periodoLetivo`)
       })

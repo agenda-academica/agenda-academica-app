@@ -6,7 +6,8 @@ export default class CreatePeriodoLetivoController {
     usuarioAuth,
     periodoLetivoStorage,
     errorHandler,
-    moment
+    moment,
+    $routeParams
   ) {
     'ngInject'
     this.$scope = $scope
@@ -16,6 +17,7 @@ export default class CreatePeriodoLetivoController {
     this.periodoLetivoStorage = periodoLetivoStorage
     this.errorHandler = errorHandler
     this.moment = moment
+    this.$routeParams = $routeParams
 
     this.periodoLetivoForm = {}
   }
@@ -23,7 +25,7 @@ export default class CreatePeriodoLetivoController {
   submit() {
     this.sendCreateRequest(
       this.getCreateSuccessCallback((periodoLetivo) => {
-        this.$location.path(`/periodoLetivo/create/${periodoLetivo.id}`)
+        this.$location.path(`/periodo-letivo/create/${this.$routeParams.idUniversidade}`)
       })
     )
   }
@@ -36,7 +38,7 @@ export default class CreatePeriodoLetivoController {
     }
     this.sendCreateRequest(
       this.getCreateSuccessCallback(() => {
-        this.$location.path('/periodoLetivo')
+        this.$location.path(`/periodo-letivo/${this.$routeParams.idUniversidade}`)
       })
     )
   }

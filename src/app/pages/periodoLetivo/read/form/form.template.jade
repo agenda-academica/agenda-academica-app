@@ -14,6 +14,6 @@ md-card(ng-repeat='periodoLetivo in $ctrl.parent.periodoLetivos')
       span.md-subhead {{periodoLetivo.dataFim}}
       .actions(layout='row')
         md-button(
-          ng-href='{{"/#/periodo-letivo/update/" + periodoLetivo.id}}'
+          ng-click='$ctrl.redirect(periodoLetivo.id)'
           aria-label='{{"Alterar " + periodoLetivo.titulo}}'
         ) detalhes

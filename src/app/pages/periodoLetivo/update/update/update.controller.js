@@ -4,6 +4,7 @@ export default class UpdatePeriodoLetivoController {
     $mdDialog,
     $routeParams,
     $location,
+    moment,
     usuarioAuth,
     periodoLetivoStorage,
     errorHandler
@@ -16,6 +17,7 @@ export default class UpdatePeriodoLetivoController {
     this.usuarioAuth         = usuarioAuth
     this.periodoLetivoStorage = periodoLetivoStorage
     this.errorHandler        = errorHandler
+    this.moment = moment
 
     this.periodoLetivoForm = {}
     this.initStorageRequests()
@@ -36,7 +38,7 @@ export default class UpdatePeriodoLetivoController {
       this.init()()
   }
 
-  requestUniversidadesByUsuarioSuccess(initCallback) {
+  requestPeriodosLetivosByUsuarioSuccess(initCallback) {
     return () => { initCallback() }
   }
 
@@ -45,6 +47,13 @@ export default class UpdatePeriodoLetivoController {
       this.periodoLetivoForm = this
         .periodoLetivoStorage
         .getById(this.$routeParams.id)
+
+        this.periodoLetivoForm
+
+        const dateFormat = 'YYYY-MM-DD'
+      this.form = this.periodoLetivoStorage.getById(this.$routeParams.id)
+      this.form.dataInicio = this.moment(this.form.dataInicio, dateFormat).toDate()
+      this.form.dataFim = this.moment(this.form.dataFim, dateFormat).toDate()
 
       if (!this.periodoLetivoForm) this.$location.path('/periodo-letivo')
     }
@@ -55,11 +64,16 @@ export default class UpdatePeriodoLetivoController {
   }
 
   submitOutsideForm() {
+
+
     let childScope = this.$scope.$parent.$$childTail.$$childTail
-    if (childScope.updatePeriodoLetivo.$invalid) {
-      this.$mdDialog.show(this.getPreenchimentoAlert())
-      return
-    }
+    // if (childScope.updatePeriodoLetivo.$invalid) {
+    //   this.$mdDialog.show(this.getPreenchimentoAlert())
+    //   return
+    // }
+
+
+
     this.sendUpdateRequest()
   }
 
@@ -75,6 +89,11 @@ export default class UpdatePeriodoLetivoController {
     let data    = angular.copy(this.periodoLetivoForm)
     let options = {id: data.id}
     data.idUsuario = this.usuarioAuth.take().id
+    data.idUniversidade = this.periodoLetivoForm.idUniversidade
+
+    data.dataInicio = this.moment(data.dataInicio).format('YYYY-MM-DD')
+
+    data.dataFim = this.moment(data.dataFim).format('YYYY-MM-DD')
 
     this.periodoLetivoStorage.update(options, data).then(
       this.getUpdateSuccessCallback(),
@@ -84,7 +103,9 @@ export default class UpdatePeriodoLetivoController {
 
   getUpdateSuccessCallback() {
     return () => {
-      this.$location.path('/periodo-letivo')
+      this.$location.path(`/periodo-letivo/${this.$routeParams.idUniversidade}`)
     }
    }
+
+
 }

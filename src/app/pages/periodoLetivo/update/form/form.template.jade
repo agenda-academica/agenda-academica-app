@@ -40,18 +40,11 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
 
 
 
+    md-input-container.md-block(flex-gt-sm)
+      md-button.md-raised.delete-btn.btn-row(
+        ng-click='$ctrl.delete()'
+        aria-label='Deletar'
+      ) Deletar
+
     md-input-container.md-block
-      md-button.md-raised.md-primary.btn-row(
-        type='submit'
-        layout='row'
-        layout-align='center center'
-        ng-disabled='$ctrl.$scope.create.$invalid'
-      ) Próximo
-        ng-md-icon(
-          layout='row'
-          layout-align='center center'
-          md-menu-origin='',
-          icon='keyboard_arrow_right',
-          style='fill: #fff',
-          aria-label='Próximo'
-        )
+      md-button.hide(name='submitForm' type='submit' aria-label='Enviar formulário')
