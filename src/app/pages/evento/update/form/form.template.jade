@@ -1,0 +1,198 @@
+h2.aa Alterar
+form.page-disciplina-update-form(name='update' layout-padding ng-submit='$ctrl.parent.submit()')
+  input(
+    type='hidden'
+    name='id'
+    ng-model='$ctrl.parent.form.id'
+  )
+
+  div(layout-gt-sm='row')
+
+    //-//
+    //- Universidade
+    //-//
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Universidade
+      md-select(
+        name='idUniversidade'
+        ng-model='$ctrl.parent.form.universidade'
+        required
+      )
+        md-option(
+          ng-repeat='(index, universidade) in $ctrl.parent.universidades'
+          ng-value='universidade'
+          ng-selected='index === $ctrl.parent.universidadeSelectedIndex'
+        )
+          | {{universidade.nome}}
+      .md-errors-spacer
+      div(ng-messages='update.idUniversidade.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Unidade
+    //-//
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Unidade
+      md-select(
+        name='idUnidade'
+        ng-model='$ctrl.parent.form.unidade'
+        required
+      )
+        md-option(
+          ng-repeat='(index, unidade) in $ctrl.parent.unidades'
+          ng-value='unidade'
+          ng-selected='index === $ctrl.parent.unidadeSelectedIndex'
+        )
+          | {{unidade.nome}}
+      .md-errors-spacer
+      div(ng-messages='update.idUnidade.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Curso
+    //-//
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Curso
+      md-select(
+        name='idCurso'
+        ng-model='$ctrl.parent.form.curso'
+        required
+      )
+        md-option(
+          ng-repeat='(index, curso) in $ctrl.parent.cursos'
+          ng-value='curso'
+          ng-selected='index === $ctrl.parent.cursoSelectedIndex'
+        )
+          | {{curso.nome}}
+      .md-errors-spacer
+      div(ng-messages='update.idCurso.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Turma
+    //-//
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Turma
+      md-select(
+        name='idTurma'
+        ng-model='$ctrl.parent.form.turma'
+        required
+      )
+        md-option(
+          ng-repeat='(index, turma) in $ctrl.parent.turmas'
+          ng-value='turma'
+          ng-selected='index === $ctrl.parent.turmaSelectedIndex'
+        )
+          | {{turma.nome}}
+      .md-errors-spacer
+      div(ng-messages='update.idTurma.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Abreviação do nome da disciplina
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Abreviação
+      input(
+        md-minlength='5'
+        required=''
+        name='abreviacao'
+        ng-model='$ctrl.parent.form.abreviacao'
+      )
+      div(ng-messages='create.abreviacao.$error')
+        div(ng-message='required')
+          | This is required.
+        div(ng-message='md-minlength')
+          | The name has to be less than 30 characters long.
+
+    //-//
+    //- Nome da disciplina
+    //-//
+    md-input-container.md-block.nome-disciplina-container(flex-gt-sm)
+      label Nome da disciplina
+      input(
+        md-minlength='5'
+        required=''
+        name='nome'
+        ng-model='$ctrl.parent.form.nome'
+      )
+      div(ng-messages='update.nome.$error')
+        div(ng-message='required')
+          | This is required.
+        div(ng-message='md-maxlength')
+          | The name has to be less than 30 characters long.
+
+    div(layout='row')
+      //-//
+      //- Hora início
+      //-//
+      md-input-container.md-block(flex='50')
+        label Hora início
+        input(
+          required=''
+          type='time'
+          name='horaInicio'
+          ng-model='$ctrl.parent.form.horaInicio'
+        )
+        div(ng-messages='create.horaInicio.$error')
+          div(ng-message='required')
+            | This is required.
+
+      //-//
+      //- Hora fim
+      //-//
+      md-input-container.md-block(flex='50')
+        label Hora fim
+        input(
+          required=''
+          type='time'
+          name='horaFim'
+          ng-model='$ctrl.parent.form.horaFim'
+        )
+        div(ng-messages='create.horaFim.$error')
+          div(ng-message='required')
+            | This is required.
+
+    //-//
+    //- Dia da semana
+    //-//
+    md-input-container.md-block.md-input-invalid.dia-semana-container(flex-gt-sm)
+      label Dia da semana
+      md-select(
+        name='diaSemana'
+        ng-model='$ctrl.parent.form.diaSemana'
+        required
+      )
+        md-option(
+          ng-repeat='(index, diaSemana) in $ctrl.dias'
+          ng-value='index'
+          ng-selected='index == $ctrl.parent.form.diaSemana'
+        )
+          | {{diaSemana.label}}
+      .md-errors-spacer
+      div(ng-messages='create.diaSemana.$error')
+        div(ng-message='required')
+          | This is required.
+
+    //-//
+    //- Delete Button
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      md-button.md-raised.delete-btn.btn-row(
+        ng-click='$ctrl.delete()'
+        aria-label='Deletar'
+      ) Deletar
+
+    //-//
+    //- Form Submit Hidden Button
+    //-//
+    md-input-container.md-block
+      md-button.hide(
+        name='submitForm'
+        type='submit'
+        aria-label='Enviar formulário'
+      )
