@@ -1,4 +1,4 @@
-export default class CursoReadFilterController {
+export default class EventoReadFilterController {
   constructor($scope) {
     'ngInject'
     this.$scope = $scope

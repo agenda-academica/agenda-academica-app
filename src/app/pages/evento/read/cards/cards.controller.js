@@ -2,7 +2,7 @@ import temporaryUsjtLogoImage from './../../../universidade/read/usjt.jpg'
 import temporaryMackLogoImage from './../../../universidade/read/mackenzie.jpg'
 import temporaryFiapLogoImage from './../../../universidade/read/fiap.jpg'
 
-export default class CursoReadCardsController {
+export default class EventoReadCardsController {
   constructor() {
     this.temporaryUsjtLogoImage = temporaryUsjtLogoImage
     this.temporaryMackLogoImage = temporaryMackLogoImage

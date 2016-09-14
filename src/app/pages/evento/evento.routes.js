@@ -34,14 +34,18 @@ export default function($routeProvider) {
       { template: '<evento-create></evento-create>' }
     )
 
-    // ////
-    // // Read
-    // ////
+    ////
+    // Read
+    ////
+    .when(
+      '/evento',
+      { template: '<evento-read></evento-read>' }
+    )
     // .when(
-    //   '/evento',
+    //   '/evento/:idUniversidade/:idUnidade/:idCurso/:idTurma/:idDisciplina',
     //   { template: '<evento-read></evento-read>' }
     // )
-    //
+
     // ////
     // // Update
     // ////

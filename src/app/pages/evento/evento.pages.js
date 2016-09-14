@@ -20,13 +20,13 @@ export default angular.module('app.pages.evento', [])
   .component('eventoCreateForm' , evento.package.create.form)
   .component('eventoCreate'     , evento.package.create.create)
 
-  // ////
-  // // Read
-  // ////
-  // .component('eventoReadAddFab' , evento.package.read.addFab)
-  // .component('eventoReadFilter' , evento.package.read.filter)
-  // .component('eventoReadCards'  , evento.package.read.cards)
-  // .component('eventoRead'       , evento.package.read.read)
+  ////
+  // Read
+  ////
+  .component('eventoReadAddFab' , evento.package.read.addFab)
+  .component('eventoReadFilter' , evento.package.read.filter)
+  .component('eventoReadCards'  , evento.package.read.cards)
+  .component('eventoRead'       , evento.package.read.read)
   //
   // ////
   // // Update
