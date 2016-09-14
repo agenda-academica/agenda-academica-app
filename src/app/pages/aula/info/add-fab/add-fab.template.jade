@@ -1,0 +1,21 @@
+md-fab-speed-dial.page-calendar-fabs.md-scale.md-fab-bottom-right(
+  md-direction='up'
+  md-open='$ctrl.isAddFabOpen'
+  style='position: fixed'
+)
+  md-fab-trigger
+    md-button.md-fab.md-raised(aria-label='add')
+      ng-md-icon(md-menu-align-target='' icon='add' aria-label='add')
+
+  md-fab-actions
+    md-button.md-fab.md-raised.md-mini.default-color(
+      aria-label='Evento'
+      ng-click='$ctrl.redirAddEvento()'
+    )
+      md-tooltip(
+        md-direction='left'
+        md-visible='$ctrl.addTooltipVisible'
+        md-autohide='false'
+      )
+        | Evento
+      ng-md-icon(md-menu-align-target='' icon='event' aria-label='event')
