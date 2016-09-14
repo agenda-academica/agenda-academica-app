@@ -10,6 +10,7 @@ import turma         from './turma/turma.pages'
 import disciplina    from './disciplina/disciplina.pages'
 import periodoLetivo from './periodoLetivo/periodoLetivo.pages'
 import aula          from './aula/aula.pages'
+import evento        from './evento/evento.pages'
 
 export default angular
   .module('app.pages', [
@@ -23,4 +24,5 @@ export default angular
     disciplina.name,
     periodoLetivo.name,
     aula.name,
+    evento.name,
   ])

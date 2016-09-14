@@ -9,27 +9,31 @@ export default function($routeProvider) {
       '/evento/create',
       { template: '<evento-create></evento-create>' }
     )
-    // .when(
-    //   '/evento/create/:idUniversidade',
-    //   { template: '<evento-create></evento-create>' }
-    // )
-    // .when(
-    //   '/evento/create/:idUniversidade/:idUnidade',
-    //   { template: '<evento-create></evento-create>' }
-    // )
-    // .when(
-    //   '/evento/create/:idUniversidade/:idUnidade/:idCurso',
-    //   { template: '<evento-create></evento-create>' }
-    // )
-    // .when(
-    //   '/evento/create/:idUniversidade/:idUnidade/:idCurso/:idTurma',
-    //   { template: '<evento-create></evento-create>' }
-    // )
-    // .when(
-    //   '/evento/createFromDiaSemana/:diaSemana',
-    //   { template: '<evento-create></evento-create>' }
-    // )
-    //
+    .when(
+      '/evento/create/:idUniversidade',
+      { template: '<evento-create></evento-create>' }
+    )
+    .when(
+      '/evento/create/:idUniversidade/:idUnidade',
+      { template: '<evento-create></evento-create>' }
+    )
+    .when(
+      '/evento/create/:idUniversidade/:idUnidade/:idCurso',
+      { template: '<evento-create></evento-create>' }
+    )
+    .when(
+      '/evento/create/:idUniversidade/:idUnidade/:idCurso/:idTurma',
+      { template: '<evento-create></evento-create>' }
+    )
+    .when(
+      '/evento/create/:idUniversidade/:idUnidade/:idCurso/:idTurma/:idDisciplina',
+      { template: '<evento-create></evento-create>' }
+    )
+    .when(
+      '/evento/createFromDiaSemana/:diaSemana',
+      { template: '<evento-create></evento-create>' }
+    )
+
     // ////
     // // Read
     // ////
