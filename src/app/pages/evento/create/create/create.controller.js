@@ -48,7 +48,6 @@ export default class EventoCreateController {
     data.dataFim        = this.moment(data.dataFim).format(dateFormat)
     data.horaInicio     = this.moment(data.horaInicio).format(hourFormat)
     data.horaFim        = this.moment(data.horaFim).format(hourFormat)
-    console.log(data)
 
     this.eventoStorage.create(data).then(
       successCallback(data),

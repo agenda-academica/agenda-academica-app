@@ -32,7 +32,46 @@
     .md-errors-spacer
 
   //-//
-  //- Curso Columns
+  //- Cursos
+  //-//
+  md-input-container.md-block(flex-gt-sm ng-hide='!$ctrl.selectedUnidade')
+    label Curso
+    md-select(ng-model='$ctrl.selectedCurso')
+      md-option(
+        ng-repeat='(index, curso) in $ctrl.parent.cursos'
+        ng-value='curso'
+      )
+        | {{curso.nome}}
+    .md-errors-spacer
+
+  //-//
+  //- Turmas
+  //-//
+  md-input-container.md-block(flex-gt-sm ng-hide='!$ctrl.selectedCurso')
+    label Turma
+    md-select(ng-model='$ctrl.selectedTurma')
+      md-option(
+        ng-repeat='(index, turma) in $ctrl.parent.turmas'
+        ng-value='turma'
+      )
+        | {{turma.nome}}
+    .md-errors-spacer
+
+  //-//
+  //- Disciplinas
+  //-//
+  md-input-container.md-block(flex-gt-sm ng-hide='!$ctrl.selectedTurma')
+    label Disciplina
+    md-select(ng-model='$ctrl.selectedDisciplina')
+      md-option(
+        ng-repeat='(index, disciplina) in $ctrl.parent.disciplinas'
+        ng-value='disciplina'
+      )
+        | {{disciplina.nome}}
+    .md-errors-spacer
+
+  //-//
+  //- Evento Columns
   //-//
   md-input-container.md-block(flex-gt-sm)
     label Campo
@@ -45,7 +84,7 @@
   //- Query
   //-//
   md-input-container.md-block(flex-gt-sm)
-    label Apelido/Abreviação
+    label {{$ctrl.getFilterLabel($ctrl.selectedField)}}
     input(ng-model='$ctrl.query')
 
   .actions(layout='row' layout-align='end center')

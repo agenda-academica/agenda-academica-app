@@ -148,7 +148,6 @@ export default class EventoReadController {
         .map(this.buildCursoEntity())
         .map(this.buildTurmaEntity())
         .map(this.buildDisciplinaEntity())
-      console.log(this.permEventos)
     }
   }
 
