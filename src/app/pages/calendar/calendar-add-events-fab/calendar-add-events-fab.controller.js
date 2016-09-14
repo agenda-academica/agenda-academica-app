@@ -1,8 +1,9 @@
 export default class CalendarAddEventsFabController {
-  constructor($scope, $timeout) {
+  constructor($scope, $timeout, $location) {
     'ngInject'
-    this.$scope   = $scope
-    this.$timeout = $timeout
+    this.$scope    = $scope
+    this.$timeout  = $timeout
+    this.$location = $location
 
     this.isAddFabOpen      = false
     this.addTooltipVisible = false
@@ -26,5 +27,12 @@ export default class CalendarAddEventsFabController {
 
   destroyTimeout() {
     return (event) => { this.$timeout.cancel(this.timer) }
+  }
+
+  //
+  // Redirects
+  //
+  redirAddEvento() {
+    this.$location.path('/evento/create')
   }
 }
