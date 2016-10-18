@@ -88,8 +88,7 @@ export default class UpdateUniversidadeController {
   }
 
   openPeriodoLetivo(){
-    alert('teste japa viadaon');
-    this.$location.path('/periodo-letivo')
+     this.$location.path('/periodo-letivo')
 
   }
 

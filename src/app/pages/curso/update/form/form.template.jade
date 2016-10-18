@@ -112,3 +112,19 @@ form(name='update' layout-padding ng-submit='$ctrl.parent.submit()')
         type='submit'
         aria-label='Enviar formulário'
       )
+
+    md-input-container.md-block
+      md-button.md-raised.md-primary.btn-row(
+    type='md-button'
+    layout='row'
+    layout-align='center center'
+    ng-click="$ctrl.openRepresentante()"
+  ) Representantes
+    ng-md-icon(
+      layout='row'
+      layout-align='center center'
+      md-menu-origin='',
+      icon='keyboard_arrow_right',
+      style='fill: #fff',
+      aria-label='Representantes'
+    )

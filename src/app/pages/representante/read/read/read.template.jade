@@ -1,0 +1,17 @@
+toolbar.default-color(
+  title='Representantes'
+  left-icon='menu'
+  on-click-method='toggleLeftSidenav'
+  right-button-enable='true'
+  right-button-classes='md-icon-button'
+  right-button-type='icon'
+  right-button-icon='filter_list'
+  right-button-icon-style='fill: #fff'
+  right-button-on-click-method='$ctrl.toggleFilterFormVisibility()'
+)
+
+representante-read-add-fab
+
+md-content.page-read-representante(layout-padding)
+  representante-read-filter
+  representante-read-form

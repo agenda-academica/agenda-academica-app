@@ -1,10 +1,10 @@
-export default class CreatePeriodoLetivoController {
+export default class CreateRepresentanteController {
   constructor(
     $scope,
     $mdDialog,
     $location,
     usuarioAuth,
-    periodoLetivoStorage,
+    representanteStorage,
     errorHandler,
     moment,
     $routeParams
@@ -14,49 +14,52 @@ export default class CreatePeriodoLetivoController {
     this.$mdDialog = $mdDialog
     this.$location = $location
     this.usuarioAuth = usuarioAuth
-    this.periodoLetivoStorage = periodoLetivoStorage
+    this.representanteStorage = representanteStorage
     this.errorHandler = errorHandler
     this.moment = moment
     this.$routeParams = $routeParams
 
-    this.periodoLetivoForm = {}
+    this.representanteForm = {}
   }
 
   submit() {
     this.sendCreateRequest(
-      this.getCreateSuccessCallback((periodoLetivo) => {
-        this.$location.path(`/periodo-letivo/create/${this.$routeParams.idUniversidade}`)
+      this.getCreateSuccessCallback((representante) => {
+        this.$location.path(`/representante/create/${this.$routeParams.idTurma}`)
       })
     )
   }
 
   submitOutsideForm() {
+
+    const { idUniversidade, idUnidade, idCurso, idTurma } = this.$routeParams
+
+
+
+    //todo: aqui
     let childScope = this.$scope.$parent.$$childTail.$$childTail
     if (childScope.create.$invalid) {
       this.$mdDialog.show(this.getPreenchimentoAlert())
       return
     }
+
+
     this.sendCreateRequest(
       this.getCreateSuccessCallback(() => {
-        this.$location.path(`/periodo-letivo/${this.$routeParams.idUniversidade}`)
+         this.$location.path(`/representante/${idUniversidade}/${idUnidade}/${idCurso}/${idTurma}`)
+        //this.$location.path(`/representante/${this.$routeParams.idUniversidade}`)
       })
     )
+
   }
 
+  //METODO CREATE, TEM Q SER ARRUMADO
   sendCreateRequest(successCallback) {
-    let data = angular.copy(this.periodoLetivoForm)
+    let data = angular.copy(this.representanteForm)
     data.idUsuario = this.usuarioAuth.take().id
-    //TODO: Colocar o id da universidade aqui tambem
-
-//alert(this.moment(data.dataInicio).format('YYYY-MM-DD'))
-//alert(this.moment(data.dataFim).format('YYYY-MM-DD'))
 
 
-    data.dataInicio = this.moment(data.dataInicio).format('YYYY-MM-DD')
-
-    data.dataFim = this.moment(data.dataFim).format('YYYY-MM-DD')
-
-    this.periodoLetivoStorage.create(data).then(
+    this.representanteStorage.create(data).then(
       successCallback(data),
       this.errorHandler.request()
     )
@@ -65,7 +68,7 @@ export default class CreatePeriodoLetivoController {
   getCreateSuccessCallback(callback) {
     return (data) => {
       return () => {
-        callback(this.periodoLetivoStorage.getLast())
+        callback(this.representanteStorage.getLast())
       }
     }
   }

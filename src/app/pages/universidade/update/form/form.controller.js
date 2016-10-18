@@ -74,8 +74,7 @@ export default class UniversidadeUpdateFormController {
   }
 
     openPeriodoLetivo(){
-      alert(this.$routeParams.id)
-    this.$location.path(`/periodo-letivo/${this.$routeParams.id}`)
+     this.$location.path(`/periodo-letivo/${this.$routeParams.id}`)
 
   }
 }

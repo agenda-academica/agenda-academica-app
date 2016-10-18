@@ -79,4 +79,24 @@ export default class TurmaUpdateFormController {
       )
     }
   }
+
+  openRepresentante() {
+    const { idUniversidade, idUnidade, idCurso, id } = this.$routeParams
+
+    this.$location.path(
+      `/representante/${idUniversidade}/${idUnidade}/${idCurso}/${id}`
+    )
+  }
+
+  sendEmail() {
+
+    var link = "mailto:sergio.bertolazo@hotmail.com"
+             + "?cc=erjobertolazo@gmail.com"
+             + "&subject=" + escape("Assunto")
+             + "&body=" + escape("Conteudo")
+    ;
+
+    window.location.href = link;
+}
+
 }

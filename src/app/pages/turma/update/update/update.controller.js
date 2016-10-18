@@ -139,4 +139,6 @@ export default class TurmaUpdateController {
   getUpdateSuccessCallback() {
     return () => { this.$location.path('/turma') }
   }
+
+
 }

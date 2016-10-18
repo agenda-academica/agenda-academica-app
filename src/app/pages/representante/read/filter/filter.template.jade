@@ -1,0 +1,20 @@
+.filters(
+  layout-padding
+  layout-gt-sm='row'
+  ng-show='$ctrl.parent.filterVisibility'
+)
+  h2 Filtros
+  md-input-container.md-block(flex-gt-sm)
+    label Consultar por:
+    md-select(ng-model='$ctrl.filterKeySelected')
+      md-option(ng-repeat='item in $ctrl.filterKeyOptions' value='{{item.key}}')
+        | {{item.label}}
+    .md-errors-spacer
+
+  md-input-container.md-block(flex-gt-sm)
+    label Nome
+    input(ng-model='$ctrl.filterQuery')
+
+  .actions(layout='row' layout-align='end center')
+    md-button.md-raised.md-primary(ng-click='$ctrl.clearFilters()')
+      | Limpar

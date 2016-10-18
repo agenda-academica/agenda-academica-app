@@ -1,0 +1,18 @@
+h2 Consulta
+.empty-message(ng-hide='$ctrl.parent.representantes.length')
+  ng-md-icon(class='md-avatar' size='50%' icon='event_note' style='fill: #ccc')
+  div Nenhum Representante cadastrado.
+
+md-card(ng-repeat='representante in $ctrl.parent.representantes')
+  md-card-title
+    md-card-title-media
+      .md-media-lg.card-media(style='{{"background-color:" + representante.cor}}')
+
+    md-card-title-text
+      span.md-headline {{representante.nome}}
+      span.md-subhead {{representante.email}}
+       .actions(layout='row')
+        md-button(
+          ng-click='$ctrl.redirect(representante.id)'
+          aria-label='{{"Alterar " + representante.nome}}'
+        ) detalhes

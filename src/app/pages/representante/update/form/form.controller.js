@@ -1,18 +1,20 @@
-export default class CursoUpdateFormController {
-  constructor($scope, $routeParams, $mdDialog, $location, cursoStorage, errorHandler) {
+export default class RepresentanteUpdateFormController {
+  constructor($routeParams, $mdDialog, $location, representanteStorage, errorHandler, $scope) {
     'ngInject'
-    this.$scope       = $scope
+
+
     this.$routeParams = $routeParams
     this.$mdDialog    = $mdDialog
     this.$location    = $location
 
-    this.cursoStorage = cursoStorage
-    this.errorHandler = errorHandler
+    this.representanteStorage = representanteStorage
+    this.errorHandler        = errorHandler
+
   }
 
   ////
   // As funcionalidades de `update` ficaram centralizadas
-  // no componente principal em `curso/update/update`,
+  // no componente principal em `representante/update/update`,
   // devido à dependência de submit do form através de um botão
   // externo. e.g. `submitOutsideForm()`
   ////
@@ -31,8 +33,8 @@ export default class CursoUpdateFormController {
     return this.$mdDialog.confirm()
       .title('Atenção!')
       .textContent(`Tem certeza que deseja excluir permanentemente os dados
-        desta unidade?`)
-      .ariaLabel('Excluir unidade')
+        desta representante?`)
+      .ariaLabel('Excluir representante')
       .ok('Sim.')
       .cancel('Não, por favor!')
   }
@@ -40,7 +42,7 @@ export default class CursoUpdateFormController {
   getDeleteOkCallback() {
     return () => {
       let options = {id: this.$routeParams.id}
-      this.cursoStorage.delete(options).then(
+      this.representanteStorage.delete(options).then(
         this.getDeleteSuccessCallback(),
         this.errorHandler.request()
       )
@@ -51,14 +53,17 @@ export default class CursoUpdateFormController {
     return () => {
       this.$mdDialog
         .show(this.getDeleteOkCallbackAlert())
-        .then(() => { this.$location.path('/curso') })
+        .then(() => {
+const { idUniversidade, idUnidade, idCurso, idTurma} = this.$routeParams
+         this.$location.path(`/representante/${idUniversidade}/${idUnidade}/${idCurso}/${idTurma}`)
+      })
     }
   }
 
   getDeleteOkCallbackAlert() {
     return this.$mdDialog.alert()
       .title('Concluído.')
-      .textContent(`Os dados da unidade foram excluídos com sucesso.`)
+      .textContent(`Os dados do representante foram excluídos com sucesso.`)
       .ok('Obrigado')
   }
 
@@ -67,12 +72,13 @@ export default class CursoUpdateFormController {
       this.$mdDialog.show(
         this.$mdDialog.alert()
           .title('Cancelado.')
-          .textContent(`Fique tranquilo, os dados da unidade continuam
+          .textContent(`Fique tranquilo, os dados do representante continuam
             intactos.`)
           .ok('Obrigado')
       )
     }
   }
+
 
 
 }

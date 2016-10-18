@@ -119,24 +119,6 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
           | The name has to be less than 30 characters long.
 
     //-//
-    //- Abreviação do nome da turma
-    //-//
-    md-input-container.md-block(flex-gt-sm)
-      label Email
-      input(
-        md-minlength='5'
-        required=''
-        name='email'
-        ng-model='$ctrl.parent.form.email'
-      )
-      div(ng-messages='create.email.$error')
-        div(ng-message='required')
-          | This is required.
-        div(ng-message='md-maxlength')
-          | The name has to be less than 30 characters long.
-
-
-    //-//
     //- Outras informações da turma
     //-//
     md-input-container.md-block(flex-gt-sm)

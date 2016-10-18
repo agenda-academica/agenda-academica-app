@@ -1,13 +1,13 @@
-export default class PeriodoLetivoStorage {
-  constructor($localStorage, $q, periodoLetivo, errorHandler, usuarioAuth) {
+export default class RepresentanteStorage {
+  constructor($localStorage, $q, representante, errorHandler, usuarioAuth) {
     'ngInject'
     this.$localStorage       = $localStorage
     this.$q                  = $q
-    this.periodoLetivoService = periodoLetivo
+    this.representanteService = representante
     this.errorHandler        = errorHandler
     this.usuarioAuth         = usuarioAuth
 
-    this.name = 'periodoLetivo'
+    this.name = 'representante'
   }
 
   has() {
@@ -20,22 +20,22 @@ export default class PeriodoLetivoStorage {
     return this.$localStorage[this.name]
   }
 
-  put(periodoLetivos) {
-    this.$localStorage[this.name] = periodoLetivos
+  put(representantes) {
+    this.$localStorage[this.name] = representantes
   }
 
-  push(periodoLetivo) {
-    this.take().push(periodoLetivo)
+  push(representante) {
+    this.take().push(representante)
   }
 
-  getIndexOf(idPeriodoLetivo) {
+  getIndexOf(idRepresentante) {
     return this.take().findIndex(
-      periodoLetivo => periodoLetivo.id == idPeriodoLetivo
+      representante => representante.id == idRepresentante
     )
   }
 
-  getById(idPeriodoLetivo) {
-    return this.take()[this.getIndexOf(idPeriodoLetivo)]
+  getById(idRepresentante) {
+    return this.take()[this.getIndexOf(idRepresentante)]
   }
 
   getByIndex(index) {
@@ -49,8 +49,8 @@ export default class PeriodoLetivoStorage {
   ////
   // Helpers
   ////
-  findIndexById(idPeriodoLetivo) {
-    return periodoLetivo => periodoLetivo.id == idUniversidade
+  findIndexById(idRepresentante) {
+    return representante => representante.id == idUniversidade
   }
 
   ////
@@ -58,13 +58,13 @@ export default class PeriodoLetivoStorage {
   ////
   create(data) {
 
-//TODO: para fazer ainda essa merda
+//TODO: para fazer ainda essa merda         ---- tem q arrumar no periodo letivo tb
 //data["idUniversidade"] = 1
 
 
     let deferred = this.$q.defer()
 
-    this.periodoLetivoService
+    this.representanteService
       .api.root
       .create(data).$promise.then(
         this.getCreateSuccessCallback(deferred, data),
@@ -79,7 +79,7 @@ export default class PeriodoLetivoStorage {
         this.push(success)
         deferred.resolve()
       }
-      else deferred.reject('Error: Periodo letivo Create Request.')
+      else deferred.reject('Erro: Cadastro de representante.')
 
       return deferred.promise
     }
@@ -91,7 +91,7 @@ export default class PeriodoLetivoStorage {
   requestByUsuario() {
     let deferred = this.$q.defer()
 
-    this.periodoLetivoService
+    this.representanteService
       .api.usuario.show({id: this.usuarioAuth.take().id})
       .$promise.then(
         this.getSuccessCallback(deferred),
@@ -110,7 +110,7 @@ export default class PeriodoLetivoStorage {
         this.$localStorage[this.name] = []
         deferred.resolve()
       }
-      else deferred.reject('Error: Universidade Read Request.')
+      else deferred.reject('Error:   Read Request.')
 
       return deferred.promise
     }
@@ -122,7 +122,7 @@ export default class PeriodoLetivoStorage {
   update(options, data) {
     let deferred = this.$q.defer()
 
-    this.periodoLetivoService
+    this.representanteService
       .api.root
       .update(options, data).$promise.then(
         this.getUpdateSuccessCallback(deferred, data),
@@ -137,7 +137,7 @@ export default class PeriodoLetivoStorage {
         this.updateIndex(data)
         deferred.resolve()
       }
-      else deferred.reject('Error: Universidade Update Request.')
+      else deferred.reject('Error: Update Request.')
 
       return deferred.promise
     }
@@ -154,7 +154,7 @@ export default class PeriodoLetivoStorage {
   delete(options) {
     let deferred = this.$q.defer()
 
-    this.periodoLetivoService
+    this.representanteService
       .api.root
       .destroy(options).$promise.then(
         this.getDeleteSuccessCallback(deferred, options),
@@ -169,7 +169,7 @@ export default class PeriodoLetivoStorage {
         this.deleteIndex(options)
         deferred.resolve()
       }
-      else deferred.reject('Error: periodoLetivo Delete Request.')
+      else deferred.reject('Error: representante Delete Request.')
 
       return deferred.promise
     }

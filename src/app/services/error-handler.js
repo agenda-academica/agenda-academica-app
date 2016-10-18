@@ -10,8 +10,7 @@ export default class ErrorHandlerService {
 
   requestErrorMessage() {
     return (err) => {
-      console.error(err)
-      this.$mdDialog.show(
+       this.$mdDialog.show(
         this.$mdDialog.alert()
           .title('Erro ):')
           .textContent(`Ops! Algo inesperado aconteceu. Aguarde um instante e

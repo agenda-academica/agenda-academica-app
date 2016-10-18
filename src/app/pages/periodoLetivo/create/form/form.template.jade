@@ -25,7 +25,7 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
             md-datepicker(ng-model='$ctrl.parent.periodoLetivoForm.dataFim', md-placeholder='Selecione a data')
 
     div(layout='row', layout-align='space-between center')
-        span Selecione a cor do evento
+        span Selecione a cor do periodo
 
           md-select.md-no-underline(ng-model='$ctrl.parent.periodoLetivoForm.cor', placeholder='Selecione a cor ')
             md-option(value='#0000CD') Azul
@@ -37,6 +37,12 @@ form(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
             md-option(value='#FFD700') Amarelo
 
             md-option(value='#BA55D3') Roxo
+
+
+    p Selected color is {{color}}
+    div(style='margin-left: 50px')
+      color-picker(color='color', options='options', on-color-changed='colorChanged(newColor, oldColor)')
+
 
 
 
