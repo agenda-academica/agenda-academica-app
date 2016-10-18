@@ -1,4 +1,4 @@
-export default class CalendarAddEventsFabController {
+export default class AulaInfoAddFabController {
   constructor($scope, $timeout, $location) {
     'ngInject'
     this.$scope    = $scope
@@ -7,7 +7,7 @@ export default class CalendarAddEventsFabController {
 
     this.isAddFabOpen      = false
     this.addTooltipVisible = false
-    this.timerEventName    = 'calendar.addTooltip.timeout.destroy'
+    this.timerEventName    = 'evento.addTooltip.timeout.destroy'
     this.$scope.$watch(() => this.isAddFabOpen, this.addTooltipVisibility())
   }
 

@@ -2,6 +2,7 @@ import 'angular-material/angular-material.min.css'
 import 'angular-ui-bootstrap/dist/ui-bootstrap-csp.css'
 import 'angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css'
 import 'normalize.css'
+import moment from 'moment'
 
 // JS dependencies.
 import 'bootstrap-webpack'
@@ -64,7 +65,7 @@ angular.module('app', [
 /**
  * Routes
  */
-.config(($routeProvider) => {
+.config($routeProvider => {
   'ngInject'
 
   $routeProvider
@@ -76,9 +77,13 @@ angular.module('app', [
     .otherwise({ redirectTo: '/' });
 })
 
-.config(($httpProvider) => {
+.config($httpProvider => {
   'ngInject'
   $httpProvider.interceptors.push('httpLoaderInterceptor');
+})
+
+.config($mdDateLocaleProvider => {
+  $mdDateLocaleProvider.formatDate = date => moment(date).format('YYYY-MM-DD')
 })
 
 .constant('apiUrl',

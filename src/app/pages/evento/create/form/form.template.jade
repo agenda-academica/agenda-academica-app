@@ -1,4 +1,4 @@
-h2.aa Cadastro
+h2.aa Cadastrar evento
 
 form.page-evento-create(name='create' layout-padding ng-submit='$ctrl.parent.submit()')
   div(layout-gt-sm='row')
@@ -9,9 +9,8 @@ form.page-evento-create(name='create' layout-padding ng-submit='$ctrl.parent.sub
     .empty-message(ng-show='!$ctrl.hasUniversidades')
       ng-md-icon(class='md-avatar' size='10%' icon='account_balance' style='fill: #ccc')
       div Nenhuma universidade cadastrada.
-      md-button.md-raised.md-primary(
-        ng-href='{{"/#/universidade/create"}}'
-      ) Cadastrar
+      md-button.md-raised.md-primary( ng-click='$ctrl.getUniversidadeCreateRedirect()' )
+        | Cadastrar
 
     md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasUniversidades')
       label Universidade
@@ -38,9 +37,8 @@ form.page-evento-create(name='create' layout-padding ng-submit='$ctrl.parent.sub
     .empty-message(ng-show='!$ctrl.hasUnidades && $ctrl.parent.form.universidade !== undefined')
       ng-md-icon(class='md-avatar' size='10%' icon='location_on' style='fill: #ccc')
       div Nenhuma unidade cadastrada.
-      md-button.md-raised.md-primary(
-        ng-href='{{"/#/unidade/create/" + $ctrl.parent.form.universidade.id}}'
-      ) Cadastrar
+      md-button.md-raised.md-primary(ng-click='$ctrl.getUnidadeCreateRedirect()')
+        | Cadastrar
 
     md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasUnidades')
       label Unidade
@@ -67,9 +65,8 @@ form.page-evento-create(name='create' layout-padding ng-submit='$ctrl.parent.sub
     .empty-message(ng-show='!$ctrl.hasCursos && $ctrl.parent.form.unidade !== undefined')
       ng-md-icon(class='md-avatar' size='10%' icon='school' style='fill: #ccc')
       div Nenhum curso cadastrado.
-      md-button.md-raised.md-primary(
-        ng-href='{{"/#/curso/create/" + $ctrl.parent.form.universidade.id + "/" +$ctrl.parent.form.unidade.id}}'
-      ) Cadastrar
+      md-button.md-raised.md-primary(ng-click='$ctrl.getCursoCreateRedirect()')
+        | Cadastrar
 
     md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasCursos')
       label Curso
@@ -96,9 +93,8 @@ form.page-evento-create(name='create' layout-padding ng-submit='$ctrl.parent.sub
     .empty-message(ng-show='!$ctrl.hasTurmas && $ctrl.parent.form.curso !== undefined')
       ng-md-icon(class='md-avatar' size='10%' icon='insert_emoticon' style='fill: #ccc')
       div Nenhuma turma cadastrada.
-      md-button.md-raised.md-primary(
-        ng-href='{{"/#/turma/create/" + $ctrl.parent.form.universidade.id + "/" +$ctrl.parent.form.unidade.id + "/" +$ctrl.parent.form.curso.id}}'
-      ) Cadastrar
+      md-button.md-raised.md-primary(ng-click='$ctrl.getTurmaCreateRedirect()')
+        | Cadastrar
 
     md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasTurmas')
       label Turma
@@ -120,38 +116,105 @@ form.page-evento-create(name='create' layout-padding ng-submit='$ctrl.parent.sub
           | This is required.
 
     //-//
-    //- Abreviação do nome da disciplina
+    //- Disciplina
     //-//
-    md-input-container.md-block(flex-gt-sm)
-      label Abreviação
-      input(
-        md-minlength='5'
-        required=''
-        name='abreviacao'
-        ng-model='$ctrl.parent.form.abreviacao'
+    .empty-message(ng-show='!$ctrl.hasDisciplinas && $ctrl.parent.form.turma !== undefined')
+      ng-md-icon(class='md-avatar' size='10%' icon='brush' style='fill: #ccc')
+      div Nenhuma disciplina cadastrada.
+      md-button.md-raised.md-primary(ng-click='$ctrl.getDisciplinaCreateRedirect()')
+        | Cadastrar
+
+    md-input-container.md-block.md-input-invalid(flex-gt-sm ng-show='$ctrl.hasDisciplinas')
+      label Disciplina
+      md-select(
+        name='idDisciplina'
+        ng-model='$ctrl.parent.form.disciplina'
+        ng-disabled='$ctrl.hasDisciplinaId'
+        required
       )
-      div(ng-messages='create.abreviacao.$error')
+        md-option(
+          ng-repeat='(index, disciplina) in $ctrl.disciplinas'
+          ng-value='disciplina'
+          ng-selected='index === $ctrl.currentDisciplinaIndex'
+        )
+          | {{disciplina.nome}}
+      .md-errors-spacer
+      div(ng-messages='create.idDisciplina.$error')
         div(ng-message='required')
           | This is required.
-        div(ng-message='md-maxlength')
-          | The name has to be less than 30 characters long.
 
     //-//
-    //- Nome da disciplina
+    //- Tipo de Evento
+    //-//
+    md-input-container.md-block.md-input-invalid(flex-gt-sm)
+      label Tipo
+      md-select(name='tipo' ng-model='$ctrl.parent.form.tipo' required)
+        md-option(ng-repeat='(index, tipo) in $ctrl.tipos' ng-value='tipo') {{tipo}}
+      .md-errors-spacer
+      div(ng-messages='create.tipo.$error')
+        div(ng-message='required') This is required.
+
+    //-//
+    //- Título
     //-//
     md-input-container.md-block(flex-gt-sm)
-      label Nome da disciplina
+      label Título
       input(
         md-minlength='5'
+        md-maxlength="100"
         required=''
-        name='nome'
-        ng-model='$ctrl.parent.form.nome'
+        name='titulo'
+        ng-model='$ctrl.parent.form.titulo'
       )
-      div(ng-messages='create.nome.$error')
-        div(ng-message='required')
-          | This is required.
-        div(ng-message='md-maxlength')
-          | The name has to be less than 30 characters long.
+      div(ng-messages='create.titulo.$error')
+        div(ng-message='required') This is required.
+        div(ng-message='md-maxlength') The name has to be less than 30 characters long.
+
+    //-//
+    //- Descrição
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Descrição
+      textarea(
+        ng-model='$ctrl.parent.form.descricao'
+        md-maxlength='500'
+        rows='3'
+        md-select-on-focus
+      )
+      div(ng-messages='create.descricao.$error')
+        div(ng-message='required') This is required.
+        div(ng-message='md-maxlength') The name has to be less than 30 characters long.
+
+    //-//
+    //- Data início
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Data Início
+      md-datepicker(
+        name='dataInicio'
+        ng-model='$ctrl.parent.form.dataInicio'
+        md-open-on-focus
+        required
+      )
+      div(ng-messages='create.dataInicio.$error')
+        div(ng-message='valid') The entered value is not a date!
+        div(ng-message='required') This date is required!
+
+    //-//
+    //- Data fim
+    //-//
+    md-input-container.md-block(flex-gt-sm)
+      label Data Fim
+      md-datepicker(
+        name='dataFim'
+        ng-model='$ctrl.parent.form.dataFim'
+        md-open-on-focus
+        md-min-date='$ctrl.parent.form.dataInicio'
+        required
+      )
+      div(ng-messages='create.dataFim.$error')
+        div(ng-message='valid') The entered value is not a date!
+        div(ng-message='required') This date is required!
 
     div(layout='row')
       //-//
@@ -189,27 +252,6 @@ form.page-evento-create(name='create' layout-padding ng-submit='$ctrl.parent.sub
             | This is required.
           div(ng-message='md-maxlength')
             | The name has to be less than 30 characters long.
-
-    //-//
-    //- Dia da semana
-    //-//
-    md-input-container.md-block.md-input-invalid(flex-gt-sm)
-      label Dia da semana
-      md-select(
-        name='diaSemana'
-        ng-model='$ctrl.parent.form.diaSemana'
-        required
-      )
-        md-option(
-          ng-repeat='(index, diaSemana) in $ctrl.diasSemana'
-          ng-value='index'
-          ng-selected='index == $ctrl.currentDiaSemana'
-        )
-          | {{diaSemana.label}}
-      .md-errors-spacer
-      div(ng-messages='create.diaSemana.$error')
-        div(ng-message='required')
-          | This is required.
 
     //-//
     //- Save Button

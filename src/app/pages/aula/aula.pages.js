@@ -11,4 +11,5 @@ export default angular.module('app.pages.aula', [])
   ////
   // Info
   ////
-  .component('aulaInfo', aula.package.info.info)
+  .component('aulaInfoAddFab' , aula.package.info.addFab)
+  .component('aulaInfo'       , aula.package.info.info)

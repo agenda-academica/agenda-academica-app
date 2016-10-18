@@ -65,11 +65,20 @@ md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
 
   md-content
     md-list
+      //-//
+      //- Navegação
+      //-//
       md-subheader.md-no-sticky Navegação
       md-list-item.no-arrow(ng-href='/#/index')
         ng-md-icon(class='md-avatar' size='30' icon='home')
         p Home
+      md-list-item.no-arrow(ng-href='/#/evento')
+        ng-md-icon(class='md-avatar' size='30' icon='event')
+        p Eventos
 
+      //-//
+      //- Dados de Organização
+      //-//
       md-subheader.md-no-sticky Dados de Organização
       md-list-item.no-arrow(ng-href='/#/quadro-horario')
         ng-md-icon(class='md-avatar' size='30' icon='dashboard')
@@ -78,6 +87,9 @@ md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left')
         ng-md-icon(class='md-avatar' size='30' icon='event')
         p Calendário
 
+      //-//
+      //- Dados de Universidades
+      //-//
       md-subheader.md-no-sticky Dados de Universidades
       md-list-item(
         ng-click='$ctrl.toggleSublistVisibility("universidade")'

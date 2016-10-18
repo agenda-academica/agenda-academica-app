@@ -5,7 +5,7 @@ export default class EventoCreateController {
     $location,
     moment,
     usuarioAuth,
-    disciplinaStorage,
+    eventoStorage,
     errorHandler
   ) {
     'ngInject'
@@ -14,60 +14,56 @@ export default class EventoCreateController {
     this.$location         = $location
     this.moment            = moment
     this.usuarioAuth       = usuarioAuth
-    this.disciplinaStorage = disciplinaStorage
+    this.eventoStorage = eventoStorage
     this.errorHandler      = errorHandler
 
     this.form = {}
   }
 
+  redirect() {
+    return () => { this.$location.path(`/evento`) }
+  }
+
   submit() {
-    this.sendCreateRequest(
-      this.getCreateSuccessCallback((disciplina) => {
-        this.$location.path(`/quadro-horario/dia/${disciplina.diaSemana}`)
-      })
-    )
+    this.sendCreateRequest(this.getCreateSuccessCallback(this.redirect()))
   }
 
   submitOutsideForm() {
-    let childScope = this.$scope.$parent.$$childTail.$$childTail
-    if (childScope.create.$invalid) {
-      this.$mdDialog.show(this.getPreenchimentoAlert())
-      return
-    }
-    this.sendCreateRequest(
-      this.getCreateSuccessCallback(() => {
-        this.$location.path(`/quadro-horario/dia/${disciplina.diaSemana}`)
-      })
-    )
+    const childScope = this.$scope.$parent.$$childTail.$$childTail
+    if (childScope.create.$invalid) return this.$mdDialog.show(this.getPreenchimentoAlert())
+    this.sendCreateRequest(this.getCreateSuccessCallback(this.redirect()))
   }
 
   sendCreateRequest(successCallback) {
-    let data            = angular.copy(this.form)
+    const data          = angular.copy(this.form)
+    const dateFormat    = 'YYYY-MM-DD'
+    const hourFormat    = 'HH:mm:ss'
     data.idUsuario      = this.usuarioAuth.take().id
     data.idUniversidade = data.universidade.id
     data.idUnidade      = data.unidade.id
     data.idCurso        = data.curso.id
     data.idTurma        = data.turma.id
-    data.horaInicio     = this.moment(data.horaInicio).format('HH:mm:ss')
-    data.horaFim        = this.moment(data.horaFim).format('HH:mm:ss')
+    data.idDisciplina   = data.disciplina.id
+    data.dataInicio     = this.moment(data.dataInicio).format(dateFormat)
+    data.dataFim        = this.moment(data.dataFim).format(dateFormat)
+    data.horaInicio     = this.moment(data.horaInicio).format(hourFormat)
+    data.horaFim        = this.moment(data.horaFim).format(hourFormat)
 
-    this.disciplinaStorage.create(data).then(
+    this.eventoStorage.create(data).then(
       successCallback(data),
       this.errorHandler.request()
     )
   }
 
   getCreateSuccessCallback(callback) {
-    return (data) => {
-      return () => callback(this.disciplinaStorage.getLast())
-    }
+    return data => () => callback()
   }
 
   getPreenchimentoAlert() {
     return this.$mdDialog.alert()
       .title('Tudo preenchido?')
-      .textContent(`Verifique se o preenchimento dos campos obrigatórios
-        foram feitos corretamente.`)
+      .textContent(`Verifique se o preenchimento dos campos obrigatórios foram feitos
+        corretamente.`)
       .ok('Ok, vou verificar')
   }
 }

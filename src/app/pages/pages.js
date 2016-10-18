@@ -11,6 +11,7 @@ import disciplina    from './disciplina/disciplina.pages'
 import periodoLetivo from './periodoLetivo/periodoLetivo.pages'
 import aula          from './aula/aula.pages'
 import representante from './representante/representante.pages'
+import evento        from './evento/evento.pages'
 
 export default angular
   .module('app.pages', [
@@ -25,4 +26,5 @@ export default angular
     periodoLetivo.name,
     aula.name,
     representante.name,
+    evento.name,
   ])
